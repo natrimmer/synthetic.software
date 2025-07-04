@@ -1,6 +1,6 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://gnat.blog/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'gnat blog'
 enableGitInfo = true
 
 defaultContentLanguage = 'en'

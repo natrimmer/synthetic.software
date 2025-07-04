@@ -3,7 +3,7 @@ title = "Home"
 +++
 
 <h1 class="text-3xl font-semibold pb-2">I'm Nick, a DevOps engineer.</h1>
-<section>
+<section class="border-b border-dashed border-mondrian_black pb-4">
     <p>
         This site has three main sections. The
         <a
@@ -27,5 +27,25 @@ title = "Home"
             >articles</a
         >
         section features in-depth, long-form writing.
+    </p>
+</section>
+<section class="py-4 font-mono flex items-center gap-2">
+    <span>
+        <div class="relative w-4 h-4">
+          <div class="absolute w-4 h-4 bg-mondrian_red rounded-full animate-ping"></div>
+          <div class="absolute w-4 h-4 bg-mondrian_red rounded-full"></div>
+        </div>
+    </span>
+    <p>Latest writing on the PJMF blog -
+        <a
+            href="https://github.com/natrimmer/gnat/commit/{{ $commitHashFull }}"
+            aria-label="View commit {{ $commitHash }} on GitHub"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="hover:text-mondrian_red transition-colors"
+            title="View this commit on GitHub"
+        >
+            How to: A Practioner's Guide to Sustainable Cloud Workloads
+        </a>
     </p>
 </section>

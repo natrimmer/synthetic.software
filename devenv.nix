@@ -55,6 +55,7 @@ in
 
       # Set git info for Hugo
       export HUGO_GIT_COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
+      export HUGO_GIT_COMMIT_HASH_FULL=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
       export HUGO_BUILD_DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
       # Build Hugo site
@@ -118,6 +119,7 @@ in
 
       # Set git info for Hugo
       export HUGO_GIT_COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
+      export HUGO_GIT_COMMIT_HASH_FULL=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
       export HUGO_BUILD_DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
       echo "🌐 Starting Hugo dev server at http://localhost:1313"

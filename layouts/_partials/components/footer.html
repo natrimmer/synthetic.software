@@ -1,13 +1,13 @@
-<footer class="w-full text-xs text-mondrian_blue font-mono">
+<footer class="w-full text-xs text-mondrian_black font-mono border-t border-t-mondrian_black pt-4">
     <p>
-        © Copyright <time datetime="1994">1994</time>, gnat. All Rights
-        Reserved. Source code on
+        © copyright <time datetime="1994">1994</time>, gnat · all rights
+        reserved · source code on
         <a
-            href="https://github.com/natrimmer"
+            href="https://github.com/natrimmer/gnat"
             aria-label="View source code on GitHub"
             rel="noopener noreferrer"
             target="_blank"
-            class="inline-flex items-center justify-center align-middle ml-1 hover:text-mondrian_red transition-colors focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+            class="inline-flex items-center justify-center align-middle ml-1 hover:text-mondrian_blue transition-colors focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
         >
             <svg
                 class="h-4 w-4 align-middle"
@@ -29,16 +29,22 @@
             aria-label="View the changelog"
             class="hover:text-mondrian_yellow transition-colors"
         >
-            Last updated: {{ now.Format "2006-01-02 15:04:05 UTC" }}
-            {{ with .GitInfo }}
-                · {{ .AbbreviatedHash }}
-            {{ else }}{{ with .Site.GitInfo }}
-                · {{ .AbbreviatedHash }}
-            {{ else }}{{ with getenv "HUGO_GIT_COMMIT_HASH" }}
-                · {{ . }}
-            {{ else }}
-                · no git info
-            {{ end }}{{ end }}{{ end }}
+            last updated: {{ now.Format "2006-01-02 15:04:05 UTC" }}
         </a>
+        {{ $commitHash := getenv "HUGO_GIT_COMMIT_HASH" }}
+        {{ $commitHashFull := getenv "HUGO_GIT_COMMIT_HASH_FULL" }}
+        {{ if and $commitHash $commitHashFull (ne $commitHash "unknown") (ne $commitHashFull "unknown") }}
+        ∿
+        <a
+            href="https://github.com/natrimmer/gnat/commit/{{ $commitHashFull }}"
+            aria-label="View commit {{ $commitHash }} on GitHub"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="hover:text-mondrian_red transition-colors"
+            title="View this commit on GitHub"
+        >
+            {{ $commitHash }}
+        </a>
+        {{ end }}
     </p>
 </footer>
