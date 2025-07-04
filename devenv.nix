@@ -1,8 +1,7 @@
-{
-  pkgs,
-  ...
-}:
-
+{ pkgs, inputs, ... }:
+let
+  pkgs-unstable = import inputs.nixpkgs-unstable { inherit (pkgs.stdenv) system; };
+in
 {
   #----------------------------------------------------------------------------
   # Basic Environment Setup
@@ -20,6 +19,8 @@
     pkgs.tailwindcss_4
     pkgs.git
     pkgs.nixd
+    pkgs-unstable.prettier
+    pkgs.prettier-plugin-go-template
   ];
 
   #----------------------------------------------------------------------------
@@ -28,6 +29,94 @@
   scripts = {
     hello.exec = ''
       echo hello from $GREET
+    '';
+
+    # Hugo feed system scripts
+    hugo-build.exec = ''
+      echo "🔄 Processing feed files..."
+
+      # Create queue directory if it doesn't exist
+      mkdir -p queue
+
+      # Build the Go processor if it doesn't exist or is outdated
+      if [ ! -f "./feed-processor" ] || [ "feed-processor.go" -nt "./feed-processor" ]; then
+        echo "🔨 Building feed processor..."
+        go build -o feed-processor feed-processor.go
+      fi
+
+      # Process any files in the queue
+      if [ "$(ls -A queue 2>/dev/null)" ]; then
+        echo "📝 Processing $(ls queue | wc -l) feed items..."
+        ./feed-processor queue content/feed --verbose
+        echo "✅ Feed processing complete"
+      else
+        echo "📭 No feed items to process"
+      fi
+
+      # Build Hugo site
+      echo "🏗️  Building Hugo site..."
+      hugo --minify
+
+      echo "✅ Build complete!"
+    '';
+
+    feed-add.exec = ''
+      if [ $# -eq 0 ]; then
+        echo "Usage: feed-add \"Your feed content here\" [tag1] [tag2] ..."
+        echo "Example: feed-add \"Working on Hugo feed system\" hugo development"
+        exit 1
+      fi
+
+      content="$1"
+      shift
+
+      # Add hashtags for additional arguments
+      for tag in "$@"; do
+        content="$content #$tag"
+      done
+
+      # Create timestamped file
+      timestamp=$(date +%s)
+      filename="queue/$timestamp.txt"
+
+      mkdir -p queue
+      echo "$content" > "$filename"
+      echo "📝 Added feed item: $filename"
+      echo "Content: $content"
+
+      # Auto-process if Hugo dev server is running
+      if pgrep -f "hugo server" > /dev/null; then
+        echo "🔄 Auto-processing..."
+        if [ ! -f "./feed-processor" ]; then
+          go build -o feed-processor feed-processor.go
+        fi
+        ./feed-processor queue content/feed --verbose
+      fi
+    '';
+
+    hugo-dev.exec = ''
+      echo "🚀 Starting Hugo development server with feed processing..."
+
+      # Build the processor
+      if [ ! -f "./feed-processor" ] || [ "feed-processor.go" -nt "./feed-processor" ]; then
+        echo "🔨 Building feed processor..."
+        go build -o feed-processor feed-processor.go
+      fi
+
+      # Create queue directory
+      mkdir -p queue
+
+      # Process any existing files
+      if [ "$(ls -A queue 2>/dev/null)" ]; then
+        echo "📝 Processing existing feed items..."
+        ./feed-processor queue content/feed --verbose
+      fi
+
+      echo "🌐 Starting Hugo dev server at http://localhost:1313"
+      echo "💡 Add feed items: feed-add \"Your content\" tag1 tag2"
+      echo "🛑 Press Ctrl+C to stop"
+
+      hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --disableFastRender
     '';
 
     build.exec = ''
@@ -229,6 +318,11 @@
     echo "  version        - Show version info"
     echo "  clean          - Clean build artifacts"
     echo "  ci             - Run all CI checks"
+    echo ""
+    echo "Hugo feed system:"
+    echo "  hugo-build     - Process feed queue and build Hugo site"
+    echo "  feed-add       - Add new feed item (feed-add \"content\" tag1 tag2)"
+    echo "  hugo-dev       - Start Hugo dev server with auto-processing"
     echo ""
     echo "Version management:"
     echo "  major          - Increment major version (X.0.0)"

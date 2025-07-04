@@ -2,4 +2,36 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 
+# Fixed pagination settings for Hugo v0.128+
+defaultContentLanguage = 'en'
+
 [taxonomies]
+tag = 'tags'
+category = 'categories'
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[params]
+description = 'My personal website and feed'
+
+[pagination]
+pagerSize = 10
+
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = 'assets/notwatching/hugo_stats\.json'
+    target = 'css'
+  [[build.cachebusters]]
+    source = '(postcss|tailwind)\.config\.js'
+    target = 'css'
+[module]
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    disableWatch = true
+    source = 'hugo_stats.json'
+    target = 'assets/notwatching/hugo_stats.json'

@@ -10,3 +10,6 @@ devenv.local.nix
 
 public/
 static/fonts/
+feed-processor
+.zed
+queue/

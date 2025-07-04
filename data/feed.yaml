@@ -1,0 +1,60 @@
+# Updated feed.yaml with proper ID structure
+- id: 1247
+  content: "Finally figured out why my Hugo build was slow - I had a recursive partial call. Hugo's error messages for template issues could be better."
+  date: "2024-01-15T14:30:00Z"
+  tags: ["hugo", "debugging"]
+
+- id: 1246
+  content: "TIL: You can use CSS Container Queries to make components truly responsive based on their container, not the viewport. Game changer for component libraries."
+  date: "2024-01-15T10:15:00Z"
+  tags: ["css", "responsive-design"]
+
+- id: 1245
+  content: "Started building a Redis-based rate limiter for our API. Using a sliding window algorithm with atomic operations. Will open source once it's tested."
+  date: "2024-01-14T16:45:00Z"
+  tags: ["redis", "golang", "api-design"]
+
+- id: 1244
+  content: "The new Tailwind CSS v4 alpha is impressive. The move to CSS-first configuration and native CSS nesting support feels much cleaner."
+  date: "2024-01-14T09:20:00Z"
+  tags: ["tailwind", "css"]
+
+- id: 1243
+  content: "Why do I always remember the perfect variable name 5 minutes after committing? 🤦‍♂️"
+  date: "2024-01-13T15:10:00Z"
+  tags: ["programming", "humor"]
+
+- id: 1242
+  content: "Working on a Hugo theme that uses data files for micro-posts instead of individual markdown files. Much cleaner for Twitter-style updates."
+  date: "2024-01-13T11:30:00Z"
+  tags: ["hugo", "content-strategy"]
+
+- id: 1241
+  content: "Just discovered `git worktree` - you can have multiple working directories for the same repo. Perfect for when you need to quickly check something in another branch without stashing."
+  date: "2024-01-12T14:20:00Z"
+  tags: ["git", "productivity"]
+
+- id: 1240
+  content: 'Figured out the perfect portable setup: 13" MacBook + Roost stand + external keyboard. Good ergonomics without taking up the whole table.'
+  date: "2024-01-12T08:45:00Z"
+  tags: ["setup", "productivity"]
+
+- id: 1239
+  content: "Refactored 500 lines of React into 50 lines using the new `use` hook. The future of React is looking clean."
+  date: "2024-01-11T17:30:00Z"
+  tags: ["react", "refactoring"]
+
+- id: 1238
+  content: "Reading 'A Philosophy of Software Design' by John Ousterhout. The chapter on complexity is required reading for all developers."
+  date: "2024-01-11T12:15:00Z"
+  tags: ["books", "software-design"]
+
+- id: 1237
+  content: "Deployed my first Deno app to production today. The built-in TypeScript support and standard library make it a joy to work with."
+  date: "2024-01-10T19:45:00Z"
+  tags: ["deno", "typescript", "deployment"]
+
+- id: 1236
+  content: "Pro tip: Use `console.table()` instead of `console.log()` for arrays of objects. Much more readable in the browser console."
+  date: "2024-01-10T13:20:00Z"
+  tags: ["javascript", "debugging", "tips"]

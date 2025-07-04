@@ -1,15 +1,12 @@
-{{ $css := resources.Get "css/main.css" }} {{ if hugo.IsProduction }} {{ $css =
-$css | css.TailwindCSS | minify | fingerprint }} {{ else }} {{ $css = $css |
-css.TailwindCSS }} {{ end }}
-<link
-    rel="stylesheet"
-    href="{{ $css.RelPermalink }}"
-    {{
-    if
-    hugo.IsProduction
-    }}
-    integrity="{{ $css.Data.Integrity }}"
-    {{
-    end
-    }}
-/>
+{{ with resources.Get "css/main.css" }}
+  {{ $opts := dict "minify" (not hugo.IsDevelopment) }}
+  {{ with . | css.TailwindCSS $opts }}
+    {{ if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ else }}
+      {{ with . | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

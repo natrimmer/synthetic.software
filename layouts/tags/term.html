@@ -1,0 +1,100 @@
+{{ define "main" }}
+<div>
+    <div class="flex justify-between w-full items-end">
+        <h3 class="text-3xl font-semibold">
+            #{{ .Title }}
+        </h3>
+        <div class="text-right mb-1">
+            <span class="h-max pb-1">
+                <p class="text-xs font-mono text-gray-500">
+                    {{ .Pages | len }} {{ if eq (.Pages | len) 1 }}item{{ else }}items{{ end }}
+                </p>
+            </span>
+        </div>
+    </div>
+    <hr />
+
+    {{ if gt (len .Pages) 0 }}
+        {{ $sortedPages := sort .Pages "Date" "desc" }}
+        {{ $paginator := .Paginate $sortedPages }}
+        
+        <section class="mt-6">
+            <div class="space-y-4">
+                {{ range $paginator.Pages }}
+                <article class="border-b border-b-gray-300 hover:bg-mondrian_white pb-4 transition-colors">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex-1">
+                            <div class="text-sm leading-relaxed">
+                                {{ .Content }}
+                            </div>
+                        </div>
+                        <div class="ml-4 text-right">
+                            <span class="text-xs font-mono text-gray-500">
+                                {{ .Date.Format "2006-01-02" }}<br>
+                                {{ .Date.Format "15:04" }}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <footer class="flex flex-wrap items-center gap-2 text-xs">
+                        {{ with .Params.tags }}
+                        <div class="flex flex-wrap gap-1">
+                            {{ range . }}
+                            <a href="/tags/{{ . | urlize }}/" 
+                               class="px-1 py-0.5 text-black border border-gray-400 font-mono transition-colors bg-white hover:bg-mondrian_yellow hover:border-black text-xs">
+                                #{{ . }}
+                            </a>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                        
+                        <a href="{{ .RelPermalink }}" 
+                           class="px-2 py-0.5 text-black border border-black font-mono transition-colors bg-white hover:bg-mondrian_red hover:text-white text-xs">
+                            {{ .Title }}
+                        </a>
+                    </footer>
+                </article>
+                {{ end }}
+            </div>
+
+            {{/* Pagination */}}
+            {{ if gt $paginator.TotalPages 1 }}
+            <nav class="flex justify-center mt-8">
+                <div class="flex items-center gap-1">
+                    {{ if $paginator.HasPrev }}
+                    <a href="{{ $paginator.Prev.URL }}" 
+                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_blue hover:text-white">
+                        ← NEWER
+                    </a>
+                    {{ end }}
+                    
+                    {{ range $paginator.Pagers }}
+                    {{ if eq . $paginator }}
+                    <span class="px-3 py-1 text-xs bg-mondrian_red text-white border border-black font-mono">
+                        {{ .PageNumber }}
+                    </span>
+                    {{ else }}
+                    <a href="{{ .URL }}" 
+                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_yellow">
+                        {{ .PageNumber }}
+                    </a>
+                    {{ end }}
+                    {{ end }}
+                    
+                    {{ if $paginator.HasNext }}
+                    <a href="{{ $paginator.Next.URL }}" 
+                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_blue hover:text-white">
+                        OLDER →
+                    </a>
+                    {{ end }}
+                </div>
+            </nav>
+            {{ end }}
+        </section>
+    {{ else }}
+        <div class="mt-6">
+            <p class="text-sm text-gray-500">No items found with this tag.</p>
+        </div>
+    {{ end }}
+</div>
+{{ end }}
