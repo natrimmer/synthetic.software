@@ -41,7 +41,7 @@
                         <div class="flex flex-wrap gap-1">
                             {{ range . }}
                             <a href="/tags/{{ . | urlize }}/" 
-                               class="px-1 py-0.5 text-black border border-gray-400 font-mono transition-colors bg-white hover:bg-mondrian_yellow hover:border-black text-xs">
+                               class="px-1 py-0.5 text-black border border-gray-400 font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow hover:border-black text-xs">
                                 #{{ . }}
                             </a>
                             {{ end }}
@@ -49,7 +49,7 @@
                         {{ end }}
                         
                         <a href="{{ .RelPermalink }}" 
-                           class="px-2 py-0.5 text-black border border-black font-mono transition-colors bg-white hover:bg-mondrian_red hover:text-white text-xs">
+                           class="px-2 py-0.5 text-black border border-black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_white text-xs">
                             {{ .Title }}
                         </a>
                     </footer>
@@ -63,7 +63,7 @@
                 <div class="flex items-center gap-1">
                     {{ if $paginator.HasPrev }}
                     <a href="{{ $paginator.Prev.URL }}" 
-                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_blue hover:text-white">
+                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white">
                         ← NEWER
                     </a>
                     {{ end }}
@@ -75,7 +75,7 @@
                     </span>
                     {{ else }}
                     <a href="{{ .URL }}" 
-                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_yellow">
+                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow">
                         {{ .PageNumber }}
                     </a>
                     {{ end }}
@@ -83,7 +83,7 @@
                     
                     {{ if $paginator.HasNext }}
                     <a href="{{ $paginator.Next.URL }}" 
-                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_blue hover:text-white">
+                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white">
                         OLDER →
                     </a>
                     {{ end }}

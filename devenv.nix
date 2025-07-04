@@ -53,9 +53,13 @@ in
         echo "📭 No feed items to process"
       fi
 
+      # Set git info for Hugo
+      export HUGO_GIT_COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
+      export HUGO_BUILD_DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+
       # Build Hugo site
       echo "🏗️  Building Hugo site..."
-      hugo --minify
+      hugo --minify --enableGitInfo
 
       echo "✅ Build complete!"
     '';
@@ -112,11 +116,15 @@ in
         ./feed-processor queue content/feed --verbose
       fi
 
+      # Set git info for Hugo
+      export HUGO_GIT_COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
+      export HUGO_BUILD_DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+
       echo "🌐 Starting Hugo dev server at http://localhost:1313"
       echo "💡 Add feed items: feed-add \"Your content\" tag1 tag2"
       echo "🛑 Press Ctrl+C to stop"
 
-      hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --disableFastRender
+      hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --disableFastRender --enableGitInfo
     '';
 
     build.exec = ''

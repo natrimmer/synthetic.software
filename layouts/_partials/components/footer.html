@@ -29,8 +29,16 @@
             aria-label="View the changelog"
             class="hover:text-mondrian_yellow transition-colors"
         >
-            Last updated:
-            <!-- LAST_UPDATED -->
+            Last updated: {{ now.Format "2006-01-02 15:04:05 UTC" }}
+            {{ with .GitInfo }}
+                · {{ .AbbreviatedHash }}
+            {{ else }}{{ with .Site.GitInfo }}
+                · {{ .AbbreviatedHash }}
+            {{ else }}{{ with getenv "HUGO_GIT_COMMIT_HASH" }}
+                · {{ . }}
+            {{ else }}
+                · no git info
+            {{ end }}{{ end }}{{ end }}
         </a>
     </p>
 </footer>

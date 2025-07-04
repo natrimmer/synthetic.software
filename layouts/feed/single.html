@@ -17,7 +17,7 @@
                 {{ range . }}
                 <a
                     href="/tags/{{ . | urlize }}/"
-                    class="px-2 py-1 text-xs text-black border border-gray-400 shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_yellow hover:border-black focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="px-2 py-1 text-xs text-black border border-gray-400 shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow hover:border-black focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                 >
                     #{{ . }}
                 </a>
@@ -33,7 +33,7 @@
                 {{ with .PrevInSection }}
                 <a
                     href="{{ .RelPermalink }}"
-                    class="text-xs py-1 px-2 text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_blue hover:text-white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="text-xs py-1 px-2 text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                 >
                     ← {{ .Title }}
                 </a>
@@ -44,7 +44,7 @@
                 {{ with .NextInSection }}
                 <a
                     href="{{ .RelPermalink }}"
-                    class="text-xs py-1 px-2 text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_blue hover:text-white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="text-xs py-1 px-2 text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                 >
                     {{ .Title }} →
                 </a>

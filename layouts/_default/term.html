@@ -17,7 +17,7 @@
     {{ if gt (len .Pages) 0 }}
         {{ $sortedPages := sort .Pages "Date" "desc" }}
         {{ $paginator := .Paginate $sortedPages }}
-        
+
         <section class="mt-6">
             <div class="space-y-4">
                 {{ range $paginator.Pages }}
@@ -38,21 +38,21 @@
                             </span>
                         </div>
                     </div>
-                    
+
                     <footer class="flex flex-wrap items-center gap-2 text-xs">
                         {{ with .Params.tags }}
                         <div class="flex flex-wrap gap-1">
                             {{ range . }}
-                            <a href="/tags/{{ . | urlize }}/" 
-                               class="px-1 py-0.5 text-black border border-gray-400 font-mono transition-colors bg-white hover:bg-mondrian_yellow hover:border-black text-xs">
+                            <a href="/tags/{{ . | urlize }}/"
+                               class="px-1 py-0.5 text-black border border-gray-400 font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow hover:border-black text-xs">
                                 #{{ . }}
                             </a>
                             {{ end }}
                         </div>
                         {{ end }}
-                        
-                        <a href="{{ .RelPermalink }}" 
-                           class="px-2 py-0.5 text-black border border-black font-mono transition-colors bg-white hover:bg-mondrian_red hover:text-white text-xs">
+
+                        <a href="{{ .RelPermalink }}"
+                           class="px-2 py-0.5 text-black border border-black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_white text-xs">
                             READ MORE
                         </a>
                     </footer>
@@ -65,28 +65,28 @@
             <nav class="flex justify-center mt-8">
                 <div class="flex items-center gap-1">
                     {{ if $paginator.HasPrev }}
-                    <a href="{{ $paginator.Prev.URL }}" 
-                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_blue hover:text-white">
+                    <a href="{{ $paginator.Prev.URL }}"
+                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white">
                         ← NEWER
                     </a>
                     {{ end }}
-                    
+
                     {{ range $paginator.Pagers }}
                     {{ if eq . $paginator }}
                     <span class="px-3 py-1 text-xs bg-mondrian_red text-white border border-black font-mono">
                         {{ .PageNumber }}
                     </span>
                     {{ else }}
-                    <a href="{{ .URL }}" 
-                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_yellow">
+                    <a href="{{ .URL }}"
+                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow">
                         {{ .PageNumber }}
                     </a>
                     {{ end }}
                     {{ end }}
-                    
+
                     {{ if $paginator.HasNext }}
-                    <a href="{{ $paginator.Next.URL }}" 
-                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-white hover:bg-mondrian_blue hover:text-white">
+                    <a href="{{ $paginator.Next.URL }}"
+                       class="px-3 py-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white">
                         OLDER →
                     </a>
                     {{ end }}

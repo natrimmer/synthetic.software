@@ -1,8 +1,8 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
+enableGitInfo = true
 
-# Fixed pagination settings for Hugo v0.128+
 defaultContentLanguage = 'en'
 
 [taxonomies]
