@@ -1,70 +1,32 @@
+{{ $navigation := slice
+    (dict "name" "HOME" "url" "/" "color" "mondrian_yellow")
+    (dict "name" "FEED" "url" "/feed/" "color" "mondrian_black")
+    (dict "name" "NOTES" "url" "/notes/" "color" "mondrian_blue")
+    (dict "name" "ARTICLES" "url" "/articles/" "color" "mondrian_red")
+    (dict "name" "TRACKING" "url" "/tracking/" "color" "mondrian_black")
+    (dict "name" "SITEMAP" "url" "/sitemap/" "color" "mondrian_blue")
+    (dict "name" "CONTACT" "url" "/contact/" "color" "mondrian_red")
+    (dict "name" "ABOUT" "url" "/about/" "color" "mondrian_yellow")
+}}
+
+{{ $baseClasses := "text-xl md:text-2xl lg:text-3xl block hover:underline decoration-4 md:decoration-6 lg:decoration-8" }}
+
 <nav class="w-full font-mono">
-    <ul
-        class="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible whitespace-nowrap lg:whitespace-normal gap-4 lg:gap-2 lg:px-0"
-    >
-        <li class="lg:flex lg:justify-end">
-            <a
-                class="text-xl md:text-2xl lg:text-3xl block hover:underline decoration-mondrian_yellow decoration-4 md:decoration-6 lg:decoration-8"
-                href="/"
-                >HOME</a
-            >
+    <ul class="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible whitespace-nowrap lg:whitespace-normal gap-4 lg:gap-2 lg:px-0">
+        {{ range $navigation }}
+        <li class="{{ if eq .name "HOME" }}lg:flex lg:justify-end{{ else }}md:flex md:justify-end{{ end }}">
+            <a class="{{ $baseClasses }} decoration-{{ .color }}"
+               href="{{ .url | relURL }}"
+               {{ if eq .url page.RelPermalink }}aria-current="page"{{ end }}>
+                {{ .name }}
+            </a>
         </li>
-        <li class="md:flex md:justify-end">
-            <a
-                class="text-xl md:text-2xl lg:text-3xl block hover:underline decoration-mondrian_black decoration-4 md:decoration-6 lg:decoration-8"
-                href="/feed/"
-                >FEED</a
-            >
-        </li>
-        <li class="md:flex md:justify-end">
-            <a
-                class="text-xl md:text-2xl lg:text-3xl block hover:underline decoration-mondrian_blue decoration-4 md:decoration-6 lg:decoration-8"
-                href="/notes/"
-                >NOTES</a
-            >
-        </li>
-        <li class="md:flex md:justify-end">
-            <a
-                class="text-xl md:text-2xl lg:text-3xl block hover:underline decoration-mondrian_red decoration-4 md:decoration-6 lg:decoration-8"
-                href="/articles/"
-                >ARTICLES</a
-            >
-        </li>
-        <li class="md:flex md:justify-end">
-            <a
-                class="text-xl md:text-2xl lg:text-3xl block hover:underline decoration-mondrian_black decoration-4 md:decoration-6 lg:decoration-8"
-                href="/tracking/"
-                >TRACKING</a
-            >
-        </li>
-        <li class="md:flex md:justify-end">
-            <a
-                class="text-xl md:text-2xl lg:text-3xl block hover:underline decoration-mondrian_blue decoration-4 md:decoration-6 lg:decoration-8"
-                href="/sitemap/"
-                >SITEMAP</a
-            >
-        </li>
-        <li class="md:flex md:justify-end">
-            <a
-                class="text-xl md:text-2xl lg:text-3xl block hover:underline decoration-mondrian_red decoration-4 md:decoration-6 lg:decoration-8"
-                href="/contact/"
-                >CONTACT</a
-            >
-        </li>
-        <li class="md:flex md:justify-end">
-            <a
-                class="text-xl md:text-2xl lg:text-3xl block hover:underline decoration-mondrian_yellow decoration-4 md:decoration-6 lg:decoration-8"
-                href="/about/"
-                >ABOUT</a
-            >
-        </li>
+        {{ end }}
+
         <li class="hidden md:flex md:justify-end">
             <a href="?">
-                <svg
-                    class="size-8 md:size-9 lg:size-10 fill-mondrian_yellow hover:cursor-none hover:fill-mondrian_black"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 100 100"
-                >
+                <svg class="size-8 md:size-9 lg:size-10 fill-mondrian_yellow hover:cursor-none hover:fill-mondrian_black"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="40" />
                 </svg>
             </a>
