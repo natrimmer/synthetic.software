@@ -1,0 +1,12 @@
+{
+  "name": "hugo-gnat",
+  "private": true,
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "prettier-plugin-go-template": "^0.0.15"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format-check": "prettier --check ."
+  }
+}

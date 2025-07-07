@@ -1,7 +1,8 @@
-{ pkgs, inputs, ... }:
-let
-  pkgs-unstable = import inputs.nixpkgs-unstable { inherit (pkgs.stdenv) system; };
-in
+{
+  pkgs,
+  ...
+}:
+
 {
   #----------------------------------------------------------------------------
   # Basic Environment Setup
@@ -11,16 +12,15 @@ in
   #----------------------------------------------------------------------------
   # Languages and Packages
   #----------------------------------------------------------------------------
-  # Go environment
+  # Go and Node.js environment
   languages.go.enable = true;
+  languages.javascript.enable = true;
   packages = [
     pkgs.golangci-lint
     pkgs.hugo
     pkgs.tailwindcss_4
     pkgs.git
     pkgs.nixd
-    pkgs-unstable.prettier
-    pkgs.prettier-plugin-go-template
   ];
 
   #----------------------------------------------------------------------------
@@ -310,9 +310,27 @@ in
           ;;
       esac
     '';
+
+    fmt-templates.exec = ''
+      echo "🎨 Formatting Hugo template files..."
+
+      # Find and format all HTML template files
+      find layouts -name "*.html" -type f | while read -r file; do
+        echo "Formatting: $file"
+        npx prettier --parser go-template --write "$file"
+      done
+
+      echo "✅ Template formatting complete!"
+    '';
   };
 
   enterShell = ''
+    # Install npm dependencies if not present
+    if [ ! -d "node_modules" ]; then
+      echo "📦 Installing prettier and go-template plugin..."
+      npm install
+    fi
+
     echo ""
     echo ""
     hello
@@ -325,6 +343,7 @@ in
     echo "  test-race      - Run tests with race detection"
     echo "  lint           - Run linter"
     echo "  fmt            - Format code"
+    echo "  fmt-templates  - Format Hugo templates with Prettier"
     echo "  version        - Show version info"
     echo "  clean          - Clean build artifacts"
     echo "  ci             - Run all CI checks"

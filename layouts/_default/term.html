@@ -1,58 +1,66 @@
 {{ define "main" }}
-<div class="mb-4">
+  <div class="mb-4">
     <div class="flex justify-between w-full items-end">
-        <h3 class="text-3xl font-semibold">
-            {{ .Title }}
-        </h3>
-        <div class="text-right mb-1">
-            <span class="h-max pb-1">
-                <p class="text-xs font-mono text-gray-500">
-                    {{ .Pages | len }} {{ if eq (.Pages | len) 1 }}item{{ else }}items{{ end }}
-                </p>
-            </span>
-        </div>
+      <h3 class="text-3xl font-semibold">
+        {{ .Title }}
+      </h3>
+      <div class="text-right mb-1">
+        <span class="h-max pb-1">
+          <p class="text-xs font-mono text-gray-500">
+            {{ .Pages | len }}
+            {{ if eq (.Pages | len) 1 }}item{{ else }}items{{ end }}
+          </p>
+        </span>
+      </div>
     </div>
     <hr />
 
     {{ if gt (len .Pages) 0 }}
-        {{ $sortedPages := sort .Pages "Date" "desc" }}
-        {{ $paginator := .Paginate $sortedPages }}
+      {{ $sortedPages := sort .Pages "Date" "desc" }}
+      {{ $paginator := .Paginate $sortedPages }}
 
-        <section class="mt-6">
-            <div class="space-y-4">
-                {{ range $paginator.Pages }}
-                <article class="border-b border-b-gray-300 hover:bg-mondrian_white pb-4 transition-colors">
-                    <div class="flex justify-between items-start mb-2">
-                        <div class="flex-1">
-                            <h4 class="text-lg font-semibold mb-1">
-                                <a href="{{ .RelPermalink }}" class="hover:underline">{{ .Title }}</a>
-                            </h4>
-                            <div class="text-sm leading-relaxed">
-                                {{ .Summary }}
-                            </div>
-                        </div>
-                        <div class="ml-4 text-right">
-                            <span class="text-xs font-mono text-gray-500">
-                                {{ .Date.Format "2006-01-02" }}<br>
-                                {{ .Date.Format "15:04" }}
-                            </span>
-                        </div>
-                    </div>
 
-                    <footer class="flex flex-wrap items-center gap-2 text-xs">
-                        <a href="{{ .RelPermalink }}"
-                           class="px-2 py-0.5 text-black border border-black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_white text-xs">
-                            READ MORE
-                        </a>
-                    </footer>
-                </article>
-                {{ end }}
-            </div>
-        </section>
-    {{ else }}
-        <div class="mt-6">
-            <p class="text-sm text-gray-500">No items found.</p>
+      <section class="mt-6">
+        <div class="space-y-4">
+          {{ range $paginator.Pages }}
+            <article
+              class="border-b border-b-gray-300 hover:bg-mondrian_white pb-4 transition-colors"
+            >
+              <div class="flex justify-between items-start mb-2">
+                <div class="flex-1">
+                  <h4 class="text-lg font-semibold mb-1">
+                    <a href="{{ .RelPermalink }}" class="hover:underline"
+                      >{{ .Title }}</a
+                    >
+                  </h4>
+                  <div class="text-sm leading-relaxed">
+                    {{ .Summary }}
+                  </div>
+                </div>
+                <div class="ml-4 text-right">
+                  <span class="text-xs font-mono text-gray-500">
+                    {{ .Date.Format "2006-01-02" }}<br />
+                    {{ .Date.Format "15:04" }}
+                  </span>
+                </div>
+              </div>
+
+              <footer class="flex flex-wrap items-center gap-2 text-xs">
+                <a
+                  href="{{ .RelPermalink }}"
+                  class="px-2 py-0.5 text-black border border-black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_white text-xs"
+                >
+                  READ MORE
+                </a>
+              </footer>
+            </article>
+          {{ end }}
         </div>
+      </section>
+    {{ else }}
+      <div class="mt-6">
+        <p class="text-sm text-gray-500">No items found.</p>
+      </div>
     {{ end }}
-</div>
+  </div>
 {{ end }}

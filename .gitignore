@@ -8,6 +8,10 @@ devenv.local.nix
 # pre-commit
 .pre-commit-config.yaml
 
+# Node.js
+node_modules/
+package-lock.json
+
 public/
 static/fonts/
 feed-processor
