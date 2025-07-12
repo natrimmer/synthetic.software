@@ -1,20 +1,20 @@
-{{ define "main" }} {{ if and (eq .Section "notes") .IsHome }} {{/* Custom home
-page content from _index.html */}} {{ .Content }} {{ else }} {{/* Standard
-header for other notes pages */}} {{/* Collect all descendant notes pages for
-counting and display */}} {{ $allDescendantPages := slice }} {{ $currentSection
-:= . }} {{ range $.Site.RegularPages }} {{ if eq .Type "notes" }} {{
-$isDescendant := false }} {{ if eq .CurrentSection $currentSection }} {{
-$isDescendant = true }} {{ else }} {{ range .Ancestors }} {{ if eq .
-$currentSection }} {{ $isDescendant = true }} {{ end }} {{ end }} {{ end }} {{
-if $isDescendant }} {{ $allDescendantPages = $allDescendantPages | append . }}
-{{ end }} {{ end }} {{ end }}
+{{ define "main" }} {{ if and (eq .Section "articles") .IsHome }} {{/* Custom
+home page content from _index.html */}} {{ .Content }} {{ else }} {{/* Standard
+header for other articles pages */}} {{/* Collect all descendant articles pages
+for counting and display */}} {{ $allDescendantPages := slice }} {{
+$currentSection := . }} {{ range $.Site.RegularPages }} {{ if eq .Type
+"articles" }} {{ $isDescendant := false }} {{ if eq .CurrentSection
+$currentSection }} {{ $isDescendant = true }} {{ else }} {{ range .Ancestors }}
+{{ if eq . $currentSection }} {{ $isDescendant = true }} {{ end }} {{ end }} {{
+end }} {{ if $isDescendant }} {{ $allDescendantPages = $allDescendantPages |
+append . }} {{ end }} {{ end }} {{ end }}
 
 <div>
   <div class="flex justify-between w-full items-end">
     <h3
-      class="text-3xl font-semibold underline decoration-8 decoration-mondrian_blue"
+      class="text-3xl font-semibold underline decoration-8 decoration-mondrian_red"
     >
-      Notes
+      Articles
     </h3>
     <div class="text-right mb-1">
       <span class="h-max pb-1">
@@ -27,16 +27,16 @@ if $isDescendant }} {{ $allDescendantPages = $allDescendantPages | append . }}
   </div>
   <hr />
 </div>
-{{ end }} {{/* Collect all descendant notes pages for pagination */}} {{ if not
-(and (eq .Section "notes") .IsHome) }} {{ $allDescendantPages := slice }} {{
-$currentSection := . }} {{ range $.Site.RegularPages }} {{ if eq .Type "notes"
-}} {{ $isDescendant := false }} {{ if eq .CurrentSection $currentSection }} {{
-$isDescendant = true }} {{ else }} {{ range .Ancestors }} {{ if eq .
-$currentSection }} {{ $isDescendant = true }} {{ end }} {{ end }} {{ end }} {{
-if $isDescendant }} {{ $allDescendantPages = $allDescendantPages | append . }}
-{{ end }} {{ end }} {{ end }} {{/* Show notes items with pagination */}} {{
-$paginator := .Paginate (sort $allDescendantPages ".Date" "desc") 10 }} {{ if gt
-(len $paginator.Pages) 0 }}
+{{ end }} {{/* Collect all descendant articles pages for pagination */}} {{ if
+not (and (eq .Section "articles") .IsHome) }} {{ $allDescendantPages := slice }}
+{{ $currentSection := . }} {{ range $.Site.RegularPages }} {{ if eq .Type
+"articles" }} {{ $isDescendant := false }} {{ if eq .CurrentSection
+$currentSection }} {{ $isDescendant = true }} {{ else }} {{ range .Ancestors }}
+{{ if eq . $currentSection }} {{ $isDescendant = true }} {{ end }} {{ end }} {{
+end }} {{ if $isDescendant }} {{ $allDescendantPages = $allDescendantPages |
+append . }} {{ end }} {{ end }} {{ end }} {{/* Show articles items with
+pagination */}} {{ $paginator := .Paginate (sort $allDescendantPages ".Date"
+"desc") 10 }} {{ if gt (len $paginator.Pages) 0 }}
 <section class="mt-4">
   {{ range $paginator.Pages }}
   <article
@@ -45,16 +45,14 @@ $paginator := .Paginate (sort $allDescendantPages ".Date" "desc") 10 }} {{ if gt
     <div class="flex flex-col">
       <a
         href="{{ .RelPermalink }}"
-        class="w-full text-center shadow-mondrian px-1 py-0.5 border border-black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_white text-xs mb-2"
+        class="w-full text-center shadow-mondrian px-1 py-0.5 border border-black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-white text-xs mb-2"
       >
         {{ .Title }} →
       </a>
       <div class="flex-col w-full">
-        <div class="text-sm leading-relaxed mb-1">
-          {{ .Content }}
-          <hr class="w-full border-black" />
-        </div>
-        <footer class="text-xs font-mono text-gray-500">
+        <footer
+          class="flex flex-wrap items-center gap-3 text-xs font-mono text-gray-500"
+        >
           <div class="flex gap-2">
             <span>
               posted: {{ .Date.Format "2006-01-02" }} {{ .Date.Format "15:04" }}

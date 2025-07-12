@@ -1,6 +1,6 @@
 baseURL = 'https://gnat.blog/'
 languageCode = 'en-us'
-title = 'gnat blog'
+title = 'gnat.blog'
 enableGitInfo = true
 
 defaultContentLanguage = 'en'
@@ -19,19 +19,19 @@ description = 'My personal website and feed'
 pagerSize = 10
 
 [build]
-  [build.buildStats]
-    enable = true
-  [[build.cachebusters]]
-    source = 'assets/notwatching/hugo_stats\.json'
-    target = 'css'
-  [[build.cachebusters]]
-    source = '(postcss|tailwind)\.config\.js'
-    target = 'css'
+[build.buildStats]
+enable = true
+[[build.cachebusters]]
+source = 'assets/notwatching/hugo_stats\.json'
+target = 'css'
+[[build.cachebusters]]
+source = '(postcss|tailwind)\.config\.js'
+target = 'css'
 [module]
-  [[module.mounts]]
-    source = 'assets'
-    target = 'assets'
-  [[module.mounts]]
-    disableWatch = true
-    source = 'hugo_stats.json'
-    target = 'assets/notwatching/hugo_stats.json'
+[[module.mounts]]
+source = 'assets'
+target = 'assets'
+[[module.mounts]]
+disableWatch = true
+source = 'hugo_stats.json'
+target = 'assets/notwatching/hugo_stats.json'
