@@ -12,15 +12,14 @@
   #----------------------------------------------------------------------------
   # Languages and Packages
   #----------------------------------------------------------------------------
-  # Go and Node.js environment
+  # Go environment
   languages.go.enable = true;
-  languages.javascript.enable = true;
   packages = [
+    pkgs.git
+    pkgs.nixd
     pkgs.golangci-lint
     pkgs.hugo
     pkgs.tailwindcss_4
-    pkgs.git
-    pkgs.nixd
   ];
 
   #----------------------------------------------------------------------------
@@ -31,27 +30,147 @@
       echo hello from $GREET
     '';
 
-    # Hugo feed system scripts
-    hugo-build.exec = ''
-      echo "🔄 Processing feed files..."
+    # Logging helper functions
+    _log.exec = ''
+      # Usage: _log ACTION "message" [details]
+      ACTION="$1"
+      MESSAGE="$2"
+      DETAILS="$3"
 
-      # Create queue directory if it doesn't exist
+      # Color codes
+      BOLD='\033[1m'
+      RESET='\033[0m'
+      BLUE='\033[34m'
+      GREEN='\033[32m'
+      YELLOW='\033[33m'
+      RED='\033[31m'
+      GRAY='\033[90m'
+
+      # Action colors
+      case "$ACTION" in
+        "BUILD"|"HUGO") COLOR=$BLUE ;;
+        "OK"|"DONE") COLOR=$GREEN ;;
+        "WARN"|"INFO") COLOR=$YELLOW ;;
+        "ERROR"|"FAIL") COLOR=$RED ;;
+        *) COLOR=$GRAY ;;
+      esac
+
+      # Format: [ACTION] message
+      printf "''${BOLD}''${COLOR}[%-8s]''${RESET} %s\n" "$ACTION" "$MESSAGE"
+
+      # Add details if provided
+      if [ -n "$DETAILS" ]; then
+        printf "''${GRAY}          %s''${RESET}\n" "$DETAILS"
+      fi
+    '';
+
+    _section.exec = ''
+      # Usage: _section "Section Title"
+      TITLE="$1"
+      BOLD='\033[1m'
+      RESET='\033[0m'
+      BLUE='\033[34m'
+
+      echo
+      printf "''${BOLD}''${BLUE}=== %s ===''${RESET}\n" "$TITLE"
+    '';
+
+    _step.exec = ''
+      # Usage: _step "step description"
+      STEP="$1"
+      GRAY='\033[90m'
+      RESET='\033[0m'
+
+      printf "''${GRAY}    → %s''${RESET}\n" "$STEP"
+    '';
+
+    # Individual tool commands
+    feed-processor-build.exec = ''
+      _log BUILD "feed-processor"
+      mkdir -p tools/bin
+      go build -o tools/bin/feed-processor ./tools/cmd/feed-processor
+    '';
+
+    blogroll-generator-build.exec = ''
+      _log BUILD "blogroll-generator"
+      mkdir -p tools/bin
+      go build -o tools/bin/blogroll-generator ./tools/cmd/blogroll-generator
+    '';
+
+    feed-processor-run.exec = ''
+      feed-processor-build
+      ./tools/bin/feed-processor "$@"
+    '';
+
+    blogroll-generator-run.exec = ''
+      blogroll-generator-build
+      ./tools/bin/blogroll-generator "$@"
+    '';
+
+    # Tooling ecosystem commands
+    tools-build.exec = ''
+      _section "Building Hugo Tools"
+      _step "feed-processor"
+      feed-processor-build
+      _step "blogroll-generator"
+      blogroll-generator-build
+      _log OK "All tools built"
+    '';
+
+    tools-clean.exec = ''
+      _log CLEAN "Hugo tools"
+      rm -rf tools/bin
+      go clean ./tools/...
+      _log OK "Tools cleaned"
+    '';
+
+    tools-test.exec = ''
+      _log TEST "Hugo tools"
+      go test ./tools/... -v
+    '';
+
+    tools-lint.exec = ''
+      _log LINT "Hugo tools" 
+      golangci-lint run ./tools/...
+    '';
+
+    tools-check.exec = ''
+      _section "Tool Quality Checks"
+      _step "Running linter"
+      tools-lint
+      _step "Running tests"  
+      tools-test
+      _log OK "All checks passed"
+    '';
+
+    # Hugo workflow commands
+    hugo-process-feeds.exec = ''
+      _log PROCESS "Feed queue"
       mkdir -p queue
-
-      # Build the Go processor if it doesn't exist or is outdated
-      if [ ! -f "./feed-processor" ] || [ "feed-processor.go" -nt "./feed-processor" ]; then
-        echo "🔨 Building feed processor..."
-        go build -o feed-processor feed-processor.go
-      fi
-
-      # Process any files in the queue
       if [ "$(ls -A queue 2>/dev/null)" ]; then
-        echo "📝 Processing $(ls queue | wc -l) feed items..."
-        ./feed-processor queue content/feed --verbose
-        echo "✅ Feed processing complete"
+        ITEM_COUNT=$(ls queue | wc -l)
+        _step "Processing $ITEM_COUNT feed items"
+        feed-processor-run queue content/feed --verbose
+        _log OK "Feed processing complete"
       else
-        echo "📭 No feed items to process"
+        _log INFO "No feed items to process"
       fi
+    '';
+
+    hugo-update-blogroll.exec = ''
+      _log UPDATE "Blogroll from feeds"
+      blogroll-generator-run
+      _log OK "Blogroll updated"
+    '';
+
+    hugo-build.exec = ''
+      _section "Hugo Site Build"
+
+      # Process content
+      _step "Processing feeds"
+      hugo-process-feeds
+      _step "Updating blogroll"
+      hugo-update-blogroll
 
       # Set git info for Hugo
       export HUGO_GIT_COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
@@ -59,10 +178,11 @@
       export HUGO_BUILD_DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
       # Build Hugo site
-      echo "🏗️  Building Hugo site..."
+      _step "Building site"
+      _log HUGO "Compiling with minification"
       hugo --minify --enableGitInfo
 
-      echo "✅ Build complete!"
+      _log DONE "Site build complete"
     '';
 
     feed-add.exec = ''
@@ -86,277 +206,62 @@
 
       mkdir -p queue
       echo "$content" > "$filename"
-      echo "📝 Added feed item: $filename"
-      echo "Content: $content"
+      _log ADD "Feed item created" "$filename"
+      _step "Content: $content"
 
       # Auto-process if Hugo dev server is running
       if pgrep -f "hugo server" > /dev/null; then
-        echo "🔄 Auto-processing..."
-        if [ ! -f "./feed-processor" ]; then
-          go build -o feed-processor feed-processor.go
-        fi
-        ./feed-processor queue content/feed --verbose
+        _log AUTO "Processing feeds..."
+        hugo-process-feeds
       fi
     '';
 
     hugo-dev.exec = ''
-      echo "🚀 Starting Hugo development server with feed processing..."
+      _section "Hugo Development Server"
 
-      # Build the processor
-      if [ ! -f "./feed-processor" ] || [ "feed-processor.go" -nt "./feed-processor" ]; then
-        echo "🔨 Building feed processor..."
-        go build -o feed-processor feed-processor.go
-      fi
-
-      # Create queue directory
-      mkdir -p queue
-
-      # Process any existing files
-      if [ "$(ls -A queue 2>/dev/null)" ]; then
-        echo "📝 Processing existing feed items..."
-        ./feed-processor queue content/feed --verbose
-      fi
+      # Process existing content
+      _step "Processing existing content"
+      hugo-process-feeds
+      hugo-update-blogroll
 
       # Set git info for Hugo
       export HUGO_GIT_COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
       export HUGO_GIT_COMMIT_HASH_FULL=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
       export HUGO_BUILD_DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
-      echo "🌐 Starting Hugo dev server at http://localhost:1313"
-      echo "💡 Add feed items: feed-add \"Your content\" tag1 tag2"
-      echo "🛑 Press Ctrl+C to stop"
+      _log SERVER "Starting at http://localhost:1313"
+      _log INFO "Add feed items: feed-add \"Your content\" tag1 tag2"
+      _log INFO "Press Ctrl+C to stop"
 
       hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --disableFastRender --enableGitInfo
-    '';
-
-    build.exec = ''
-      VERSION=$(git describe --tags --always --dirty 2>/dev/null || echo "v0.0.0-dev")
-      BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-      COMMIT_SHA=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
-
-      echo "Building gnat $VERSION"
-      go build -ldflags "-X main.version=$VERSION -X main.buildDate=$BUILD_DATE -X main.commitSHA=$COMMIT_SHA" -o gnat .
-    '';
-
-    build-release.exec = ''
-      VERSION=$(git describe --tags --always --dirty 2>/dev/null || echo "v0.0.0-dev")
-      BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-      COMMIT_SHA=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
-
-      echo "Building gnat $VERSION (release)"
-      CGO_ENABLED=0 go build -ldflags "-w -s -X main.version=$VERSION -X main.buildDate=$BUILD_DATE -X main.commitSHA=$COMMIT_SHA" -o gnat .
-    '';
-
-    version.exec = ''
-      VERSION=$(git describe --tags --always --dirty 2>/dev/null || echo "v0.0.0-dev")
-      BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-      COMMIT_SHA=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
-
-      echo "Version: $VERSION"
-      echo "Build Date: $BUILD_DATE"
-      echo "Commit: $COMMIT_SHA"
-    '';
-
-    test-code.exec = ''
-      go test ./... -v
-    '';
-
-    test-coverage.exec = ''
-      go test ./... -cover -coverprofile=coverage.out
-      go tool cover -html=coverage.out -o coverage.html
-      echo "Coverage report generated: coverage.html"
-    '';
-
-    test-race.exec = ''
-      go test ./... -race
-    '';
-
-    bench.exec = ''
-      go test ./... -bench=. -benchmem
-    '';
-
-    lint.exec = ''
-      golangci-lint run
-    '';
-
-    fmt.exec = ''
-      go fmt ./...
-    '';
-
-    vet.exec = ''
-      go vet ./...
-    '';
-
-    clean.exec = ''
-      rm -f gnat
-      rm -f coverage.out coverage.html
-      go clean -testcache
-    '';
-
-    ci.exec = ''
-      echo "Running CI checks..."
-      golangci-lint run
-      go vet ./...
-      go test ./... -race
-      go test ./... -cover
-      echo "All CI checks passed!"
-    '';
-
-    test-binary.exec = ''
-      ./build
-      echo "Testing built binary:"
-      ./gnat --version
-      ./gnat --help
-    '';
-
-    major.exec = ''
-      # Check if working directory is clean
-      if [ -n "$(git status --porcelain)" ]; then
-        echo "Error: Working directory is not clean. Please commit or stash changes first."
-        exit 1
-      fi
-
-      # Get current version
-      CURRENT_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-      echo "Current version: $CURRENT_VERSION"
-
-      # Parse version and increment major
-      NEW_VERSION=$(echo "$CURRENT_VERSION" | sed -E 's/^v?([0-9]+)\.([0-9]+)\.([0-9]+).*/v\1.\2.\3/' | awk -F. '{print "v" ($1+1) ".0.0"}' | sed 's/^vv/v/')
-      echo "New version: $NEW_VERSION"
-
-      # Prompt for confirmation
-      echo ""
-      echo "This will create and push tag '$NEW_VERSION' which will trigger a release build."
-      printf "Continue? (y/N): "
-      read -r CONFIRM
-      case "$CONFIRM" in
-        [yY]|[yY][eE][sS])
-          echo "Creating and pushing tag..."
-          git tag "$NEW_VERSION"
-          git push origin "$NEW_VERSION"
-          echo "Tagged and pushed $NEW_VERSION"
-          ;;
-        *)
-          echo "Cancelled."
-          exit 0
-          ;;
-      esac
-    '';
-
-    minor.exec = ''
-      # Check if working directory is clean
-      if [ -n "$(git status --porcelain)" ]; then
-        echo "Error: Working directory is not clean. Please commit or stash changes first."
-        exit 1
-      fi
-
-      # Get current version
-      CURRENT_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-      echo "Current version: $CURRENT_VERSION"
-
-      # Parse version and increment minor
-      NEW_VERSION=$(echo "$CURRENT_VERSION" | sed -E 's/^v?([0-9]+)\.([0-9]+)\.([0-9]+).*/v\1.\2.\3/' | awk -F. '{print "v" $1 "." ($2+1) ".0"}' | sed 's/^vv/v/')
-      echo "New version: $NEW_VERSION"
-
-      # Prompt for confirmation
-      echo ""
-      echo "This will create and push tag '$NEW_VERSION' which will trigger a release build."
-      printf "Continue? (y/N): "
-      read -r CONFIRM
-      case "$CONFIRM" in
-        [yY]|[yY][eE][sS])
-          echo "Creating and pushing tag..."
-          git tag "$NEW_VERSION"
-          git push origin "$NEW_VERSION"
-          echo "Tagged and pushed $NEW_VERSION"
-          ;;
-        *)
-          echo "Cancelled."
-          exit 0
-          ;;
-      esac
-    '';
-
-    patch.exec = ''
-      # Check if working directory is clean
-      if [ -n "$(git status --porcelain)" ]; then
-        echo "Error: Working directory is not clean. Please commit or stash changes first."
-        exit 1
-      fi
-
-      # Get current version
-      CURRENT_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-      echo "Current version: $CURRENT_VERSION"
-
-      # Parse version and increment patch
-      NEW_VERSION=$(echo "$CURRENT_VERSION" | sed -E 's/^v?([0-9]+)\.([0-9]+)\.([0-9]+).*/v\1.\2.\3/' | awk -F. '{print "v" $1 "." $2 "." ($3+1)}' | sed 's/^vv/v/')
-      echo "New version: $NEW_VERSION"
-
-      # Prompt for confirmation
-      echo ""
-      echo "This will create and push tag '$NEW_VERSION' which will trigger a release build."
-      printf "Continue? (y/N): "
-      read -r CONFIRM
-      case "$CONFIRM" in
-        [yY]|[yY][eE][sS])
-          echo "Creating and pushing tag..."
-          git tag "$NEW_VERSION"
-          git push origin "$NEW_VERSION"
-          echo "Tagged and pushed $NEW_VERSION"
-          ;;
-        *)
-          echo "Cancelled."
-          exit 0
-          ;;
-      esac
-    '';
-
-    fmt-templates.exec = ''
-      echo "🎨 Formatting Hugo template files..."
-
-      # Find and format all HTML template files
-      find layouts -name "*.html" -type f | while read -r file; do
-        echo "Formatting: $file"
-        npx prettier --parser go-template --write "$file"
-      done
-
-      echo "✅ Template formatting complete!"
     '';
   };
 
   enterShell = ''
-    # Install npm dependencies if not present
-    if [ ! -d "node_modules" ]; then
-      echo "📦 Installing prettier and go-template plugin..."
-      npm install
-    fi
-
     echo ""
     echo ""
     hello
     echo ""
-    echo "Available commands:"
-    echo "  build          - Build with version info"
-    echo "  build-release  - Build optimized release binary"
-    echo "  test-code      - Run tests"
-    echo "  test-coverage  - Run tests with coverage"
-    echo "  test-race      - Run tests with race detection"
-    echo "  lint           - Run linter"
-    echo "  fmt            - Format code"
-    echo "  fmt-templates  - Format Hugo templates with Prettier"
-    echo "  version        - Show version info"
-    echo "  clean          - Clean build artifacts"
-    echo "  ci             - Run all CI checks"
     echo ""
-    echo "Hugo feed system:"
-    echo "  hugo-build     - Process feed queue and build Hugo site"
-    echo "  feed-add       - Add new feed item (feed-add \"content\" tag1 tag2)"
-    echo "  hugo-dev       - Start Hugo dev server with auto-processing"
+    echo "Individual tools:"
+    echo "  feed-processor-build     - Build feed processor"
+    echo "  feed-processor-run       - Run feed processor"
+    echo "  blogroll-generator-build - Build blogroll generator"
+    echo "  blogroll-generator-run   - Run blogroll generator"
     echo ""
-    echo "Version management:"
-    echo "  major          - Increment major version (X.0.0)"
-    echo "  minor          - Increment minor version (x.Y.0)"
-    echo "  patch          - Increment patch version (x.y.Z)"
+    echo "Tool ecosystem:"
+    echo "  tools-build              - Build all tools"
+    echo "  tools-clean              - Clean tool binaries"
+    echo "  tools-test               - Test all tools"
+    echo "  tools-lint               - Lint all tools"
+    echo "  tools-check              - Run lint + test"
+    echo ""
+    echo "Hugo workflows:"
+    echo "  hugo-process-feeds       - Process feed queue"
+    echo "  hugo-update-blogroll     - Update blogroll from feeds"
+    echo "  hugo-build               - Build complete Hugo site"
+    echo "  hugo-dev                 - Start Hugo dev server"
+    echo "  feed-add                 - Add feed item (feed-add \"content\" tag1 tag2)"
     echo ""
   '';
 

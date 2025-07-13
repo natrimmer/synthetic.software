@@ -14,6 +14,7 @@ package-lock.json
 
 public/
 static/fonts/
-feed-processor
 .zed
+.claude
 queue/
+tools/bin/
