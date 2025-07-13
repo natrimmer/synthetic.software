@@ -26,28 +26,20 @@
         />
       </svg>
     </a>
+    last updated: {{ now.Format "2006-01-02 15:04:05 UTC" }} {{ $commitHash :=
+    getenv "HUGO_GIT_COMMIT_HASH" }} {{ $commitHashFull := getenv
+    "HUGO_GIT_COMMIT_HASH_FULL" }} {{ if and $commitHash $commitHashFull (ne
+    $commitHash "unknown") (ne $commitHashFull "unknown") }} ∿
     <a
-      href="/changelog/"
-      aria-label="View the changelog"
-      class="hover:text-mondrian_yellow transition-colors"
+      href="https://github.com/natrimmer/gnat/commit/{{ $commitHashFull }}"
+      aria-label="View the lastest commit {{ $commitHash }} on GitHub"
+      rel="noopener noreferrer"
+      target="_blank"
+      class="hover:text-mondrian_red transition-colors"
+      title="View the lastest commit {{ $commitHash }} on GitHub"
     >
-      last updated:
-      {{ now.Format "2006-01-02 15:04:05 UTC" }}
+      {{ $commitHash }}
     </a>
-    {{ $commitHash := getenv "HUGO_GIT_COMMIT_HASH" }}
-    {{ $commitHashFull := getenv "HUGO_GIT_COMMIT_HASH_FULL" }}
-    {{ if and $commitHash $commitHashFull (ne $commitHash "unknown") (ne $commitHashFull "unknown") }}
-      ∿
-      <a
-        href="https://github.com/natrimmer/gnat/commit/{{ $commitHashFull }}"
-        aria-label="View commit {{ $commitHash }} on GitHub"
-        rel="noopener noreferrer"
-        target="_blank"
-        class="hover:text-mondrian_red transition-colors"
-        title="View this commit on GitHub"
-      >
-        {{ $commitHash }}
-      </a>
     {{ end }}
   </p>
 </footer>
