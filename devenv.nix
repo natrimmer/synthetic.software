@@ -176,6 +176,7 @@
       export HUGO_GIT_COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
       export HUGO_GIT_COMMIT_HASH_FULL=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
       export HUGO_BUILD_DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+      export HUGO_VERSION=$(git describe --tags --exact-match 2>/dev/null || git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0-dev")
 
       # Build Hugo site
       _step "Building site"
@@ -228,6 +229,7 @@
       export HUGO_GIT_COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
       export HUGO_GIT_COMMIT_HASH_FULL=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
       export HUGO_BUILD_DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+      export HUGO_VERSION=$(git describe --tags --exact-match 2>/dev/null || git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0-dev")
 
       _log SERVER "Starting at http://localhost:1313"
       _log INFO "Add feed items: feed-add \"Your content\" tag1 tag2"

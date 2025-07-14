@@ -17,6 +17,7 @@ type Post struct {
 	URL     string    `yaml:"url"`
 	Date    string    `yaml:"date"`
 	Domain  string    `yaml:"domain"`
+	FeedURL string    `yaml:"feed_url"`
 	PubDate time.Time `yaml:"-"`
 }
 
@@ -80,9 +81,9 @@ func FetchAndParse(feedURL string, maxPosts int) ([]Post, error) {
 		return nil, err
 	}
 
-	posts, err := parseRSS(body, domain)
+	posts, err := parseRSS(body, domain, feedURL)
 	if err != nil {
-		posts, err = parseAtom(body, domain)
+		posts, err = parseAtom(body, domain, feedURL)
 		if err != nil {
 			return nil, fmt.Errorf("failed to parse as RSS or Atom: %v", err)
 		}
@@ -95,7 +96,7 @@ func FetchAndParse(feedURL string, maxPosts int) ([]Post, error) {
 	return posts, nil
 }
 
-func parseRSS(data []byte, domain string) ([]Post, error) {
+func parseRSS(data []byte, domain string, feedURL string) ([]Post, error) {
 	var feed RSSFeed
 	err := xml.Unmarshal(data, &feed)
 	if err != nil {
@@ -114,6 +115,7 @@ func parseRSS(data []byte, domain string) ([]Post, error) {
 			URL:     strings.TrimSpace(item.Link),
 			Date:    pubDate.Format("2006-01-02"),
 			Domain:  domain,
+			FeedURL: feedURL,
 			PubDate: pubDate,
 		}
 		posts = append(posts, post)
@@ -126,7 +128,7 @@ func parseRSS(data []byte, domain string) ([]Post, error) {
 	return posts, nil
 }
 
-func parseAtom(data []byte, domain string) ([]Post, error) {
+func parseAtom(data []byte, domain string, feedURL string) ([]Post, error) {
 	var feed AtomFeed
 	err := xml.Unmarshal(data, &feed)
 	if err != nil {
@@ -150,6 +152,7 @@ func parseAtom(data []byte, domain string) ([]Post, error) {
 			URL:     strings.TrimSpace(entry.Link.Href),
 			Date:    pubDate.Format("2006-01-02"),
 			Domain:  domain,
+			FeedURL: feedURL,
 			PubDate: pubDate,
 		}
 		posts = append(posts, post)

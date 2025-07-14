@@ -1,0 +1,86 @@
+{{ define "main" }}
+<div class="w-full">
+    <div class="flex justify-between w-full items-end mb-4">
+        <h3 class="text-3xl font-semibold underline decoration-8 decoration-mondrian_yellow">
+            Blogroll
+        </h3>
+        <span class="h-max">
+            <p class="text-xs font-mono text-gray-500">
+                {{ if .Site.Data.blogroll }}{{ len .Site.Data.blogroll }} recent posts from feeds I follow{{ else }}feeds I follow{{ end }}
+            </p>
+        </span>
+    </div>
+
+    {{ if .Site.Data.blogroll }}
+    <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-mondrian_white">
+            <thead>
+                <tr class="border-b border-b-black bg-mondrian_white text-left font-sans">
+                    <th class="w-1/12 pl-1" scope="col">Date</th>
+                    <th class="w-1/2 pl-1" scope="col">Post</th>
+                    <th class="w-1/6 pl-1" scope="col">Source</th>
+                    <th class="w-1/12 pl-1" scope="col">Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range .Site.Data.blogroll }}
+                <tr class="border-b border-b-gray-300 hover:bg-gray-100">
+                    <td class="text-left font-mono text-xs align-top pt-1 pl-1">
+                        <time datetime="{{ .date }}">
+                            {{ .date | dateFormat "Jan 2, 2006" }}
+                        </time>
+                    </td>
+                    <td class="text-sm align-top py-1 pl-1" scope="row">
+                        {{ .title }}
+                    </td>
+                    <td class="text-left font-mono text-xs align-top pt-1 pl-1">
+                        <span class="inline-flex items-center gap-2">
+                            <span class="w-2 h-2 bg-mondrian_red rounded-full border border-mondrian_black"></span>
+                            {{ .domain }}
+                        </span>
+                    </td>
+                    <td class="align-top p-1">
+                        <a href="{{ .url }}"
+                           class="w-full text-xs py-1 px-1 text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Open {{ .title }} in a new tab">
+                            LINK →
+                        </a>
+                    </td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-8 p-4 bg-mondrian_black text-mondrian_yellow font-mono text-xs overflow-x-auto mb-4">
+        <p class="mb-2 text-mondrian_yellow">[gnat@web ~]$ bat blogroll.txt</p>
+        <div class="text-gray-300">
+            <div class="text-mondrian_yellow">───────┬──────────────────────────────────────────────────────</div>
+            <div class="text-mondrian_yellow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ File: blogroll.txt</div>
+            <div class="text-mondrian_yellow">───────┼──────────────────────────────────────────────────────</div>
+            {{- $feedURLs := slice -}}
+            {{- $lineNum := 1 -}}
+            {{- range .Site.Data.blogroll -}}
+            {{- if not (in $feedURLs .feed_url) -}}
+            {{- $feedURLs = $feedURLs | append .feed_url -}}
+            <div class="text-mondrian_yellow">&nbsp;&nbsp;&nbsp;{{ $lineNum }}&nbsp;&nbsp;&nbsp;│&nbsp;<a href="{{ .feed_url }}" class="text-gray-300 hover:underline decoration-mondrian_yellow">{{ .feed_url }}</a></div>
+            {{- $lineNum = add $lineNum 1 -}}
+            {{- end -}}
+            {{- end }}
+            <div class="text-mondrian_yellow">───────┴──────────────────────────────────────────────────────</div>
+        </div>
+    </div>
+
+    {{ else }}
+    <div class="text-center py-8">
+        <p class="text-gray-500">No blogroll data available.</p>
+        <p class="text-sm text-gray-400 mt-2">Run the blogroll generator to populate feeds.</p>
+    </div>
+    {{ end }}
+
+    {{- /* Include any content from the page */ -}}
+    {{ .Content }}
+</div>
+{{ end }}

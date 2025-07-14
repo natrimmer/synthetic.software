@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	inputFile := "data/blogroll.txt"
+	inputFile := "blogroll.txt"
 	outputFile := "data/blogroll.yaml"
 
 	if len(os.Args) > 1 {
@@ -73,6 +73,9 @@ func writeYAML(posts []feeds.Post, filename string) error {
 			return err
 		}
 		if _, err := fmt.Fprintf(file, "  domain: %q\n", post.Domain); err != nil {
+			return err
+		}
+		if _, err := fmt.Fprintf(file, "  feed_url: %q\n", post.FeedURL); err != nil {
 			return err
 		}
 	}

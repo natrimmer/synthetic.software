@@ -1,3 +1,0 @@
-https://blog.golang.org/feed.atom
-https://dave.cheney.net/feed
-https://research.swtch.com/feed.atom
