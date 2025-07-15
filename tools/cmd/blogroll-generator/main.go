@@ -6,8 +6,8 @@ import (
 	"os"
 	"sort"
 
-	"github.com/natrimmer/gnat/tools/internal/config"
-	"github.com/natrimmer/gnat/tools/internal/feeds"
+	"github.com/natrimmer/synthetic.software/tools/internal/config"
+	"github.com/natrimmer/synthetic.software/tools/internal/feeds"
 )
 
 func main() {

@@ -11,8 +11,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/natrimmer/gnat/tools/internal/config"
-	"github.com/natrimmer/gnat/tools/internal/hugo"
+	"github.com/natrimmer/synthetic.software/tools/internal/config"
+	"github.com/natrimmer/synthetic.software/tools/internal/hugo"
 )
 
 func main() {

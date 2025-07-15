@@ -11,8 +11,27 @@
         </span>
     </div>
 
+    <div class="p-4 bg-mondrian_black text-mondrian_yellow font-mono text-xs overflow-x-auto mb-4">
+        <p class="mb-2 text-mondrian_yellow">[nick@web ~]$ bat blogroll.txt</p>
+        <div class="text-gray-300">
+            <div class="text-mondrian_yellow">───────┬──────────────────────────────────────────────────────</div>
+            <div class="text-mondrian_yellow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ File: blogroll.txt</div>
+            <div class="text-mondrian_yellow">───────┼──────────────────────────────────────────────────────</div>
+            {{- $feedURLs := slice -}}
+            {{- $lineNum := 1 -}}
+            {{- range .Site.Data.blogroll -}}
+            {{- if not (in $feedURLs .feed_url) -}}
+            {{- $feedURLs = $feedURLs | append .feed_url -}}
+            <div class="text-mondrian_yellow">&nbsp;&nbsp;&nbsp;{{ $lineNum }}&nbsp;&nbsp;&nbsp;│&nbsp;<a href="{{ .feed_url }}" class="text-gray-300 hover:underline decoration-mondrian_yellow">{{ .feed_url }}</a></div>
+            {{- $lineNum = add $lineNum 1 -}}
+            {{- end -}}
+            {{- end }}
+            <div class="text-mondrian_yellow">───────┴──────────────────────────────────────────────────────</div>
+        </div>
+    </div>
+
     {{ if .Site.Data.blogroll }}
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto mb-4">
         <table class="w-full border-collapse border border-mondrian_white">
             <thead>
                 <tr class="border-b border-b-black bg-mondrian_white text-left font-sans">
@@ -52,25 +71,6 @@
                 {{ end }}
             </tbody>
         </table>
-    </div>
-
-    <div class="mt-8 p-4 bg-mondrian_black text-mondrian_yellow font-mono text-xs overflow-x-auto mb-4">
-        <p class="mb-2 text-mondrian_yellow">[gnat@web ~]$ bat blogroll.txt</p>
-        <div class="text-gray-300">
-            <div class="text-mondrian_yellow">───────┬──────────────────────────────────────────────────────</div>
-            <div class="text-mondrian_yellow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ File: blogroll.txt</div>
-            <div class="text-mondrian_yellow">───────┼──────────────────────────────────────────────────────</div>
-            {{- $feedURLs := slice -}}
-            {{- $lineNum := 1 -}}
-            {{- range .Site.Data.blogroll -}}
-            {{- if not (in $feedURLs .feed_url) -}}
-            {{- $feedURLs = $feedURLs | append .feed_url -}}
-            <div class="text-mondrian_yellow">&nbsp;&nbsp;&nbsp;{{ $lineNum }}&nbsp;&nbsp;&nbsp;│&nbsp;<a href="{{ .feed_url }}" class="text-gray-300 hover:underline decoration-mondrian_yellow">{{ .feed_url }}</a></div>
-            {{- $lineNum = add $lineNum 1 -}}
-            {{- end -}}
-            {{- end }}
-            <div class="text-mondrian_yellow">───────┴──────────────────────────────────────────────────────</div>
-        </div>
     </div>
 
     {{ else }}

@@ -7,7 +7,7 @@
   #----------------------------------------------------------------------------
   # Basic Environment Setup
   #----------------------------------------------------------------------------
-  env.GREET = "gnat";
+  env.GREET = "synthethic.software";
 
   #----------------------------------------------------------------------------
   # Languages and Packages
@@ -19,6 +19,7 @@
     pkgs.nixd
     pkgs.golangci-lint
     pkgs.hugo
+    # pkgs.wrangler
     pkgs.tailwindcss_4
   ];
 
@@ -50,8 +51,9 @@
       case "$ACTION" in
         "BUILD"|"HUGO") COLOR=$BLUE ;;
         "OK"|"DONE") COLOR=$GREEN ;;
-        "WARN"|"INFO") COLOR=$YELLOW ;;
+        "WARN"|"INFO"|"AUTH"|"LOGS") COLOR=$YELLOW ;;
         "ERROR"|"FAIL") COLOR=$RED ;;
+        "SERVER"|"DEPLOY") COLOR=$BLUE ;;
         *) COLOR=$GRAY ;;
       esac
 
@@ -130,7 +132,7 @@
     '';
 
     tools-lint.exec = ''
-      _log LINT "Hugo tools" 
+      _log LINT "Hugo tools"
       golangci-lint run ./tools/...
     '';
 
@@ -138,7 +140,7 @@
       _section "Tool Quality Checks"
       _step "Running linter"
       tools-lint
-      _step "Running tests"  
+      _step "Running tests"
       tools-test
       _log OK "All checks passed"
     '';
@@ -237,6 +239,48 @@
 
       hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --disableFastRender --enableGitInfo
     '';
+
+    workers-auth.exec = ''
+      _log AUTH "Cloudflare Workers"
+      wrangler auth login
+      _log OK "Authentication complete"
+    '';
+
+    workers-whoami.exec = ''
+      _log INFO "Current Cloudflare account"
+      wrangler whoami
+    '';
+
+    workers-dev.exec = ''
+      _section "Workers Development"
+      _step "Building Hugo site first"
+      hugo-build
+      _step "Starting Workers dev server"
+      _log SERVER "Starting at http://localhost:8787"
+      wrangler dev --local --port 8787
+    '';
+
+    workers-deploy-dry.exec = ''
+      _section "Workers Deployment (Dry Run)"
+      _step "Building Hugo site"
+      hugo-build
+      _step "Checking deployment"
+      wrangler deploy --dry-run --compatibility-date 2025-04-01
+    '';
+
+    workers-deploy.exec = ''
+      _section "Workers Deployment"
+      _step "Building Hugo site"
+      hugo-build
+      _step "Deploying to Cloudflare"
+      wrangler deploy --compatibility-date 2025-04-01
+      _log DONE "Site deployed successfully"
+    '';
+
+    workers-logs.exec = ''
+      _log LOGS "Workers runtime logs"
+      wrangler tail
+    '';
   };
 
   enterShell = ''
@@ -246,24 +290,32 @@
     echo ""
     echo ""
     echo "Individual tools:"
-    echo "  feed-processor-build     - Build feed processor"
-    echo "  feed-processor-run       - Run feed processor"
-    echo "  blogroll-generator-build - Build blogroll generator"
-    echo "  blogroll-generator-run   - Run blogroll generator"
+    echo "∘ feed-processor-build     - Build feed processor"
+    echo "∘ feed-processor-run       - Run feed processor"
+    echo "∘ blogroll-generator-build - Build blogroll generator"
+    echo "∘ blogroll-generator-run   - Run blogroll generator"
     echo ""
     echo "Tool ecosystem:"
-    echo "  tools-build              - Build all tools"
-    echo "  tools-clean              - Clean tool binaries"
-    echo "  tools-test               - Test all tools"
-    echo "  tools-lint               - Lint all tools"
-    echo "  tools-check              - Run lint + test"
+    echo "∘ tools-build              - Build all tools"
+    echo "∘ tools-clean              - Clean tool binaries"
+    echo "∘ tools-test               - Test all tools"
+    echo "∘ tools-lint               - Lint all tools"
+    echo "∘ tools-check              - Run lint + test"
     echo ""
     echo "Hugo workflows:"
-    echo "  hugo-process-feeds       - Process feed queue"
-    echo "  hugo-update-blogroll     - Update blogroll from feeds"
-    echo "  hugo-build               - Build complete Hugo site"
-    echo "  hugo-dev                 - Start Hugo dev server"
-    echo "  feed-add                 - Add feed item (feed-add \"content\" tag1 tag2)"
+    echo "∘ hugo-process-feeds       - Process feed queue"
+    echo "∘ hugo-update-blogroll     - Update blogroll from feeds"
+    echo "∘ hugo-build               - Build complete Hugo site"
+    echo "∘ hugo-dev                 - Start Hugo dev server"
+    echo "∘ feed-add                 - Add feed item (feed-add \"content\" tag1 tag2)"
+    echo ""
+    echo "Cloudflare Workers:"
+    echo "∘ workers-auth             - Authenticate with Cloudflare"
+    echo "∘ workers-whoami           - Show current account"
+    echo "∘ workers-dev              - Build + start Workers dev server"
+    echo "∘ workers-deploy-dry       - Test deployment (dry run)"
+    echo "∘ workers-deploy           - Deploy to production"
+    echo "∘ workers-logs             - Watch runtime logs"
     echo ""
   '';
 
@@ -286,6 +338,7 @@
     beautysh.enable = true; # Format shell files
     gofmt.enable = true; # Format Go code
     nixfmt-rfc-style.enable = true; # Format Nix code
+    # prettier.enable = true; # Format JavaScript, CSS, etc.
 
     #----------------------------------------
     # Linting Hooks - Run After Formatting

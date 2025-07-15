@@ -1,1 +1,8 @@
 https://www.eff.org/rss/updates.xml
+https://brandur.org/articles.atom
+https://robinrendle.com/feed.xml
+https://drewdevault.com/blog/index.xml
+https://danluu.com/atom.xml
+https://jvns.ca/atom.xml
+https://simonwillison.net/atom/everything/
+https://ethanmarcotte.com/wrote/feed.xml

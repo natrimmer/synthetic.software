@@ -1,7 +1,7 @@
 {
-  "name": "gnat.blog",
-  "short_name": "gnat",
-  "description": "A site about development, design, and I guess anything else.",
+  "name": "synthetic.software",
+  "short_name": "synthetic",
+  "description": "Infrastructure, design, and how simplicity & aestheticism can make better software.",
   "start_url": "/",
   "display": "minimal-ui",
   "icons": [
@@ -20,5 +20,5 @@
   ],
   "orientation": "any",
   "prefer_related_applications": false,
-  "categories": ["design", "development", "blog"]
+  "categories": ["engineering", "design", "development", "infrastructure"]
 }
