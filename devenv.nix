@@ -14,8 +14,6 @@
   #----------------------------------------------------------------------------
   languages = {
     go.enable = true;
-    javascript.enable = true;
-    javascript.npm.enable = true;
   };
 
   packages = [
@@ -285,6 +283,22 @@
       _log LOGS "Workers runtime logs"
       wrangler tail
     '';
+
+    # Install miekg's gotmplfmt formatter
+    install-gotmplfmt.exec = ''
+      _log INFO "Installing miekg/gotmplfmt"
+      go install github.com/miekg/gotmplfmt@latest
+      _log OK "gotmplfmt installed"
+    '';
+
+    # Format Hugo templates
+    format-templates.exec = ''
+      _log FORMAT "Hugo templates in layouts/"
+      for file in $(find layouts -name "*.html"); do
+        gotmplfmt < "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+      done
+      _log OK "Templates formatted"
+    '';
   };
 
   enterShell = ''
@@ -343,13 +357,14 @@
     gofmt.enable = true; # Format Go code
     nixfmt-rfc-style.enable = true; # Format Nix code
 
-    # Custom prettier hook that uses npm-installed prettier with go-template plugin
-    prettier = {
+    # Go template formatter
+    gotmplfmt = {
       enable = true;
-      name = "Prettier (with Go template support)";
-      entry = "npx prettier --write";
-      files = "\\.(js|jsx|ts|tsx|css|scss|html|json|yaml|yml|md)$";
+      name = "gotmplfmt";
+      entry = "sh -c 'gotmplfmt < \"$1\" > \"$1.tmp\" && mv \"$1.tmp\" \"$1\"' --";
+      files = "^layouts/.*\\.html$";
       language = "system";
+      pass_filenames = true;
     };
 
     #----------------------------------------
