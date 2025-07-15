@@ -12,8 +12,12 @@
   #----------------------------------------------------------------------------
   # Languages and Packages
   #----------------------------------------------------------------------------
-  # Go environment
-  languages.go.enable = true;
+  languages = {
+    go.enable = true;
+    javascript.enable = true;
+    javascript.npm.enable = true;
+  };
+
   packages = [
     pkgs.git
     pkgs.nixd
@@ -338,7 +342,15 @@
     beautysh.enable = true; # Format shell files
     gofmt.enable = true; # Format Go code
     nixfmt-rfc-style.enable = true; # Format Nix code
-    # prettier.enable = true; # Format JavaScript, CSS, etc.
+
+    # Custom prettier hook that uses npm-installed prettier with go-template plugin
+    prettier = {
+      enable = true;
+      name = "Prettier (with Go template support)";
+      entry = "npx prettier --write";
+      files = "\\.(js|jsx|ts|tsx|css|scss|html|json|yaml|yml|md)$";
+      language = "system";
+    };
 
     #----------------------------------------
     # Linting Hooks - Run After Formatting

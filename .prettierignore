@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+public/
+dist/
+build/
+
+# Hugo specific
+resources/
+.hugo_build.lock
+
+# Nix
+.devenv/
+
+# Go
+tools/bin/
+
+# Git
+.git/
+
+# Generated files
+*.min.js
+*.min.css
+
+# Logs
+*.log

@@ -1,0 +1,9 @@
+{
+  "name": "synthetic.software",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "prettier-plugin-go-template": "^0.0.15"
+  }
+}
