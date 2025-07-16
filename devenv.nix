@@ -326,6 +326,8 @@
     echo "∘ hugo-build               - Build complete Hugo site"
     echo "∘ hugo-dev                 - Start Hugo dev server"
     echo "∘ feed-add                 - Add feed item (feed-add \"content\" tag1 tag2)"
+    echo "∘ install-gotmplfmt        - Install gotmplfmt for Hugo templates"
+    echo "∘ format-templates         - Format Hugo templates in layouts/"
     echo ""
     echo "Cloudflare Workers:"
     echo "∘ workers-auth             - Authenticate with Cloudflare"
