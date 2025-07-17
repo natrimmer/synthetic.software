@@ -1,55 +1,87 @@
 <!doctype html>
 <html lang="en">
-<head>
-<link rel="icon" href="/favicon.svg" /><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" /><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" /><link rel="manifest" href="/manifest.json" />{{partial "head/meta.html" .}}
-{{partial "head/seo.html" .}}
-{{with (templates.Defer (dict "key" "global"))}}
-	{{partial "head/styles.html" .}}
-{{end}}
-</head>
-<body class="overflow-x-hidden min-h-screen text-mondrian_black bg-mondrian_white" >
-<div class="relative m-4 md:m-12 lg:m-20 border border-black shadow-mondrian_xl" >
-	<div class="absolute top-0 left-0 w-full h-full pointer-events-none -z-10 hidden md:block" >
-		<div class="absolute w-48 h-32 bg-mondrian_blue shadow-mondrian" style="top: -10%; left: -2%" >
-		</div>
-		<div class="absolute w-64 h-96 bg-mondrian_red shadow-mondrian_inverse" style="bottom: -20%; right: -10%" >
-		</div>
-		<div class="absolute w-1/2 h-24 bg-mondrian_yellow shadow-mondrian" style="bottom: -5%; right: 33%" >
-		</div>
-	</div>
-	<div class="bg-mondrian_white">
-		<div>
-			<div class="p-4 lg:pl-4 lg:pb-4 lg:ml-56 lg:border-l border-dashed border-l-black" >
-				<div class="flex justify-between align-bottom h-full w-full pt-10">
-					{{partial "components/header.html" .}}{{partial "components/version.html" .}}
-				</div>
-			</div>
-			<hr class="border-black mb-1" /><hr class="border-black" />
-		</div>
-		<div class="flex flex-col lg:flex-row h-max">
-			<div class="w-full lg:w-56 p-4">
-				{{partial "components/navigation.html" .}}
-			</div>
-			<div class="p-4 border-t lg:border-t-0 lg:border-l border-dashed border-black flex-1 flex flex-col" >
-				<main class="flex-1">
-				{{/* Breadcrumb navigation */}}
-				{{if not .IsHome}}
-					<nav class="text-sm mb-4 font-mono bg-mondrian_yellow h-8 px-2 py-1 border border-black shadow-mondrian font-semibold" >
-					{{range .Ancestors.Reverse}}
-						/<a href="{{ .RelPermalink }}" class="hover:underline" >{{.Title}}</a >
-					{{end}}
-					/<span class="">{{.Title}}</span>
-					</nav>
-				{{end}}
-
-				{{block "main" .}}
-				{{end}}
-				</main>
-				{{partial "components/footer.html" .}}
-			</div>
-		</div>
-	</div>
-</div>
-</body>
+    <head>
+        <link rel="icon" href="/favicon.svg" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16.png"
+        />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        {{partial "head/meta.html" .}} {{partial "head/seo.html" .}} {{with
+        (templates.Defer (dict "key" "global"))}} {{partial "head/styles.html"
+        .}} {{end}}
+    </head>
+    <body
+        class="overflow-x-hidden min-h-screen text-mondrian_black bg-mondrian_white"
+    >
+        <div
+            class="relative m-4 md:m-12 lg:m-20 border border-black shadow-mondrian_xl"
+        >
+            <div
+                class="absolute top-0 left-0 w-full h-full pointer-events-none -z-10 hidden md:block"
+            >
+                <div
+                    class="absolute w-48 h-32 bg-mondrian_blue shadow-mondrian"
+                    style="top: -10%; left: -2%"
+                ></div>
+                <div
+                    class="absolute w-64 h-96 bg-mondrian_red shadow-mondrian_inverse"
+                    style="bottom: -20%; right: -10%"
+                ></div>
+                <div
+                    class="absolute w-1/2 h-24 bg-mondrian_yellow shadow-mondrian"
+                    style="bottom: -5%; right: 33%"
+                ></div>
+            </div>
+            <div class="bg-mondrian_white">
+                <div>
+                    <div
+                        class="p-4 lg:pl-4 lg:pb-4 lg:ml-56 lg:border-l border-dashed border-l-black"
+                    >
+                        <div
+                            class="flex justify-between align-bottom h-full w-full pt-10"
+                        >
+                            {{partial "components/header.html" .}}{{partial
+                            "components/version.html" .}}
+                        </div>
+                    </div>
+                    <hr class="border-black mb-1" />
+                    <hr class="border-black" />
+                </div>
+                <div class="flex flex-col lg:flex-row h-max">
+                    <div class="w-full lg:w-56 p-4">
+                        {{partial "components/navigation.html" .}}
+                    </div>
+                    <div
+                        class="p-4 border-t lg:border-t-0 lg:border-l border-dashed border-black flex-1 flex flex-col"
+                    >
+                        <main class="flex-1">
+                            {{/* Breadcrumb navigation */}} {{if not .IsHome}}
+                            <nav
+                                class="text-sm mb-4 font-mono bg-mondrian_yellow h-8 px-2 py-1 border border-black shadow-mondrian font-semibold"
+                            >
+                                {{range .Ancestors.Reverse}} /<a
+                                    href="{{ .RelPermalink }}"
+                                    class="hover:underline"
+                                    >{{.Title}}</a
+                                >
+                                {{end}} /<span class="">{{.Title}}</span>
+                            </nav>
+                            {{end}} {{block "main" .}} {{end}}
+                        </main>
+                        {{partial "components/footer.html" .}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
