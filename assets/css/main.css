@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
 @source "hugo_stats.json";
 
 @theme {
-    --font-sans: Atkinson Hyperlegible, system-ui, sans-serif;
-    --font-mono: Berkeley Mono, monospace;
+    --font-sans: "Atkinson Hyperlegible", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
 
     --color-mondrian_black: #272a31;
     --color-mondrian_white: #e7e4e1;
