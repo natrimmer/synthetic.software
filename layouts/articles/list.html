@@ -41,7 +41,6 @@
 					</span>
 				</div>
 			</div>
-			<hr />
 		</div>
 	{{end}}
 	{{/* Collect all descendant articles pages for pagination */}}
@@ -72,22 +71,22 @@
 					<article class="hover:bg-white border border-mondrian_white hover:border-mondrian_black transition-colors mb-2 p-2" >
 						<div class="flex flex-col">
 							<a href="{{ .RelPermalink }}" class="w-full text-center shadow-mondrian px-1 py-0.5 border border-black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-white text-xs mb-2" >
-							{{.Title}} →</a>
+							{{.Title}} →</a >
 							<div class="flex-col w-full">
 								<footer class="flex flex-wrap items-center gap-3 text-xs font-mono text-gray-500" >
 									<div class="flex gap-2">
-										<span>posted:{{.Date.Format "2006-01-02"}}{{.Date.Format "15:04"}}</span>
+										<span >posted:{{.Date.Format "2006-01-02"}}{{.Date.Format "15:04"}}</span >
 										{{if .Lastmod}}
 											{{$dateOnly := .Date.Format "2006-01-02"}}{{$lastmodOnly := .Lastmod.Format "2006-01-02"}}
 											{{if ne $dateOnly $lastmodOnly}}
-												<span>updated:{{.Lastmod.Format "2006-01-02"}}{{.Lastmod.Format "15:04"}}</span>
+												<span >updated:{{.Lastmod.Format "2006-01-02"}}{{.Lastmod.Format "15:04"}}</span >
 											{{end}}
 										{{end}}
 										{{with .Params.tags}}
 											<div class="flex flex-wrap gap-2">
 												{{range .}}
 													<a href="/tags/{{ . | urlize }}/" class="hover:underline decoration-mondrian_yellow transition-colors hover:text-mondrian_black" >
-													#{{.}}</a>
+													#{{.}}</a >
 												{{end}}
 											</div>
 										{{end}}
@@ -103,19 +102,19 @@
 					<div class="flex items-center gap-1">
 						{{if $paginator.HasPrev}}
 							<a href="{{ $paginator.Prev.URL }}" class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white" >
-							← NEWER</a>
+							← NEWER</a >
 						{{end}}
 						{{range $paginator.Pagers}}
 							{{if eq . $paginator}}
-								<span class="px-3 py-1 text-xs bg-mondrian_red text-white border border-black font-mono" >{{.PageNumber}}</span>
+								<span class="px-3 py-1 text-xs bg-mondrian_red text-white border border-black font-mono" >{{.PageNumber}}</span >
 							{{else}}
 								<a href="{{ .URL }}" class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow" >
-								{{.PageNumber}}</a>
+								{{.PageNumber}}</a >
 							{{end}}
 						{{end}}
 						{{if $paginator.HasNext}}
 							<a href="{{ $paginator.Next.URL }}" class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white" >
-							OLDER →</a>
+							OLDER →</a >
 						{{end}}
 					</div>
 					</nav>
