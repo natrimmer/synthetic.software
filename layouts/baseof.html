@@ -69,12 +69,16 @@
                             <nav
                                 class="text-sm mb-4 font-mono bg-mondrian_yellow h-8 px-2 py-1 border border-black shadow-mondrian font-semibold"
                             >
-                                {{range .Ancestors.Reverse}} /<a
+                                {{range .Ancestors.Reverse}}
+                                <pre class="inline"> / </pre>
+                                <a
                                     href="{{ .RelPermalink }}"
                                     class="hover:underline"
                                     >{{.Title}}</a
                                 >
-                                {{end}} /<span class="">{{.Title}}</span>
+                                {{end}}
+                                <pre class="inline"> / </pre>
+                                <span class="">{{.Title}}</span>
                             </nav>
                             {{end}} {{block "main" .}} {{end}}
                         </main>

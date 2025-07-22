@@ -88,7 +88,6 @@
       printf "''${GRAY}    → %s''${RESET}\n" "$STEP"
     '';
 
-    # Individual tool commands
     feed-processor-build.exec = ''
       _log BUILD "feed-processor"
       mkdir -p tools/bin
@@ -111,7 +110,6 @@
       ./tools/bin/blogroll-generator "$@"
     '';
 
-    # Tooling ecosystem commands
     tools-build.exec = ''
       _section "Building Hugo Tools"
       _step "feed-processor"
@@ -147,7 +145,6 @@
       _log OK "All checks passed"
     '';
 
-    # Hugo workflow commands
     hugo-process-feeds.exec = ''
       _log PROCESS "Feed queue"
       mkdir -p queue
@@ -283,22 +280,6 @@
       _log LOGS "Workers runtime logs"
       wrangler tail
     '';
-
-    # Install miekg's gotmplfmt formatter
-    install-gotmplfmt.exec = ''
-      _log INFO "Installing miekg/gotmplfmt"
-      go install github.com/miekg/gotmplfmt@latest
-      _log OK "gotmplfmt installed"
-    '';
-
-    # Format Hugo templates
-    format-templates.exec = ''
-      _log FORMAT "Hugo templates in layouts/"
-      for file in $(find layouts -name "*.html"); do
-        gotmplfmt < "$file" > "$file.tmp" && mv "$file.tmp" "$file"
-      done
-      _log OK "Templates formatted"
-    '';
   };
 
   enterShell = ''
@@ -326,8 +307,6 @@
     echo "∘ hugo-build               - Build complete Hugo site"
     echo "∘ hugo-dev                 - Start Hugo dev server"
     echo "∘ feed-add                 - Add feed item (feed-add \"content\" tag1 tag2)"
-    echo "∘ install-gotmplfmt        - Install gotmplfmt for Hugo templates"
-    echo "∘ format-templates         - Format Hugo templates in layouts/"
     echo ""
     echo "Cloudflare Workers:"
     echo "∘ workers-auth             - Authenticate with Cloudflare"
@@ -358,16 +337,6 @@
     beautysh.enable = true; # Format shell files
     gofmt.enable = true; # Format Go code
     nixfmt-rfc-style.enable = true; # Format Nix code
-
-    # Go template formatter
-    gotmplfmt = {
-      enable = true;
-      name = "gotmplfmt";
-      entry = "sh -c 'gotmplfmt < \"$1\" > \"$1.tmp\" && mv \"$1.tmp\" \"$1\"' --";
-      files = "^layouts/.*\\.html$";
-      language = "system";
-      pass_filenames = true;
-    };
 
     #----------------------------------------
     # Linting Hooks - Run After Formatting

@@ -113,10 +113,9 @@ $paginator.Pages) 0}}
     </nav>
     {{end}}
 </section>
-{{end}}
-<hr />
-{{/* Show subsections (years/months/days) if they exist */}} {{if .Sections}}
-<section class="my-2">
+{{end}} {{/* Show subsections (years/months/days) if they exist */}} {{if
+.Sections}}
+<section class="mb-4">
     <h4 class="text-lg font-semibold">
         Browse by {{if eq .RelPermalink "/feed/"}} Year {{else if (findRE
         "^/feed/[^/]+/$" .RelPermalink)}} Month {{else}} Day {{end}}
@@ -129,14 +128,15 @@ $paginator.Pages) 0}}
         true}} {{end}} {{end}} {{end}} {{if $isInSection}} {{$totalPages = add
         $totalPages 1}} {{end}} {{end}} {{end}}
         <a
-            href="{{ .RelPermalink }}"
-            class="py-1 px-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+            href="{{ .Page.RelPermalink }}"
+            class="w-max py-1 px-1 text-xs text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
         >
-            {{.Title}}<span class="text-xs opacity-75"
-                >[{{$totalPages}} {{if eq $totalPages 1}} item {{else}} items
-                {{end}} ]</span
-            ></a
-        >
+            {{.Title}}
+            <span class="text-xs opacity-75"
+                >[{{$totalPages}} {{if eq $totalPages
+                1}}item{{else}}items{{end}}]</span
+            >
+        </a>
         {{end}}
     </div>
 </section>

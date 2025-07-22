@@ -1,5 +1,5 @@
 ---
 title: "Feed"
-description: "Real-time thoughts, updates, and micro-posts"
+description: "Thoughts, updates, or micro-posts"
 type: "feed"
 ---

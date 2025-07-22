@@ -15,3 +15,5 @@ static/fonts/
 .zed
 .claude
 tools/bin/
+
+.DS_Store

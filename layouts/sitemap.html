@@ -1,59 +1,74 @@
 {{define "main"}}
-	<div class="mb-4">
-		<div class="flex justify-between w-full items-end mb-4">
-			<h3 class="text-3xl font-semibold underline decoration-8 decoration-mondrian_blue" >
-				Sitemap
-			</h3>
-			<span class="h-max">
-			<p class="text-xs font-mono text-gray-500">
-				everything in its right place
-			</p>
-			</span>
-		</div>
-		<div class="mb-4">
-			<a href="?everythiiiiiiing" class="w-full text-xs p-1 text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue" aria-label="everything" >
-			everything</a>
-		</div>
-		<div class="bg-mondrian_black font-mono py-4 md:py-8 lg:py-16 text-mondrian_yellow text-sm md:text-lg lg:text-xl xl:text-2xl overflow-hidden" >
-			<p class="px-4 md:px-8 lg:px-16">
-				[nick@web ~]$ tree -P "*.html" --prune -d --noreport --sort=size -r
-			</p>
-			<pre class="px-4 md:px-8 lg:px-16 overflow-x-auto max-w-full">
-				.{{- $mainPages := where .Site.RegularPages "Section" "" -}}{{- $feedPages := where .Site.RegularPages "Type" "feed" -}}
-				{{- $notesPages := where .Site.RegularPages "Type" "notes" -}}
-				{{- /* Main pages */ -}}
-				{{- range $mainPages}}
-					├──{{.Title | lower}}
-				{{- end}}
-				{{- /* Feed section */ -}}
-				{{- if $feedPages}}
-					{{- if $notesPages}}
-						├── feed/ ({{len $feedPages}} total items)
-					{{- else}}
-						└── feed/ ({{len $feedPages}} total items)
-					{{- end}}
-					{{- $feedByYear := $feedPages.GroupByDate "2006" -}}
-					{{- range $feedByYear}}
-						│ └── {{.Key}}/ ({{len .Pages}} items){{- $monthGroups := .Pages.GroupByDate "2006-01" -}}
-						{{- range $monthGroups}}
-							│ └── {{substr .Key 5}}/ ({{len .Pages}} items)
-						{{- end}}
-					{{- end}}
-				{{- end}}
-				{{- /* Notes section */ -}}
-				{{- if $notesPages}}
-					└── notes/
-					{{- range $index, $page := $notesPages}}
-						{{- if eq $index (sub (len $notesPages) 1)}}
-							└──{{.Title | lower}}
-						{{- else}}
-							├──{{.Title | lower}}
-						{{- end}}
-					{{- end}}
-				{{- end}}
-			</pre >
-		</div>
-		{{- /* Include any content from the page */ -}}
-		{{.Content}}
-	</div>
+<div class="mb-4">
+    <div class="flex justify-between w-full items-end mb-4">
+        <h3
+            class="text-3xl font-semibold underline decoration-8 decoration-mondrian_blue"
+        >
+            Sitemap
+        </h3>
+        <span class="h-max">
+            <p class="text-xs font-mono text-gray-500">
+                everything in its right place
+            </p>
+        </span>
+    </div>
+    <div class="mb-4">
+        <a
+            href="?everythiiiiiiing"
+            class="w-full text-xs p-1 text-black border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+            aria-label="everything"
+        >
+            everything
+        </a>
+    </div>
+    <div
+        class="bg-mondrian_black font-mono py-4 md:py-8 lg:py-16 text-mondrian_yellow text-sm md:text-lg lg:text-xl xl:text-2xl overflow-hidden"
+    >
+        <p class="px-4 md:px-8 lg:px-16">
+            [nick@web ~]$ tree -P "*.html" --prune -d --noreport --sort=size -r
+        </p>
+        <pre class="px-4 md:px-8 lg:px-16 overflow-x-auto max-w-full">
+.{{- $mainPages := where .Site.RegularPages "Section" "" -}}
+{{- $feedPages := where .Site.RegularPages "Type" "feed" -}}
+{{- $notesPages := where .Site.RegularPages "Type" "notes" -}}
+
+{{- /* Main pages */ -}}
+{{- range $mainPages}}
+├── {{.Title | lower}}
+{{- end}}
+
+{{- /* Feed section */ -}}
+{{- if $feedPages}}
+  {{- if $notesPages}}
+├── feed/ ({{len $feedPages}} total items)
+  {{- else}}
+└── feed/ ({{len $feedPages}} total items)
+  {{- end}}
+  {{- $feedByYear := $feedPages.GroupByDate "2006" -}}
+  {{- range $feedByYear}}
+│   └── {{.Key}}/ ({{len .Pages}} items)
+    {{- $monthGroups := .Pages.GroupByDate "2006-01" -}}
+    {{- range $monthGroups}}
+│       └── {{substr .Key 5}}/ ({{len .Pages}} items)
+    {{- end}}
+  {{- end}}
+{{- end}}
+
+{{- /* Notes section */ -}}
+{{- if $notesPages}}
+└── notes/
+  {{- range $index, $page := $notesPages}}
+    {{- if eq $index (sub (len $notesPages) 1)}}
+    └── {{.Title | lower}}
+    {{- else}}
+    ├── {{.Title | lower}}
+    {{- end}}
+  {{- end}}
+{{- end}}
+      </pre
+        >
+    </div>
+
+    {{- /* Include any content from the page */ -}} {{.Content}}
+</div>
 {{end}}
