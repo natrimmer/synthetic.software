@@ -1,5 +1,5 @@
 {
-  "name": "Synthetic Software",
+  "name": "synthetic-software-worker",
   "main": "src/index.js",
   "compatibility_date": "2025-04-01",
   "assets": {
