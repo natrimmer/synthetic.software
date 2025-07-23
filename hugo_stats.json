@@ -32,6 +32,7 @@
       "script",
       "section",
       "span",
+      "strong",
       "svg",
       "table",
       "tbody",
@@ -63,6 +64,8 @@
       "border-b",
       "border-b-black",
       "border-b-gray-300",
+      "border-b-mondrian_black",
+      "border-b-mondrian_light_gray",
       "border-black",
       "border-collapse",
       "border-dashed",
@@ -113,6 +116,7 @@
       "hover:bg-gray-100",
       "hover:bg-mondrian_blue",
       "hover:bg-mondrian_bright_white",
+      "hover:bg-mondrian_light_gray",
       "hover:bg-mondrian_red",
       "hover:bg-mondrian_white",
       "hover:bg-mondrian_yellow",
@@ -170,7 +174,6 @@
       "mb-1",
       "mb-2",
       "mb-4",
-      "mb-8",
       "md:block",
       "md:decoration-6",
       "md:flex",
@@ -236,6 +239,7 @@
       "text-md",
       "text-mondrian_black",
       "text-mondrian_bright_white",
+      "text-mondrian_dark_gray",
       "text-mondrian_white",
       "text-mondrian_yellow",
       "text-right",
@@ -262,6 +266,8 @@
       "xl:text-base"
     ],
     "ids": [
+      "competitive-and-desirable",
+      "on-a-more-personal-note",
       "table-note"
     ]
   }

@@ -16,7 +16,7 @@ $.Site.RegularPages}} {{if eq .Type "notes"}} {{$isDescendant := false}} {{if eq
         </h3>
         <div class="text-right mb-1">
             <span class="h-max pb-1">
-                <p class="text-xs font-mono text-gray-500">
+                <p class="text-xs font-mono text-mondrian_dark_gray">
                     {{len $allDescendantPages}} {{if eq (len
                     $allDescendantPages) 1}} item {{else}} items {{end}}
                 </p>
@@ -42,16 +42,14 @@ $paginator.Pages) 0}}
         <div class="flex flex-col">
             <a
                 href="{{ .RelPermalink }}"
-                class="mb-4 w-full text-center shadow-mondrian px-1 py-0.5 border border-black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_bright_white text-xs"
+                class="mb-4 w-full text-center shadow-mondrian px-1 py-0.5 border border-mondrian_black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_bright_white text-xs"
             >
                 {{.Title}} →</a
             >
             <div class="flex-col w-full">
-                <div class="text-sm leading-relaxed mb-1">
-                    {{.Content}}
-                    <hr class="w-full border-black" />
-                </div>
-                <footer class="text-xs font-mono text-gray-500">
+                <div class="text-sm leading-relaxed mb-2">{{.Content}}</div>
+                <hr class="w-full border-mondrian_black mb-2" />
+                <footer class="text-xs font-mono text-mondrian_dark_gray">
                     <div class="flex gap-2">
                         <span>posted:{{.Date.Format "2006-01-02"}}</span>
                         {{if .Lastmod}} {{$dateOnly := .Date.Format
@@ -81,26 +79,26 @@ $paginator.Pages) 0}}
             {{if $paginator.HasPrev}}
             <a
                 href="{{ $paginator.Prev.URL }}"
-                class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white"
+                class="px-3 py-1 text-xs border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white"
             >
                 ← NEWER</a
             >
             {{end}} {{range $paginator.Pagers}} {{if eq . $paginator}}
             <span
-                class="px-3 py-1 text-xs bg-mondrian_red text-mondrian_bright_white border border-black font-mono"
+                class="px-3 py-1 text-xs bg-mondrian_red text-mondrian_bright_white border border-mondrian_black font-mono"
                 >{{.PageNumber}}</span
             >
             {{else}}
             <a
                 href="{{ .URL }}"
-                class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow"
+                class="px-3 py-1 text-xs border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow"
             >
                 {{.PageNumber}}</a
             >
             {{end}} {{end}} {{if $paginator.HasNext}}
             <a
                 href="{{ $paginator.Next.URL }}"
-                class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white"
+                class="px-3 py-1 text-xs border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white"
             >
                 OLDER →</a
             >
