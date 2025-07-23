@@ -29,12 +29,29 @@
         </p>
         <pre class="px-4 md:px-8 lg:px-16 overflow-x-auto max-w-full">
 .{{- $mainPages := where .Site.RegularPages "Section" "" -}}
+{{- $articlesPages := where .Site.RegularPages "Type" "articles" -}}
 {{- $feedPages := where .Site.RegularPages "Type" "feed" -}}
 {{- $notesPages := where .Site.RegularPages "Type" "notes" -}}
 
 {{- /* Main pages */ -}}
 {{- range $mainPages}}
 ├── {{.Title | lower}}
+{{- end}}
+
+{{- /* Articles section */ -}}
+{{- if $articlesPages}}
+  {{- if or $feedPages $notesPages}}
+├── articles/ ({{len $articlesPages}} total items)
+  {{- else}}
+└── articles/ ({{len $articlesPages}} total items)
+  {{- end}}
+  {{- range $index, $page := $articlesPages}}
+    {{- if eq $index (sub (len $articlesPages) 1)}}
+│   └── {{.Title | lower}}
+    {{- else}}
+│   ├── {{.Title | lower}}
+    {{- end}}
+  {{- end}}
 {{- end}}
 
 {{- /* Feed section */ -}}
