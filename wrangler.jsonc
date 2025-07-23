@@ -5,9 +5,9 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
-    "not_found_handling": "404-page",
+    "not_found_handling": "404-page"
   },
   "placement": {
-    "mode": "smart",
-  },
+    "mode": "smart"
+  }
 }
