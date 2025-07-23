@@ -5,7 +5,7 @@ on:
     branches: [main]
   schedule:
     # Run at midnight UTC for blogroll updates
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
   workflow_dispatch: # Allow manual triggers
 
 jobs:
@@ -13,35 +13,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0 # Full history for Hugo git info
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for Hugo git info
 
-    - name: Install Nix
-      uses: cachix/install-nix-action@v26
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
 
-    - name: Setup devenv cache
-      uses: cachix/cachix-action@v14
-      with:
-        name: devenv
+      - name: Setup devenv cache
+        uses: cachix/cachix-action@v14
+        with:
+          name: devenv
 
-    - name: Install devenv.sh
-      run: nix profile install nixpkgs#devenv
+      - name: Install devenv.sh
+        run: nix profile install nixpkgs#devenv
 
-    - name: Build the devenv shell and run git hooks
-      run: devenv test
+      - name: Build the devenv shell and run git hooks
+        run: devenv test
 
-    - name: Build Hugo Tools
-      run: devenv shell tools-build
+      - name: Build Hugo Tools
+        run: devenv shell tools-build
 
-    - name: Build Hugo Site
-      run: devenv shell hugo-build
+      - name: Build Hugo Site
+        run: devenv shell hugo-build
 
-    - name: Deploy to Cloudflare Workers
-      uses: cloudflare/wrangler-action@v3
-      with:
-        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        command: deploy --assets-only
-        workingDirectory: '.'
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
