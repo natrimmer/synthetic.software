@@ -51,17 +51,11 @@ $paginator.Pages) 0}}
                     class="flex flex-wrap items-center gap-3 text-xs font-mono text-gray-500"
                 >
                     <div class="flex gap-2">
-                        <span
-                            >posted:{{.Date.Format "2006-01-02"}}{{.Date.Format
-                            "15:04"}}</span
-                        >
-                        {{if .Lastmod}} {{$dateOnly := .Date.Format
-                        "2006-01-02"}}{{$lastmodOnly := .Lastmod.Format
-                        "2006-01-02"}} {{if ne $dateOnly $lastmodOnly}}
-                        <span
-                            >updated:{{.Lastmod.Format
-                            "2006-01-02"}}{{.Lastmod.Format "15:04"}}</span
-                        >
+                        <span>posted: {{.Date.Format "2006-01-02"}}</span>
+                        {{with .Params.updated}} {{$dateOnly := $.Date.Format
+                        "2006-01-02"}} {{$updatedOnly := (time .).Format
+                        "2006-01-02"}} {{if ne $dateOnly $updatedOnly}}
+                        <span>updated: {{(time .).Format "2006-01-02"}}</span>
                         {{end}} {{end}} {{with .Params.tags}}
                         <div class="flex flex-wrap gap-2">
                             {{range .}}
@@ -69,8 +63,8 @@ $paginator.Pages) 0}}
                                 href="/tags/{{ . | urlize }}/"
                                 class="hover:underline decoration-mondrian_yellow transition-colors hover:text-mondrian_black"
                             >
-                                #{{.}}</a
-                            >
+                                #{{.}}
+                            </a>
                             {{end}}
                         </div>
                         {{end}}

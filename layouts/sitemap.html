@@ -62,11 +62,28 @@
 └── feed/ ({{len $feedPages}} total items)
   {{- end}}
   {{- $feedByYear := $feedPages.GroupByDate "2006" -}}
-  {{- range $feedByYear}}
+  {{- range $yearIndex, $yearGroup := $feedByYear}}
+    {{- $isLastYear := eq $yearIndex (sub (len $feedByYear) 1) }}
+    {{- if $isLastYear}}
 │   └── {{.Key}}/ ({{len .Pages}} items)
+    {{- else}}
+│   ├── {{.Key}}/ ({{len .Pages}} items)
+    {{- end}}
     {{- $monthGroups := .Pages.GroupByDate "2006-01" -}}
-    {{- range $monthGroups}}
+    {{- range $monthIndex, $monthGroup := $monthGroups}}
+      {{- if $isLastYear}}
+        {{- if eq $monthIndex (sub (len $monthGroups) 1)}}
 │       └── {{substr .Key 5}}/ ({{len .Pages}} items)
+        {{- else}}
+│       ├── {{substr .Key 5}}/ ({{len .Pages}} items)
+        {{- end}}
+      {{- else}}
+        {{- if eq $monthIndex (sub (len $monthGroups) 1)}}
+│   │   └── {{substr .Key 5}}/ ({{len .Pages}} items)
+        {{- else}}
+│   │   ├── {{substr .Key 5}}/ ({{len .Pages}} items)
+        {{- end}}
+      {{- end}}
     {{- end}}
   {{- end}}
 {{- end}}
@@ -85,7 +102,6 @@
       </pre
         >
     </div>
-
     {{- /* Include any content from the page */ -}} {{.Content}}
 </div>
 {{end}}

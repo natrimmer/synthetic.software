@@ -54,11 +54,11 @@ $allDescendantPages ".Date" "desc") 10}} {{if gt (len $paginator.Pages) 0}}
                         class="flex flex-wrap items-center gap-3 text-xs font-mono text-gray-500"
                     >
                         <span
-                            >{{.Date.Format "2006-01-02"}}{{.Date.Format
+                            >{{.Date.Format "2006-01-02"}} {{.Date.Format
                             "15:04"}}</span
                         >
                         {{with .Params.tags}}
-                        <div class="flex flex-wrap gap-1">
+                        <div class="flex flex-wrap gap-2">
                             {{range .}}
                             <a
                                 href="/tags/{{ . | urlize }}/"

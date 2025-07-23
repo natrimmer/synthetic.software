@@ -52,10 +52,10 @@ $paginator.Pages) 0}}
                 <footer class="text-xs font-mono text-mondrian_dark_gray">
                     <div class="flex gap-2">
                         <span>posted:{{.Date.Format "2006-01-02"}}</span>
-                        {{if .Lastmod}} {{$dateOnly := .Date.Format
-                        "2006-01-02"}}{{$lastmodOnly := .Lastmod.Format
-                        "2006-01-02"}} {{if ne $dateOnly $lastmodOnly}}
-                        <span>updated:{{.Lastmod.Format "2006-01-02"}}</span>
+                        {{with .Params.updated}} {{$dateOnly := $.Date.Format
+                        "2006-01-02"}} {{$updatedOnly := (time .).Format
+                        "2006-01-02"}} {{if ne $dateOnly $updatedOnly}}
+                        <span>updated:{{(time .).Format "2006-01-02"}}</span>
                         {{end}} {{end}} {{with .Params.tags}}
                         <div class="flex flex-wrap gap-2">
                             {{range .}}
