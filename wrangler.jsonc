@@ -9,7 +9,7 @@
   },
   "routes": [
     {
-      "pattern": "synthetic.software/*",
+      "pattern": "synthetic.software",
       "custom_domain": true
     }
   ],
