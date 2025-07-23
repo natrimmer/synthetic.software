@@ -1,12 +1,15 @@
-{{define "main"}} {{if and (eq .Section "feed") .IsHome}} {{/* Custom home page
-content from _index.html */}} {{.Content}} {{else}} {{/* Standard header for
-other feed pages */}} {{/* Collect all descendant feed pages for counting and
-display */}} {{$allDescendantPages := slice}}{{$currentSection := .}} {{range
-$.Site.RegularPages}} {{if eq .Type "feed"}} {{$isDescendant := false}} {{if eq
-.CurrentSection $currentSection}} {{$isDescendant = true}} {{else}} {{range
-.Ancestors}} {{if eq . $currentSection}} {{$isDescendant = true}} {{end}}
-{{end}} {{end}} {{if $isDescendant}} {{$allDescendantPages = $allDescendantPages
-| append .}} {{end}} {{end}} {{end}}
+{{define "main"}} {{if and (eq .Section "feed") (eq .RelPermalink "/feed/")}}
+{{/* Custom home page content from _index.md */}}
+<div class="mb-2">{{.Content}}</div>
+{{end}} {{/* Feed header and listing for all feed pages */}} {{/* Collect all
+descendant feed pages for counting and display */}} {{$allDescendantPages :=
+slice}} {{$currentSection := .}} {{range $.Site.RegularPages}} {{if eq .Type
+"feed"}} {{$isDescendant := false}} {{if eq .CurrentSection $currentSection}}
+{{$isDescendant = true}} {{else}} {{range .Ancestors}} {{if eq .
+$currentSection}} {{$isDescendant = true}} {{end}} {{end}} {{end}} {{if
+$isDescendant}} {{$allDescendantPages = $allDescendantPages | append .}} {{end}}
+{{end}} {{end}}
+
 <div>
     <div class="flex justify-between w-full items-end">
         <h3
@@ -24,16 +27,9 @@ $.Site.RegularPages}} {{if eq .Type "feed"}} {{$isDescendant := false}} {{if eq
         </div>
     </div>
 </div>
-{{end}} {{/* Collect all descendant feed pages for pagination */}} {{if not (and
-(eq .Section "feed") .IsHome)}} {{$allDescendantPages :=
-slice}}{{$currentSection := .}} {{range $.Site.RegularPages}} {{if eq .Type
-"feed"}} {{$isDescendant := false}} {{if eq .CurrentSection $currentSection}}
-{{$isDescendant = true}} {{else}} {{range .Ancestors}} {{if eq .
-$currentSection}} {{$isDescendant = true}} {{end}} {{end}} {{end}} {{if
-$isDescendant}} {{$allDescendantPages = $allDescendantPages | append .}} {{end}}
-{{end}} {{end}} {{/* Show feed items with pagination */}} {{$paginator :=
-.Paginate (sort $allDescendantPages ".Date" "desc") 10}} {{if gt (len
-$paginator.Pages) 0}}
+
+{{/* Show feed items with pagination */}} {{$paginator := .Paginate (sort
+$allDescendantPages ".Date" "desc") 10}} {{if gt (len $paginator.Pages) 0}}
 <section class="mt-4">
     <div>
         {{range $paginator.Pages}}
@@ -140,4 +136,4 @@ $paginator.Pages) 0}}
         {{end}}
     </div>
 </section>
-{{end}} {{end}} {{end}}
+{{end}} {{end}}

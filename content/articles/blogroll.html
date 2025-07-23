@@ -1,0 +1,57 @@
++++
+title = "What is the Blogroll?"
+date = 2025-07-23
+type = "articles"
+tags = ["blogroll", "site meta", "rss"]
+draft = true
++++
+
+<h2 class="text-2xl font-bold">Background</h2>
+<p class="mb-2">
+    Sharing and working in public is an ideal that I try to aspire to. Those are
+    two different ideas worth exploring. Sharing in this context means sharing
+    the great work of others, and helping them get more visibility in the small
+    way that I can. Working in public, in this context, means sharing more of my
+    own habits, routines, and the way I live, engage in the world. The blogroll
+    does both of these. It shares writings of others, and it shares what I am
+    reading and what I find interesting. It does so in an interesting way as
+    well. That's what I'll break down here.
+</p>
+<p class="mb-2">
+    If you're already here wondering what the blogroll I'm referring to is, you
+    should visit it
+    <a
+        href="/blogroll"
+        class="underline hover:text-mondrian_red transition-colors"
+        >here</a
+    >
+    and come back. That being said, a blogroll is a list of links to blogs and
+    websites updated using RSS/Atom feeds. It is a way to aggregate content from
+    multiple sources into one place, allowing readers to curate their own
+    personalized media feed. The inspiration for this blogroll comes from Alex
+    Kladov's blog "matklad", specifically the post
+    <a
+        href="https://matklad.github.io/2025/06/26/rssssr.html"
+        class="underline hover:text-mondrian_red transition-colors"
+        aria-label="matklad's blog post: RSS Server Side Reader"
+        rel="noopener noreferrer"
+        target="_blank"
+        title="matklad's blog post: RSS Server Side Reader"
+        >"RSS Server Side Reader"</a
+    >. If you want to know more about RSS/Atom feeds, you should read their
+    brief primer on it in that post. It explains it better than I could.
+</p>
+<h2 class="text-2xl font-bold">How it works</h2>
+<p>
+    Using devenv for my environment and dependency management, I created a
+    wrapper script around the
+    <code class="code-inline">hugo build</code>
+    command. The wrapper script through a series of nested calls builds a Go
+    binary that generates a Hugo data file called
+    <code class="code-inline">blogroll.yaml</code>. This file is then used by a
+    Hugo template to render the blogroll page. I'll break down each component
+    below.
+</p>
+<h3 class="text-lg font-semibold">Build Wrapper Script</h3>
+<h3 class="text-lg font-semibold">Go Code</h3>
+<h3 class="text-lg font-semibold">Hugo Template</h3>

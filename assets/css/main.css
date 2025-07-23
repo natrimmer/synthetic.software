@@ -21,3 +21,7 @@
 ::selection {
     background: rgba(224, 183, 5, 0.7);
 }
+
+.code-inline {
+    @apply font-mono px-1 py-0.5 text-sm border border-mondrian_black bg-gray-200 rounded-sm;
+}
