@@ -1,7 +1,8 @@
+[2025-07-23 14:51:57] INFO: finished writing blog post around synthetic.software 's blogroll
+[2025-07-23 11:48:57] INFO: rolled out synthetic.software live using Cloudflare workers
 [2025-07-16 20:46:35] INFO: finished a 6mi bike ride around SLU, followed by a cold shower
 [2025-07-16 19:05:09] INFO: rewired my pedal board and simplified it down to 6 pedals
 [2025-07-15 11:59:27] INFO: acquired domain name `synthetic.software`
 [2025-07-14 18:38:35] INFO: completed 2.1 mile jog by SLU
 [2025-07-13 12:46:52] INFO: refactored custom go extensions for hugo ssg to support generating a blogroll
 [2025-07-12 08:24:53] INFO: wrote basic cli `slog` to append logs to a file
-[2025-07-23 11:48:57] INFO: rolled out synthetic.software live using Cloudflare workers
