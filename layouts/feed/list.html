@@ -34,7 +34,7 @@ $allDescendantPages ".Date" "desc") 10}} {{if gt (len $paginator.Pages) 0}}
     <div>
         {{range $paginator.Pages}}
         <article
-            class="hover:bg-white border border-mondrian_white hover:border-mondrian_black transition-colors mb-2 p-1"
+            class="hover:bg-mondrian_bright_white border border-mondrian_white hover:border-mondrian_black transition-colors mb-2 p-1"
         >
             <div class="flex">
                 <div class="w-8 mr-4">
@@ -87,7 +87,7 @@ $allDescendantPages ".Date" "desc") 10}} {{if gt (len $paginator.Pages) 0}}
             >
             {{end}} {{range $paginator.Pagers}} {{if eq . $paginator}}
             <span
-                class="px-3 py-1 text-xs bg-mondrian_red text-white border border-black font-mono"
+                class="px-3 py-1 text-xs bg-mondrian_red text-mondrian_bright_white border border-black font-mono"
                 >{{.PageNumber}}</span
             >
             {{else}}

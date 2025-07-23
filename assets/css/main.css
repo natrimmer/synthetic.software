@@ -7,7 +7,11 @@
     --font-mono: "JetBrains Mono", monospace;
 
     --color-mondrian_black: #272a31;
+    --color-mondrian_bright_white: #fefdfb;
     --color-mondrian_white: #e7e4e1;
+    --color-mondrian_light_gray: #d5d2cf;
+    --color-mondrian_gray: #c9c6c3;
+    --color-mondrian_dark_gray: #b9b6b4;
     --color-mondrian_red: #b82116;
     --color-mondrian_yellow: #e0b705;
     --color-mondrian_blue: #3d51ba;
@@ -23,5 +27,5 @@
 }
 
 .code-inline {
-    @apply font-mono px-1 py-0.5 text-sm border border-mondrian_black bg-gray-200 rounded-sm;
+    @apply font-mono text-xs px-0.5 border border-mondrian_dark_gray bg-mondrian_light_gray rounded-xs;
 }

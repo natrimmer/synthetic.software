@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	inputFile := "blogroll.txt"
+	inputFile := "static/assets/blogroll.txt"
 	outputFile := "data/blogroll.yaml"
 
 	if len(os.Args) > 1 {

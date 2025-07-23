@@ -1,126 +1,116 @@
-{{define "main"}}
-	{{if and (eq .Section "articles") .IsHome}}
-		{{/* Custom home page content from _index.html */}}
-		{{.Content}}
-	{{else}}
-		{{/* Standard header for other articles pages */}}
-		{{/* Collect all descendant articles pages for counting and display */}}
-		{{$allDescendantPages := slice}}{{$currentSection := .}}
-		{{range $.Site.RegularPages}}
-			{{if eq .Type "articles"}}
-				{{$isDescendant := false}}
-				{{if eq .CurrentSection $currentSection}}
-					{{$isDescendant = true}}
-				{{else}}
-					{{range .Ancestors}}
-						{{if eq . $currentSection}}
-							{{$isDescendant = true}}
-						{{end}}
-					{{end}}
-				{{end}}
-				{{if $isDescendant}}
-					{{$allDescendantPages = $allDescendantPages | append .}}
-				{{end}}
-			{{end}}
-		{{end}}
-		<div>
-			<div class="flex justify-between w-full items-end">
-				<h3 class="text-3xl font-semibold underline decoration-8 decoration-mondrian_red" >
-					Articles
-				</h3>
-				<div class="text-right mb-1">
-					<span class="h-max pb-1">
-					<p class="text-xs font-mono text-gray-500">
-						{{len $allDescendantPages}}
-						{{if eq (len $allDescendantPages) 1}}
-							item
-						{{else}}
-							items
-						{{end}}
-					</p>
-					</span>
-				</div>
-			</div>
-		</div>
-	{{end}}
-	{{/* Collect all descendant articles pages for pagination */}}
-	{{if not (and (eq .Section "articles") .IsHome)}}
-		{{$allDescendantPages := slice}}{{$currentSection := .}}
-		{{range $.Site.RegularPages}}
-			{{if eq .Type "articles"}}
-				{{$isDescendant := false}}
-				{{if eq .CurrentSection $currentSection}}
-					{{$isDescendant = true}}
-				{{else}}
-					{{range .Ancestors}}
-						{{if eq . $currentSection}}
-							{{$isDescendant = true}}
-						{{end}}
-					{{end}}
-				{{end}}
-				{{if $isDescendant}}
-					{{$allDescendantPages = $allDescendantPages | append .}}
-				{{end}}
-			{{end}}
-		{{end}}
-		{{/* Show articles items with pagination */}}
-		{{$paginator := .Paginate (sort $allDescendantPages ".Date" "desc") 10}}
-		{{if gt (len $paginator.Pages) 0}}
-			<section class="mt-4">
-				{{range $paginator.Pages}}
-					<article class="hover:bg-white border border-mondrian_white hover:border-mondrian_black transition-colors mb-2 p-2" >
-						<div class="flex flex-col">
-							<a href="{{ .RelPermalink }}" class="w-full text-center shadow-mondrian px-1 py-0.5 border border-black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-white text-xs mb-2" >
-							{{.Title}} →</a >
-							<div class="flex-col w-full">
-								<footer class="flex flex-wrap items-center gap-3 text-xs font-mono text-gray-500" >
-									<div class="flex gap-2">
-										<span >posted:{{.Date.Format "2006-01-02"}}{{.Date.Format "15:04"}}</span >
-										{{if .Lastmod}}
-											{{$dateOnly := .Date.Format "2006-01-02"}}{{$lastmodOnly := .Lastmod.Format "2006-01-02"}}
-											{{if ne $dateOnly $lastmodOnly}}
-												<span >updated:{{.Lastmod.Format "2006-01-02"}}{{.Lastmod.Format "15:04"}}</span >
-											{{end}}
-										{{end}}
-										{{with .Params.tags}}
-											<div class="flex flex-wrap gap-2">
-												{{range .}}
-													<a href="/tags/{{ . | urlize }}/" class="hover:underline decoration-mondrian_yellow transition-colors hover:text-mondrian_black" >
-													#{{.}}</a >
-												{{end}}
-											</div>
-										{{end}}
-									</div>
-								</footer>
-							</div>
-						</div>
-					</article>
-				{{end}}
-				{{/* Pagination */}}
-				{{if gt $paginator.TotalPages 1}}
-					<nav class="flex justify-center mt-8">
-					<div class="flex items-center gap-1">
-						{{if $paginator.HasPrev}}
-							<a href="{{ $paginator.Prev.URL }}" class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white" >
-							← NEWER</a >
-						{{end}}
-						{{range $paginator.Pagers}}
-							{{if eq . $paginator}}
-								<span class="px-3 py-1 text-xs bg-mondrian_red text-white border border-black font-mono" >{{.PageNumber}}</span >
-							{{else}}
-								<a href="{{ .URL }}" class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow" >
-								{{.PageNumber}}</a >
-							{{end}}
-						{{end}}
-						{{if $paginator.HasNext}}
-							<a href="{{ $paginator.Next.URL }}" class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white" >
-							OLDER →</a >
-						{{end}}
-					</div>
-					</nav>
-				{{else}}
-				{{end}}
-			</section>
-		{{end}}
-	{{end}}
-{{end}}
+{{define "main"}} {{if and (eq .Section "articles") .IsHome}} {{/* Custom home
+page content from _index.html */}} {{.Content}} {{else}} {{/* Standard header
+for other articles pages */}} {{/* Collect all descendant articles pages for
+counting and display */}} {{$allDescendantPages := slice}}{{$currentSection :=
+.}} {{range $.Site.RegularPages}} {{if eq .Type "articles"}} {{$isDescendant :=
+false}} {{if eq .CurrentSection $currentSection}} {{$isDescendant = true}}
+{{else}} {{range .Ancestors}} {{if eq . $currentSection}} {{$isDescendant =
+true}} {{end}} {{end}} {{end}} {{if $isDescendant}} {{$allDescendantPages =
+$allDescendantPages | append .}} {{end}} {{end}} {{end}}
+<div>
+    <div class="flex justify-between w-full items-end">
+        <h3
+            class="text-3xl font-semibold underline decoration-8 decoration-mondrian_red"
+        >
+            Articles
+        </h3>
+        <div class="text-right mb-1">
+            <span class="h-max pb-1">
+                <p class="text-xs font-mono text-gray-500">
+                    {{len $allDescendantPages}} {{if eq (len
+                    $allDescendantPages) 1}} item {{else}} items {{end}}
+                </p>
+            </span>
+        </div>
+    </div>
+</div>
+{{end}} {{/* Collect all descendant articles pages for pagination */}} {{if not
+(and (eq .Section "articles") .IsHome)}} {{$allDescendantPages :=
+slice}}{{$currentSection := .}} {{range $.Site.RegularPages}} {{if eq .Type
+"articles"}} {{$isDescendant := false}} {{if eq .CurrentSection
+$currentSection}} {{$isDescendant = true}} {{else}} {{range .Ancestors}} {{if eq
+. $currentSection}} {{$isDescendant = true}} {{end}} {{end}} {{end}} {{if
+$isDescendant}} {{$allDescendantPages = $allDescendantPages | append .}} {{end}}
+{{end}} {{end}} {{/* Show articles items with pagination */}} {{$paginator :=
+.Paginate (sort $allDescendantPages ".Date" "desc") 10}} {{if gt (len
+$paginator.Pages) 0}}
+<section class="mt-4">
+    {{range $paginator.Pages}}
+    <article
+        class="hover:bg-mondrian_bright_white border border-mondrian_white hover:border-mondrian_black transition-colors mb-2 p-2"
+    >
+        <div class="flex flex-col">
+            <a
+                href="{{ .RelPermalink }}"
+                class="w-full text-center shadow-mondrian px-1 py-0.5 border border-black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-xs mb-2"
+            >
+                {{.Title}} →</a
+            >
+            <div class="flex-col w-full">
+                <footer
+                    class="flex flex-wrap items-center gap-3 text-xs font-mono text-gray-500"
+                >
+                    <div class="flex gap-2">
+                        <span
+                            >posted:{{.Date.Format "2006-01-02"}}{{.Date.Format
+                            "15:04"}}</span
+                        >
+                        {{if .Lastmod}} {{$dateOnly := .Date.Format
+                        "2006-01-02"}}{{$lastmodOnly := .Lastmod.Format
+                        "2006-01-02"}} {{if ne $dateOnly $lastmodOnly}}
+                        <span
+                            >updated:{{.Lastmod.Format
+                            "2006-01-02"}}{{.Lastmod.Format "15:04"}}</span
+                        >
+                        {{end}} {{end}} {{with .Params.tags}}
+                        <div class="flex flex-wrap gap-2">
+                            {{range .}}
+                            <a
+                                href="/tags/{{ . | urlize }}/"
+                                class="hover:underline decoration-mondrian_yellow transition-colors hover:text-mondrian_black"
+                            >
+                                #{{.}}</a
+                            >
+                            {{end}}
+                        </div>
+                        {{end}}
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </article>
+    {{end}} {{/* Pagination */}} {{if gt $paginator.TotalPages 1}}
+    <nav class="flex justify-center mt-8">
+        <div class="flex items-center gap-1">
+            {{if $paginator.HasPrev}}
+            <a
+                href="{{ $paginator.Prev.URL }}"
+                class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white"
+            >
+                ← NEWER</a
+            >
+            {{end}} {{range $paginator.Pagers}} {{if eq . $paginator}}
+            <span
+                class="px-3 py-1 text-xs bg-mondrian_red text-mondrian_bright_white border border-black font-mono"
+                >{{.PageNumber}}</span
+            >
+            {{else}}
+            <a
+                href="{{ .URL }}"
+                class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow"
+            >
+                {{.PageNumber}}</a
+            >
+            {{end}} {{end}} {{if $paginator.HasNext}}
+            <a
+                href="{{ $paginator.Next.URL }}"
+                class="px-3 py-1 text-xs border border-black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white"
+            >
+                OLDER →</a
+            >
+            {{end}}
+        </div>
+    </nav>
+    {{else}} {{end}}
+</section>
+{{end}} {{end}} {{end}}
