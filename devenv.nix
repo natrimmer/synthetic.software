@@ -280,6 +280,86 @@
       _log LOGS "Workers runtime logs"
       wrangler tail
     '';
+
+    # Version management scripts
+    _get-current-version.exec = ''
+      # Get current version from git tags, default to v0.0.0 if none exist
+      CURRENT=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+      echo "$CURRENT"
+    '';
+
+    _bump-version.exec = ''
+      # Usage: _bump-version [major|minor|patch]
+      BUMP_TYPE="$1"
+
+      if [ -z "$BUMP_TYPE" ]; then
+        echo "Usage: _bump-version [major|minor|patch]"
+        exit 1
+      fi
+
+      CURRENT=$(_get-current-version)
+      _log INFO "Current version: $CURRENT"
+
+      # Remove 'v' prefix and split version
+      VERSION=''${CURRENT#v}
+      MAJOR=$(echo "$VERSION" | cut -d. -f1)
+      MINOR=$(echo "$VERSION" | cut -d. -f2)
+      PATCH=$(echo "$VERSION" | cut -d. -f3)
+
+      # Bump appropriate component
+      case "$BUMP_TYPE" in
+        "major")
+          MAJOR=$((MAJOR + 1))
+          MINOR=0
+          PATCH=0
+          ;;
+        "minor")
+          MINOR=$((MINOR + 1))
+          PATCH=0
+          ;;
+        "patch")
+          PATCH=$((PATCH + 1))
+          ;;
+        *)
+          _log ERROR "Invalid bump type: $BUMP_TYPE"
+          exit 1
+          ;;
+      esac
+
+      NEW_VERSION="v$MAJOR.$MINOR.$PATCH"
+
+      # Check if working directory is clean
+      if ! git diff-index --quiet HEAD --; then
+        _log WARN "Working directory has uncommitted changes"
+        echo "Please commit your changes before creating a version tag."
+        exit 1
+      fi
+
+      # Create the tag
+      _log TAG "Creating $NEW_VERSION"
+      git tag -a "$NEW_VERSION" -m "Release $NEW_VERSION"
+
+      _log OK "Version bumped: $CURRENT → $NEW_VERSION"
+      _log INFO "Push with: git push origin $NEW_VERSION"
+    '';
+
+    major.exec = ''
+      _section "Major Version Bump"
+      _step "This will create a new major version (breaking changes)"
+      _bump-version major
+    '';
+
+    minor.exec = ''
+      _section "Minor Version Bump"
+      _step "This will create a new minor version (new features)"
+      _bump-version minor
+    '';
+
+    patch.exec = ''
+      _section "Patch Version Bump"
+      _step "This will create a new patch version (fixes and small updates)"
+      _bump-version patch
+    '';
   };
 
   enterShell = ''
@@ -315,6 +395,11 @@
     echo "∘ workers-deploy-dry       - Test deployment (dry run)"
     echo "∘ workers-deploy           - Deploy to production"
     echo "∘ workers-logs             - Watch runtime logs"
+    echo ""
+    echo "Version management:"
+    echo "∘ major                    - Bump major version"
+    echo "∘ minor                    - Bump minor version"
+    echo "∘ patch                    - Bump patch version"
     echo ""
   '';
 
