@@ -7,6 +7,12 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page"
   },
+  "routes": [
+    {
+      "pattern": "synthetic.software/*",
+      "custom_domain": true
+    }
+  ],
   "placement": {
     "mode": "smart"
   }
