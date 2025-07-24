@@ -1,61 +1,287 @@
 {{- define "main" -}}
-<article class="max-w-4xl mx-auto px-4 py-8">
-    <header class="mb-8">
-        <h1 class="text-3xl font-bold mb-4">{{- .Title -}}</h1>
-        {{- if .Content -}}
-        <div class="prose prose-lg mb-8">
-            {{- .Content -}}
-        </div>
-        {{- end -}}
-    </header>
-
-    {{- with .Site.Data.changelog -}}
-    {{- if .releases -}}
-    <section class="space-y-8">
-        <h2 class="text-2xl font-bold mb-6">Release History</h2>
-        
-        {{- range .releases -}}
-        <div class="border-l-4 border-mondrian_blue pl-6 pb-6">
-            <div class="flex items-center gap-4 mb-4">
-                <h3 class="text-xl font-bold font-mono">{{- .tag -}}</h3>
-                <span class="text-sm text-mondrian_dark_gray">{{- .date -}}</span>
-                <code class="text-xs bg-mondrian_light_gray px-2 py-1 rounded">{{- .hash -}}</code>
-            </div>
-            
-            {{- if ne .tag "unversioned" -}}
-            <p class="text-sm text-mondrian_dark_gray mb-4">
-                <strong>{{- .subject -}}</strong> by {{- .author -}}
+<div class="w-full">
+    <div class="flex justify-between w-full items-end mb-4">
+        <h3
+            class="text-3xl font-semibold underline decoration-8 decoration-mondrian_red"
+        >
+            {{- .Title -}}
+        </h3>
+        <span class="h-max">
+            <p class="text-xs font-mono text-mondrian_dark_gray">
+                {{- with .Site.Data.changelog.releases -}} {{- len . -}}
+                releases {{- else -}} version history {{- end -}}
             </p>
-            {{- end -}}
-            
-            {{- if .commits -}}
-            <div class="space-y-2">
-                <h4 class="text-sm font-semibold text-mondrian_dark_gray uppercase tracking-wide">
-                    Changes ({{- len .commits -}} commits)
-                </h4>
-                <ul class="space-y-1">
-                {{- range .commits -}}
-                    <li class="text-sm">
-                        <span class="inline-block w-16 text-xs text-mondrian_dark_gray font-mono">{{- .type -}}:</span>
-                        {{- .subject -}}
-                        <code class="text-xs text-mondrian_dark_gray ml-2">{{- .hash -}}</code>
-                    </li>
-                {{- end -}}
-                </ul>
-            </div>
-            {{- end -}}
+        </span>
+    </div>
+
+    <div class="mb-8">
+        <p class="text-sm mb-4">
+            This site uses
+            <a
+                href="https://semver.org/"
+                class="underline hover:text-mondrian_red transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Semantic Versioning (SemVer)</a
+            >
+            to track changes. Unlike traditional software, this site combines
+            both code and content, so the versioning reflects the overall user
+            experience rather than just technical changes.
+        </p>
+
+        <div class="mb-4">
+            <a
+                href="https://semver.org/"
+                class="mr-2 py-1 px-2 text-xs text-mondrian_black bg-mondrian_white border border-mondrian_black shadow-mondrian font-mono transition-colors hover:bg-mondrian_red hover:text-mondrian_white inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Learn more about Semantic Versioning"
+            >
+                MAJOR.MINOR.PATCH
+            </a>
+            <a
+                href="https://github.com/natrimmer/synthetic.software"
+                class="mr-2 py-1 px-2 text-xs text-mondrian_black bg-mondrian_white border border-mondrian_black shadow-mondrian font-mono transition-colors hover:bg-mondrian_blue hover:text-mondrian_white inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View repository on GitHub"
+            >
+                GitHub →
+            </a>
         </div>
-        {{- end -}}
-    </section>
+
+        <div
+            class="p-4 bg-mondrian_black text-mondrian_yellow font-mono text-xs overflow-x-auto mb-2"
+        >
+            <p class="mb-2 text-mondrian_yellow">[nick@web ~]$ bat semver.md</p>
+            <div class="text-mondrian_dark_gray">
+                <div class="text-mondrian_yellow">
+                    ───────┬──────────────────────────────────────────────────────
+                </div>
+                <div class="text-mondrian_yellow">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ File: semver.md
+                </div>
+                <div class="text-mondrian_yellow">
+                    ───────┼──────────────────────────────────────────────────────
+                </div>
+                <div class="text-mondrian_yellow">
+                    &nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;│&nbsp;<span
+                        class="text-mondrian_yellow"
+                        >## MAJOR</span
+                    >
+                    (2.0.0) - Breaking changes
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;│&nbsp;• Complete
+                    visual redesigns
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;│&nbsp;• URL structure
+                    changes (old bookmarks break)
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;│&nbsp;• Removing major
+                    sections or features
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;│&nbsp;• Navigation
+                    overhauls
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;│&nbsp;
+                </div>
+                <div class="text-mondrian_yellow">
+                    &nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;│&nbsp;<span
+                        class="text-mondrian_yellow"
+                        >## MINOR</span
+                    >
+                    (1.3.0) - New features
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;│&nbsp;• New content
+                    sections (blogroll, notes)
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;│&nbsp;• New
+                    functionality (search, RSS, commenting)
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;│&nbsp;• Significant content
+                    additions
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;│&nbsp;• New interactive
+                    features
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;│&nbsp;
+                </div>
+                <div class="text-mondrian_yellow">
+                    &nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;│&nbsp;<span
+                        class="text-mondrian_yellow"
+                        >## PATCH</span
+                    >
+                    (1.2.1) - Small fixes
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;│&nbsp;• Bug fixes and
+                    styling tweaks
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;│&nbsp;• Individual blog
+                    posts or notes
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;│&nbsp;• Typo corrections
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;│&nbsp;• Performance
+                    improvements
+                </div>
+                <div class="text-mondrian_dark_gray">
+                    &nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;│&nbsp;• Minor design
+                    adjustments
+                </div>
+                <div class="text-mondrian_yellow">
+                    ───────┴──────────────────────────────────────────────────────
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{- with .Site.Data.changelog -}} {{- if .releases -}}
+    <div
+        class="overflow-x-auto mb-4 hover:bg-mondrian_bright_white p-4 border border-mondrian_white hover:border-mondrian_black"
+    >
+        <table
+            class="w-full border-collapse border border-mondrian_white"
+            aria-describedby="changelog-note"
+        >
+            <caption class="sr-only">
+                List of software releases and their changes
+            </caption>
+            <thead>
+                <tr
+                    class="border-b border-b-mondrian_black bg-mondrian_white text-left font-sans"
+                >
+                    <th class="w-1/8 pl-1" scope="col">Version</th>
+                    <th class="w-1/8 pl-1" scope="col">Date</th>
+                    <th class="w-1/8 pl-1" scope="col">Commits</th>
+                    <th scope="col">Changes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{- range .releases -}}
+                <tr
+                    class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+                >
+                    <td
+                        class="text-left font-mono text-xs align-top pt-1 pl-1"
+                        scope="row"
+                    >
+                        {{- if eq .tag "unversioned" -}}
+                        <span class="text-mondrian_dark_gray">UNVERSIONED</span>
+                        {{- else -}}
+                        <a
+                            href="https://github.com/natrimmer/synthetic.software/releases/tag/{{- .tag -}}"
+                            class="underline hover:text-mondrian_blue transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >{{- .tag -}}</a
+                        >
+                        {{- end -}}
+                    </td>
+                    <td
+                        class="text-xs font-mono align-top pt-1 pl-1 text-mondrian_dark_gray"
+                    >
+                        {{- .date | dateFormat "Jan 2, 2006" -}}
+                    </td>
+                    <td
+                        class="text-xs font-mono align-top pt-1 pl-1 text-center"
+                    >
+                        {{- len .commits -}}
+                    </td>
+                    <td class="text-sm align-top py-1 pl-1">
+                        {{- if .commits -}}
+                        <div class="space-y-1">
+                            {{- range .commits -}}
+                            <div class="flex items-start gap-2">
+                                <span
+                                    class="inline-block min-w-[3rem] text-xs text-mondrian_dark_gray font-mono bg-mondrian_light_gray px-1 py-0.5"
+                                    >{{- .type -}}</span
+                                >
+                                <span class="flex-1">{{- .subject -}}</span>
+                                <a
+                                    href="https://github.com/natrimmer/synthetic.software/commit/{{- .hash -}}"
+                                    class="text-xs text-mondrian_dark_gray font-mono hover:text-mondrian_yellow transition-colors"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >{{- .hash -}}</a
+                                >
+                            </div>
+                            {{- end -}}
+                        </div>
+                        {{- end -}}
+                    </td>
+                </tr>
+                {{- end -}}
+            </tbody>
+            <tfoot id="changelog-note">
+                <tr>
+                    <th
+                        colspan="4"
+                        class="text-xs text-mondrian_dark_gray p-1 text-left"
+                    >
+                        Notes:
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-xs text-mondrian_dark_gray p-1">
+                        Changes are grouped by release version, showing all
+                        commits included in each version.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-xs text-mondrian_dark_gray p-1">
+                        Commit types: <code class="font-mono">feat</code> (new
+                        features), <code class="font-mono">fix</code> (bug
+                        fixes),
+                        <code class="font-mono">docs</code> (documentation),
+                        <code class="font-mono">style</code> (formatting),
+                        <code class="font-mono">refactor</code> (code
+                        improvements),
+                        <code class="font-mono">perf</code> (performance),
+                        <code class="font-mono">ci</code> (build/deploy),
+                        <code class="font-mono">chore</code> (maintenance).
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
     {{- else -}}
     <div class="text-center py-8">
-        <p class="text-mondrian_dark_gray">No release data available. Run <code>hugo-update-changelog</code> to generate changelog data.</p>
+        <p class="text-mondrian_dark_gray text-sm">
+            No release data available.
+        </p>
+        <p class="text-sm text-mondrian_dark_gray mt-2">
+            Run
+            <code class="font-mono bg-mondrian_light_gray px-1"
+                >hugo-update-changelog</code
+            >
+            to generate changelog data.
+        </p>
     </div>
-    {{- end -}}
-    {{- else -}}
+    {{- end -}} {{- else -}}
     <div class="text-center py-8">
-        <p class="text-mondrian_dark_gray">No changelog data found. Run <code>hugo-update-changelog</code> to generate changelog data.</p>
+        <p class="text-mondrian_dark_gray text-sm">No changelog data found.</p>
+        <p class="text-sm text-mondrian_dark_gray mt-2">
+            Run
+            <code class="font-mono bg-mondrian_light_gray px-1"
+                >hugo-update-changelog</code
+            >
+            to generate changelog data.
+        </p>
     </div>
-    {{- end -}}
-</article>
+    {{- end -}} {{- .Content -}}
+</div>
 {{- end -}}
