@@ -5,7 +5,9 @@
 			<link rel="stylesheet" href="{{ .RelPermalink }}" />
 		{{else}}
 			{{with . | fingerprint}}
-				<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" />
+				<style>{{ .Content | safeCSS }}</style>
+				<link rel="preload" href="{{ .RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" />
+				<noscript><link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" /></noscript>
 			{{end}}
 		{{end}}
 	{{end}}
