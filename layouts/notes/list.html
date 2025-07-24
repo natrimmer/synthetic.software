@@ -1,29 +1,13 @@
-{{- define "main" -}}
-{{- if and (eq .Section "notes") .IsHome -}}
-{{/* Custom home page content from _index.html */}}
-{{- .Content -}}
-{{- else -}}
-{{/* Standard header for other notes pages */}}
-{{/* Collect all descendant notes pages for counting and display */}}
-{{- $allDescendantPages := slice -}}
-{{- $currentSection := . -}}
-{{- range $.Site.RegularPages -}}
-{{- if eq .Type "notes" -}}
-{{- $isDescendant := false -}}
-{{- if eq .CurrentSection $currentSection -}}
-{{- $isDescendant = true -}}
-{{- else -}}
-{{- range .Ancestors -}}
-{{- if eq . $currentSection -}}
-{{- $isDescendant = true -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
-{{- if $isDescendant -}}
-{{- $allDescendantPages = $allDescendantPages | append . -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
+{{- define "main" -}} {{- if and (eq .Section "notes") .IsHome -}} {{/* Custom
+home page content from _index.html */}} {{- .Content -}} {{- else -}} {{/*
+Standard header for other notes pages */}} {{/* Collect all descendant notes
+pages for counting and display */}} {{- $allDescendantPages := slice -}} {{-
+$currentSection := . -}} {{- range $.Site.RegularPages -}} {{- if eq .Type
+"notes" -}} {{- $isDescendant := false -}} {{- if eq .CurrentSection
+$currentSection -}} {{- $isDescendant = true -}} {{- else -}} {{- range
+.Ancestors -}} {{- if eq . $currentSection -}} {{- $isDescendant = true -}} {{-
+end -}} {{- end -}} {{- end -}} {{- if $isDescendant -}} {{- $allDescendantPages
+= $allDescendantPages | append . -}} {{- end -}} {{- end -}} {{- end -}}
 <div>
     <div class="flex justify-between w-full items-end">
         <h3
@@ -34,37 +18,24 @@
         <div class="text-right mb-1">
             <span class="h-max pb-1">
                 <p class="text-xs font-mono text-mondrian_dark_gray">
-                    {{- len $allDescendantPages -}} {{- if eq (len $allDescendantPages) 1 -}} item {{- else -}} items {{- end -}}
+                    {{ len $allDescendantPages }} {{ if eq (len
+                    $allDescendantPages) 1 }} item {{ else }} items {{ end }}
                 </p>
             </span>
         </div>
     </div>
 </div>
-{{- end -}}
-{{/* Collect all descendant notes pages for pagination */}}
-{{- if not (and (eq .Section "notes") .IsHome) -}}
-{{- $allDescendantPages := slice -}}
-{{- $currentSection := . -}}
-{{- range $.Site.RegularPages -}}
-{{- if eq .Type "notes" -}}
-{{- $isDescendant := false -}}
-{{- if eq .CurrentSection $currentSection -}}
-{{- $isDescendant = true -}}
-{{- else -}}
-{{- range .Ancestors -}}
-{{- if eq . $currentSection -}}
-{{- $isDescendant = true -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
-{{- if $isDescendant -}}
-{{- $allDescendantPages = $allDescendantPages | append . -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
-{{/* Show notes items with pagination */}}
-{{- $paginator := .Paginate (sort $allDescendantPages ".Date" "desc") 10 -}}
-{{- if gt (len $paginator.Pages) 0 -}}
+{{- end -}} {{/* Collect all descendant notes pages for pagination */}} {{- if
+not (and (eq .Section "notes") .IsHome) -}} {{- $allDescendantPages := slice -}}
+{{- $currentSection := . -}} {{- range $.Site.RegularPages -}} {{- if eq .Type
+"notes" -}} {{- $isDescendant := false -}} {{- if eq .CurrentSection
+$currentSection -}} {{- $isDescendant = true -}} {{- else -}} {{- range
+.Ancestors -}} {{- if eq . $currentSection -}} {{- $isDescendant = true -}} {{-
+end -}} {{- end -}} {{- end -}} {{- if $isDescendant -}} {{- $allDescendantPages
+= $allDescendantPages | append . -}} {{- end -}} {{- end -}} {{- end -}} {{/*
+Show notes items with pagination */}} {{- $paginator := .Paginate (sort
+$allDescendantPages ".Date" "desc") 10 -}} {{- if gt (len $paginator.Pages) 0
+-}}
 <section class="mt-4">
     {{- range $paginator.Pages -}}
     <article
@@ -82,15 +53,13 @@
                 <hr class="w-full border-mondrian_black mb-2" />
                 <footer class="text-xs font-mono text-mondrian_dark_gray">
                     <div class="flex gap-2">
-                        <span>posted:{{- .Date.Format "2006-01-02" -}}</span>
-                        {{- with .Params.updated -}}
-                        {{- $dateOnly := $.Date.Format "2006-01-02" -}}
-                        {{- $updatedOnly := (time .).Format "2006-01-02" -}}
-                        {{- if ne $dateOnly $updatedOnly -}}
-                        <span>updated:{{- (time .).Format "2006-01-02" -}}</span>
-                        {{- end -}}
-                        {{- end -}}
-                        {{- with .Params.tags -}}
+                        <span>posted: {{ .Date.Format "2006-01-02" }}</span>
+                        {{- with .Params.updated -}} {{- $dateOnly :=
+                        $.Date.Format "2006-01-02" -}} {{- $updatedOnly := (time
+                        .).Format "2006-01-02" -}} {{- if ne $dateOnly
+                        $updatedOnly -}}
+                        <span>updated: {{ (time .).Format "2006-01-02" }}</span>
+                        {{- end -}} {{- end -}} {{- with .Params.tags -}}
                         <div class="flex flex-wrap gap-2">
                             {{- range . -}}
                             <a
@@ -107,9 +76,7 @@
             </div>
         </div>
     </article>
-    {{- end -}}
-    {{/* Pagination */}}
-    {{- if gt $paginator.TotalPages 1 -}}
+    {{- end -}} {{/* Pagination */}} {{- if gt $paginator.TotalPages 1 -}}
     <nav class="flex justify-center mt-8">
         <div class="flex items-center gap-1">
             {{- if $paginator.HasPrev -}}
@@ -119,9 +86,8 @@
             >
                 ← NEWER</a
             >
-            {{- end -}}
-            {{- range $paginator.Pagers -}}
-            {{- if eq . $paginator -}}
+            {{- end -}} {{- range $paginator.Pagers -}} {{- if eq . $paginator
+            -}}
             <span
                 class="px-3 py-1 text-xs bg-mondrian_red text-mondrian_bright_white border border-mondrian_black font-mono"
                 >{{- .PageNumber -}}</span
@@ -133,9 +99,7 @@
             >
                 {{- .PageNumber -}}</a
             >
-            {{- end -}}
-            {{- end -}}
-            {{- if $paginator.HasNext -}}
+            {{- end -}} {{- end -}} {{- if $paginator.HasNext -}}
             <a
                 href="{{- $paginator.Next.URL -}}"
                 class="px-3 py-1 text-xs border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white"
@@ -145,9 +109,6 @@
             {{- end -}}
         </div>
     </nav>
-    {{- else -}}
-    {{- end -}}
+    {{- else -}} {{- end -}}
 </section>
-{{- end -}}
-{{- end -}}
-{{- end -}}
+{{- end -}} {{- end -}} {{- end -}}

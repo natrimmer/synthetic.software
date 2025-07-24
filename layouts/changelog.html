@@ -8,8 +8,8 @@
         </h3>
         <span class="h-max">
             <p class="text-xs font-mono text-mondrian_dark_gray">
-                {{- with .Site.Data.changelog.releases -}} {{- len . -}}
-                releases {{- else -}} version history {{- end -}}
+                {{- with .Site.Data.changelog.releases -}} {{ len . }} releases
+                {{- else -}} version history {{- end -}}
             </p>
         </span>
     </div>

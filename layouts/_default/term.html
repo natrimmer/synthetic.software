@@ -5,15 +5,15 @@
         <div class="text-right mb-1">
             <span class="h-max pb-1">
                 <p class="text-xs font-mono text-mondrian_dark_gray">
-                    {{- .Pages | len -}} {{- if eq (.Pages | len) 1 -}} item {{- else -}} items {{- end -}}
+                    {{ .Pages | len }} {{ if eq (.Pages | len) 1 }} item {{ else
+                    }} items {{ end }}
                 </p>
             </span>
         </div>
     </div>
     <hr />
-    {{- if gt (len .Pages) 0 -}}
-    {{- $sortedPages := sort .Pages "Date" "desc" -}}
-    {{- $paginator := .Paginate $sortedPages -}}
+    {{- if gt (len .Pages) 0 -}} {{- $sortedPages := sort .Pages "Date" "desc"
+    -}} {{- $paginator := .Paginate $sortedPages -}}
     <section class="mt-6">
         <div class="space-y-4">
             {{- range $paginator.Pages -}}
@@ -29,11 +29,14 @@
                                 >{{- .Title -}}</a
                             >
                         </h4>
-                        <div class="text-sm leading-relaxed">{{- .Summary -}}</div>
+                        <div class="text-sm leading-relaxed">
+                            {{- .Summary -}}
+                        </div>
                     </div>
                     <div class="ml-4 text-right">
                         <span class="text-xs font-mono text-mondrian_dark_gray"
-                            >{{- .Date.Format "2006-01-02" -}}<br />{{- .Date.Format "15:04" -}}</span
+                            >{{- .Date.Format "2006-01-02" -}}<br />{{-
+                            .Date.Format "15:04" -}}</span
                         >
                     </div>
                 </div>

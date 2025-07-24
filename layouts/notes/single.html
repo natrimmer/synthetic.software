@@ -6,17 +6,15 @@
         <h3 class="text-3xl font-semibold">{{- .Title -}}</h3>
         <span class="h-max pb-1">
             <p class="text-xs font-mono text-mondrian_dark_gray">
-                posted: {{- .Date.Format "2006-01-02" -}}
+                posted: {{ .Date.Format "2006-01-02" }}
             </p>
-            {{- with .Params.updated -}}
-            {{- $dateOnly := $.Date.Format "2006-01-02" -}}
-            {{- $updatedOnly := (time .).Format "2006-01-02" -}}
-            {{- if ne $dateOnly $updatedOnly -}}
+            {{- with .Params.updated -}} {{- $dateOnly := $.Date.Format
+            "2006-01-02" -}} {{- $updatedOnly := (time .).Format "2006-01-02"
+            -}} {{- if ne $dateOnly $updatedOnly -}}
             <p class="text-xs font-mono text-mondrian_dark_gray">
-                updated: {{- (time .).Format "2006-01-02" -}}
+                updated: {{ (time .).Format "2006-01-02" }}
             </p>
-            {{- end -}}
-            {{- end -}}
+            {{- end -}} {{- end -}}
         </span>
     </div>
     <hr />
@@ -44,7 +42,7 @@
                     href="{{- .RelPermalink -}}"
                     class="text-xs py-1 px-2 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                 >
-                    ← {{- .Title -}}</a
+                    ← {{ .Title }}</a
                 >
                 {{- end -}}
             </div>
@@ -54,7 +52,7 @@
                     href="{{- .RelPermalink -}}"
                     class="text-xs py-1 px-2 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                 >
-                    {{- .Title -}} →</a
+                    {{ .Title }} →</a
                 >
                 {{- end -}}
             </div>

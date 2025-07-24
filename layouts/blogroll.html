@@ -8,7 +8,9 @@
         </h3>
         <span class="h-max">
             <p class="text-xs font-mono text-mondrian_dark_gray">
-                {{- if .Site.Data.blogroll -}} {{- len .Site.Data.blogroll -}} recent posts from feeds I follow {{- else -}} feeds I follow {{- end -}}
+                {{- if .Site.Data.blogroll -}} {{ len .Site.Data.blogroll }}
+                recent posts from feeds I follow {{- else -}} feeds I follow {{-
+                end -}}
             </p>
         </span>
     </div>
@@ -26,11 +28,9 @@
             <div class="text-mondrian_yellow">
                 ───────┼──────────────────────────────────────────────────────
             </div>
-            {{- $feedURLs := slice -}}
-            {{- $lineNum := 1 -}}
-            {{- range .Site.Data.blogroll -}}
-            {{- if not (in $feedURLs .feed_url) -}}
-            {{- $feedURLs = $feedURLs | append .feed_url -}}
+            {{- $feedURLs := slice -}} {{- $lineNum := 1 -}} {{- range
+            .Site.Data.blogroll -}} {{- if not (in $feedURLs .feed_url) -}} {{-
+            $feedURLs = $feedURLs | append .feed_url -}}
             <div class="text-mondrian_yellow">
                 &nbsp;&nbsp;&nbsp;{{- $lineNum -}}&nbsp;&nbsp;&nbsp;│&nbsp;<a
                     href="{{- .feed_url -}}"
@@ -39,9 +39,7 @@
                     {{- .feed_url -}}</a
                 >
             </div>
-            {{- $lineNum = add $lineNum 1 -}}
-            {{- end -}}
-            {{- end -}}
+            {{- $lineNum = add $lineNum 1 -}} {{- end -}} {{- end -}}
             <div class="text-mondrian_yellow">
                 ───────┴──────────────────────────────────────────────────────
             </div>
@@ -105,8 +103,6 @@
             Run the blogroll generator to populate feeds.
         </p>
     </div>
-    {{- end -}}
-    {{/* Include any content from the page */}}
-    {{- .Content -}}
+    {{- end -}} {{/* Include any content from the page */}} {{- .Content -}}
 </div>
 {{- end -}}
