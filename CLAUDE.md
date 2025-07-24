@@ -117,3 +117,9 @@ queue/               # Pending feed items (processed automatically)
 - Version tags are used for Hugo build metadata and changelog generation
 - All Go tools must pass linting and tests before deployment
 - Feed items support hashtag-based tagging for automatic categorization
+
+### Template Development
+
+- All Hugo templates use whitespace control syntax (`{{-` and `-}}`) to eliminate unwanted whitespace in minified HTML output
+- Templates are optimized for clean, compact HTML generation without aesthetic gaps
+- When creating or modifying templates, always apply whitespace control around Hugo template functions (`{{partial}}`, `{{block}}`, `{{range}}`, `{{if}}`, `{{with}}`, etc.)

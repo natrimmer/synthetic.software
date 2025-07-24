@@ -29,10 +29,8 @@
       "p",
       "path",
       "pre",
-      "script",
       "section",
       "span",
-      "strong",
       "svg",
       "table",
       "tbody",
@@ -63,7 +61,6 @@
       "block",
       "border",
       "border-b",
-      "border-b-black",
       "border-b-gray-300",
       "border-b-mondrian_black",
       "border-b-mondrian_dark_gray",
@@ -119,14 +116,12 @@
       "h-max",
       "h-min",
       "hidden",
-      "hover:bg-gray-100",
       "hover:bg-mondrian_blue",
       "hover:bg-mondrian_bright_white",
       "hover:bg-mondrian_light_gray",
       "hover:bg-mondrian_red",
       "hover:bg-mondrian_white",
       "hover:bg-mondrian_yellow",
-      "hover:border-black",
       "hover:border-mondrian_black",
       "hover:cursor-help",
       "hover:cursor-none",
@@ -239,9 +234,6 @@
       "text-[0.4rem]",
       "text-black",
       "text-center",
-      "text-gray-300",
-      "text-gray-500",
-      "text-gray-600",
       "text-left",
       "text-lg",
       "text-md",
@@ -274,8 +266,6 @@
       "xl:text-base"
     ],
     "ids": [
-      "competitive-and-desirable",
-      "on-a-more-personal-note",
       "table-note"
     ]
   }

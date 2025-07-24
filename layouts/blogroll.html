@@ -1,4 +1,4 @@
-{{define "main"}}
+{{- define "main" -}}
 <div class="w-full">
     <div class="flex justify-between w-full items-end mb-4">
         <h3
@@ -8,8 +8,7 @@
         </h3>
         <span class="h-max">
             <p class="text-xs font-mono text-mondrian_dark_gray">
-                {{if .Site.Data.blogroll}} {{len .Site.Data.blogroll}} recent
-                posts from feeds I follow {{else}} feeds I follow {{end}}
+                {{- if .Site.Data.blogroll -}} {{- len .Site.Data.blogroll -}} recent posts from feeds I follow {{- else -}} feeds I follow {{- end -}}
             </p>
         </span>
     </div>
@@ -27,24 +26,28 @@
             <div class="text-mondrian_yellow">
                 ───────┼──────────────────────────────────────────────────────
             </div>
-            {{- $feedURLs := slice -}}{{- $lineNum := 1 -}} {{- range
-            .Site.Data.blogroll -}} {{- if not (in $feedURLs .feed_url) -}} {{-
-            $feedURLs = $feedURLs | append .feed_url -}}
+            {{- $feedURLs := slice -}}
+            {{- $lineNum := 1 -}}
+            {{- range .Site.Data.blogroll -}}
+            {{- if not (in $feedURLs .feed_url) -}}
+            {{- $feedURLs = $feedURLs | append .feed_url -}}
             <div class="text-mondrian_yellow">
-                &nbsp;&nbsp;&nbsp;{{$lineNum}}&nbsp;&nbsp;&nbsp;│&nbsp;<a
-                    href="{{ .feed_url }}"
+                &nbsp;&nbsp;&nbsp;{{- $lineNum -}}&nbsp;&nbsp;&nbsp;│&nbsp;<a
+                    href="{{- .feed_url -}}"
                     class="text-mondrian_dark_gray hover:underline decoration-mondrian_yellow"
                 >
-                    {{.feed_url}}</a
+                    {{- .feed_url -}}</a
                 >
             </div>
-            {{- $lineNum = add $lineNum 1 -}} {{- end -}} {{- end}}
+            {{- $lineNum = add $lineNum 1 -}}
+            {{- end -}}
+            {{- end -}}
             <div class="text-mondrian_yellow">
                 ───────┴──────────────────────────────────────────────────────
             </div>
         </div>
     </div>
-    {{if .Site.Data.blogroll}}
+    {{- if .Site.Data.blogroll -}}
     <div class="overflow-x-auto mb-4">
         <table class="w-full border-collapse border border-mondrian_white">
             <thead>
@@ -58,17 +61,17 @@
                 </tr>
             </thead>
             <tbody>
-                {{range .Site.Data.blogroll}}
+                {{- range .Site.Data.blogroll -}}
                 <tr
                     class="border-b border-b-mondrian_dark_gray hover:bg-mondrian_light_gray"
                 >
                     <td class="text-left font-mono text-xs align-top pt-1 pl-1">
-                        <time datetime="{{ .date }}">
-                            {{.date | dateFormat "Jan 2, 2006"}}
+                        <time datetime="{{- .date -}}">
+                            {{- .date | dateFormat "Jan 2, 2006" -}}
                         </time>
                     </td>
                     <td class="text-sm align-top py-1 pl-1" scope="row">
-                        {{.title}}
+                        {{- .title -}}
                     </td>
                     <td class="text-left font-mono text-xs align-top pt-1 pl-1">
                         <span class="inline-flex items-center gap-2"
@@ -76,32 +79,34 @@
                                 class="w-2 h-2 bg-mondrian_red rounded-full border border-mondrian_black"
                             >
                             </span
-                            >{{.domain}}</span
+                            >{{- .domain -}}</span
                         >
                     </td>
                     <td class="align-top p-1">
                         <a
-                            href="{{ .url }}"
+                            href="{{- .url -}}"
                             class="w-full text-xs py-1 px-1 border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label="Open {{ .title }} in a new tab"
+                            aria-label="Open {{- .title -}} in a new tab"
                         >
                             LINK →</a
                         >
                     </td>
                 </tr>
-                {{end}}
+                {{- end -}}
             </tbody>
         </table>
     </div>
-    {{else}}
+    {{- else -}}
     <div class="text-center py-8">
         <p class="text-mondrian_dark_gray">No blogroll data available.</p>
         <p class="text-sm text-mondrian_dark_gray mt-2">
             Run the blogroll generator to populate feeds.
         </p>
     </div>
-    {{end}} {{- /* Include any content from the page */ -}} {{.Content}}
+    {{- end -}}
+    {{/* Include any content from the page */}}
+    {{- .Content -}}
 </div>
-{{end}}
+{{- end -}}
