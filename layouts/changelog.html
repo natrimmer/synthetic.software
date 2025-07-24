@@ -1,0 +1,61 @@
+{{- define "main" -}}
+<article class="max-w-4xl mx-auto px-4 py-8">
+    <header class="mb-8">
+        <h1 class="text-3xl font-bold mb-4">{{- .Title -}}</h1>
+        {{- if .Content -}}
+        <div class="prose prose-lg mb-8">
+            {{- .Content -}}
+        </div>
+        {{- end -}}
+    </header>
+
+    {{- with .Site.Data.changelog -}}
+    {{- if .releases -}}
+    <section class="space-y-8">
+        <h2 class="text-2xl font-bold mb-6">Release History</h2>
+        
+        {{- range .releases -}}
+        <div class="border-l-4 border-mondrian_blue pl-6 pb-6">
+            <div class="flex items-center gap-4 mb-4">
+                <h3 class="text-xl font-bold font-mono">{{- .tag -}}</h3>
+                <span class="text-sm text-mondrian_dark_gray">{{- .date -}}</span>
+                <code class="text-xs bg-mondrian_light_gray px-2 py-1 rounded">{{- .hash -}}</code>
+            </div>
+            
+            {{- if ne .tag "unversioned" -}}
+            <p class="text-sm text-mondrian_dark_gray mb-4">
+                <strong>{{- .subject -}}</strong> by {{- .author -}}
+            </p>
+            {{- end -}}
+            
+            {{- if .commits -}}
+            <div class="space-y-2">
+                <h4 class="text-sm font-semibold text-mondrian_dark_gray uppercase tracking-wide">
+                    Changes ({{- len .commits -}} commits)
+                </h4>
+                <ul class="space-y-1">
+                {{- range .commits -}}
+                    <li class="text-sm">
+                        <span class="inline-block w-16 text-xs text-mondrian_dark_gray font-mono">{{- .type -}}:</span>
+                        {{- .subject -}}
+                        <code class="text-xs text-mondrian_dark_gray ml-2">{{- .hash -}}</code>
+                    </li>
+                {{- end -}}
+                </ul>
+            </div>
+            {{- end -}}
+        </div>
+        {{- end -}}
+    </section>
+    {{- else -}}
+    <div class="text-center py-8">
+        <p class="text-mondrian_dark_gray">No release data available. Run <code>hugo-update-changelog</code> to generate changelog data.</p>
+    </div>
+    {{- end -}}
+    {{- else -}}
+    <div class="text-center py-8">
+        <p class="text-mondrian_dark_gray">No changelog data found. Run <code>hugo-update-changelog</code> to generate changelog data.</p>
+    </div>
+    {{- end -}}
+</article>
+{{- end -}}

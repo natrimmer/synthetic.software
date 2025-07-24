@@ -100,6 +100,12 @@
       go build -o tools/bin/blogroll-generator ./tools/cmd/blogroll-generator
     '';
 
+    changelog-generator-build.exec = ''
+      _log BUILD "changelog-generator" >&2
+      mkdir -p tools/bin
+      go build -o tools/bin/changelog-generator ./tools/cmd/changelog-generator
+    '';
+
     feed-processor-run.exec = ''
       feed-processor-build
       ./tools/bin/feed-processor "$@"
@@ -110,12 +116,19 @@
       ./tools/bin/blogroll-generator "$@"
     '';
 
+    changelog-generator-run.exec = ''
+      changelog-generator-build
+      ./tools/bin/changelog-generator "$@"
+    '';
+
     tools-build.exec = ''
       _section "Building Hugo Tools"
       _step "feed-processor"
       feed-processor-build
       _step "blogroll-generator"
       blogroll-generator-build
+      _step "changelog-generator"
+      changelog-generator-build
       _log OK "All tools built"
     '';
 
@@ -164,6 +177,12 @@
       _log OK "Blogroll updated"
     '';
 
+    hugo-update-changelog.exec = ''
+      _log UPDATE "Changelog from git history"
+      changelog-generator-run > data/changelog.yaml
+      _log OK "Changelog updated"
+    '';
+
     hugo-build.exec = ''
       _section "Hugo Site Build"
 
@@ -172,6 +191,8 @@
       hugo-process-feeds
       _step "Updating blogroll"
       hugo-update-blogroll
+      _step "Updating changelog"
+      hugo-update-changelog
 
       # Set git info for Hugo
       export HUGO_GIT_COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
@@ -225,6 +246,7 @@
       _step "Processing existing content"
       hugo-process-feeds
       hugo-update-blogroll
+      hugo-update-changelog
 
       # Set git info for Hugo
       export HUGO_GIT_COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
@@ -373,6 +395,8 @@
     echo "∘ feed-processor-run       - Run feed processor"
     echo "∘ blogroll-generator-build - Build blogroll generator"
     echo "∘ blogroll-generator-run   - Run blogroll generator"
+    echo "∘ changelog-generator-build - Build changelog generator"
+    echo "∘ changelog-generator-run   - Run changelog generator"
     echo ""
     echo "Tool ecosystem:"
     echo "∘ tools-build              - Build all tools"
@@ -384,6 +408,7 @@
     echo "Hugo workflows:"
     echo "∘ hugo-process-feeds       - Process feed queue"
     echo "∘ hugo-update-blogroll     - Update blogroll from feeds"
+    echo "∘ hugo-update-changelog    - Update changelog from git history"
     echo "∘ hugo-build               - Build complete Hugo site"
     echo "∘ hugo-dev                 - Start Hugo dev server"
     echo "∘ feed-add                 - Add feed item (feed-add \"content\" tag1 tag2)"
