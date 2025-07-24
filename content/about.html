@@ -45,7 +45,7 @@ title = "About"
                 from technology I like reading, cycling, playing music, playing
                 video games, and spending time with my partner and our two pups.
             </p>
-            <span class="flex justify-center items-center mb-4">
+            <span class="flex mb-4 gap-2">
                 <a
                     href="/assets/log.log.log"
                     class="py-1 px-2 text-xs bg-mondrian_white border border-black shadow-mondrian font-mono transition-colors hover:bg-mondrian_yellow inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
@@ -53,13 +53,13 @@ title = "About"
                     target="_blank"
                     rel="noopener noreferrer"
                     >🪵 open the log</a
-                ></span
-            >
+                >
+            </span>
             <hr class="border-dashed border-mondrian_black" />
         </section>
         <section class="mb-4">
             <h3 class="text-lg font-semibold">This Site</h3>
-            <p>
+            <p class="mb-4">
                 This site was originally written using a custom SSG, first in
                 TypeScript, then in Go. Then I realized I was bikeshedding,
                 going down a rabbit hole, reinventing the wheel, chasing my
@@ -68,6 +68,75 @@ title = "About"
                 boiling the ocean. Ultimately, I was just creating a worse Hugo.
                 That's when I transitioned the SSG generation to Hugo.
             </p>
+            <h4 class="text-base font-semibold mb-2">Site Sections</h4>
+            <div class="space-y-3">
+                <div>
+                    <h5 class="font-medium">
+                        <a
+                            href="/articles/"
+                            class="underline hover:text-mondrian_blue transition-colors"
+                            >Articles</a
+                        >
+                    </h5>
+                    <p class="text-sm">
+                        Long-form technical writing and in-depth posts on topics
+                        I'm exploring or have learned about.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-medium">
+                        <a
+                            href="/feed/"
+                            class="underline hover:text-mondrian_blue transition-colors"
+                            >Feed</a
+                        >
+                    </h5>
+                    <p class="text-sm">
+                        Short-form thoughts, updates, and micro-posts organized
+                        chronologically. Currently populated with AI-generated
+                        content as I roll out the site.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-medium">
+                        <a
+                            href="/notes/"
+                            class="underline hover:text-mondrian_blue transition-colors"
+                            >Notes</a
+                        >
+                    </h5>
+                    <p class="text-sm">
+                        Curated links, observations, and quick thoughts that
+                        don't warrant full articles but are worth sharing.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-medium">
+                        <a
+                            href="/blogroll/"
+                            class="underline hover:text-mondrian_blue transition-colors"
+                            >Blogroll</a
+                        >
+                    </h5>
+                    <p class="text-sm">
+                        An automatically updated collection of blogs and sites I
+                        follow, generated from RSS feeds.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-medium">
+                        <a
+                            href="/changelog/"
+                            class="underline hover:text-mondrian_blue transition-colors"
+                            >Changelog</a
+                        >
+                    </h5>
+                    <p class="text-sm">
+                        A record of updates, improvements, and changes to this
+                        site over time.
+                    </p>
+                </div>
+            </div>
         </section>
     </div>
 </div>
