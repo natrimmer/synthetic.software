@@ -1,5 +1,6 @@
 https://www.eff.org/rss/updates.xml
 https://brandur.org/articles.atom
+https://brandur.org/fragments.atom
 https://robinrendle.com/feed.xml
 https://drewdevault.com/blog/index.xml
 https://danluu.com/atom.xml
