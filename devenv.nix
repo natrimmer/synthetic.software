@@ -18,6 +18,7 @@
 
   packages = [
     pkgs.git
+    pkgs.nil
     pkgs.nixd
     pkgs.golangci-lint
     pkgs.hugo
