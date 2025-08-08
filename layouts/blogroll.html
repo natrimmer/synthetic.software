@@ -1,8 +1,8 @@
 {{- define "main" -}}
 <div class="w-full">
-    <div class="flex justify-between w-full items-end mb-4">
+    <div class="flex flex-col sm:flex-row sm:justify-between w-full items-start sm:items-end gap-2 sm:gap-0 mb-4">
         <h3
-            class="text-3xl font-semibold underline decoration-8 decoration-mondrian_yellow"
+            class="text-2xl sm:text-3xl font-semibold underline decoration-6 sm:decoration-8 decoration-mondrian_yellow"
         >
             Blogroll
         </h3>
@@ -19,14 +19,20 @@
     >
         <p class="mb-2 text-mondrian_yellow">[nick@web ~]$ bat blogroll.txt</p>
         <div class="text-mondrian_dark_gray">
-            <div class="text-mondrian_yellow">
+            <div class="text-mondrian_yellow hidden sm:block">
                 ───────┬──────────────────────────────────────────────────────
+            </div>
+            <div class="text-mondrian_yellow sm:hidden">
+                ───────┬─────────────────────────────
             </div>
             <div class="text-mondrian_yellow">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ File: blogroll.txt
             </div>
-            <div class="text-mondrian_yellow">
+            <div class="text-mondrian_yellow hidden sm:block">
                 ───────┼──────────────────────────────────────────────────────
+            </div>
+            <div class="text-mondrian_yellow sm:hidden">
+                ───────┼─────────────────────────────
             </div>
             {{- $feedURLs := slice -}} {{- $lineNum := 1 -}} {{- range
             .Site.Data.blogroll -}} {{- if not (in $feedURLs .feed_url) -}} {{-
@@ -34,19 +40,24 @@
             <div class="text-mondrian_yellow">
                 &nbsp;&nbsp;&nbsp;{{- $lineNum -}}&nbsp;&nbsp;&nbsp;│&nbsp;<a
                     href="{{- .feed_url -}}"
-                    class="text-mondrian_dark_gray hover:underline decoration-mondrian_yellow"
+                    class="text-mondrian_dark_gray hover:underline decoration-mondrian_yellow break-all sm:break-normal"
                 >
                     {{- .feed_url -}}</a
                 >
             </div>
             {{- $lineNum = add $lineNum 1 -}} {{- end -}} {{- end -}}
-            <div class="text-mondrian_yellow">
+            <div class="text-mondrian_yellow hidden sm:block">
                 ───────┴──────────────────────────────────────────────────────
+            </div>
+            <div class="text-mondrian_yellow sm:hidden">
+                ───────┴─────────────────────────────
             </div>
         </div>
     </div>
     {{- if .Site.Data.blogroll -}}
-    <div class="overflow-x-auto mb-4">
+    
+    {{- /* Desktop table view */ -}}
+    <div class="hidden md:block overflow-x-auto mb-4">
         <table class="w-full border-collapse border border-mondrian_white">
             <thead>
                 <tr
@@ -95,6 +106,37 @@
                 {{- end -}}
             </tbody>
         </table>
+    </div>
+
+    {{- /* Mobile card view */ -}}
+    <div class="md:hidden space-y-4 mb-4">
+        {{- range .Site.Data.blogroll -}}
+        <div class="border border-mondrian_black bg-mondrian_white p-4 shadow-mondrian hover:bg-mondrian_bright_white">
+            <div class="flex justify-between items-start mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-mondrian_red rounded-full border border-mondrian_black"></span>
+                    <span class="font-mono text-xs text-mondrian_dark_gray">{{- .domain -}}</span>
+                </div>
+                <time datetime="{{- .date -}}" class="text-xs font-mono text-mondrian_dark_gray">
+                    {{- .date | dateFormat "Jan 2, 2006" -}}
+                </time>
+            </div>
+            
+            <h4 class="text-sm font-medium mb-3 leading-relaxed">
+                {{- .title -}}
+            </h4>
+            
+            <a
+                href="{{- .url -}}"
+                class="block w-full text-sm py-2 px-3 border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open {{- .title -}} in a new tab"
+            >
+                READ POST →
+            </a>
+        </div>
+        {{- end -}}
     </div>
     {{- else -}}
     <div class="text-center py-8">
