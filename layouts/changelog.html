@@ -166,8 +166,10 @@
     </div>
 
     {{- with .Site.Data.changelog -}} {{- if .releases -}}
+    
+    {{- /* Desktop table view */ -}}
     <div
-        class="overflow-x-auto mb-4 hover:bg-mondrian_bright_white p-4 border border-mondrian_white hover:border-mondrian_black"
+        class="hidden md:block overflow-x-auto mb-4 hover:bg-mondrian_bright_white p-4 border border-mondrian_white hover:border-mondrian_black"
     >
         <table
             class="w-full border-collapse border border-mondrian_white"
@@ -273,6 +275,76 @@
                 </tr>
             </tfoot>
         </table>
+    </div>
+
+    {{- /* Mobile card view */ -}}
+    <div class="md:hidden space-y-4 mb-4">
+        {{- range .releases -}}
+        <div class="border border-mondrian_black bg-mondrian_white p-4 shadow-mondrian hover:bg-mondrian_bright_white">
+            <div class="flex justify-between items-start mb-3">
+                <div>
+                    {{- if eq .tag "unversioned" -}}
+                    <span class="font-mono text-sm text-mondrian_dark_gray">UNVERSIONED</span>
+                    {{- else -}}
+                    <a
+                        href="https://github.com/natrimmer/synthetic.software/releases/tag/{{- .tag -}}"
+                        class="font-mono text-sm underline hover:text-mondrian_blue transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >{{- .tag -}}</a
+                    >
+                    {{- end -}}
+                    <div class="text-xs font-mono text-mondrian_dark_gray mt-1">
+                        {{- .date | dateFormat "Jan 2, 2006" -}}
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="text-xs font-mono bg-mondrian_light_gray px-2 py-1 border border-mondrian_black">
+                        {{- len .commits -}} commit{{- if ne (len .commits) 1 -}}s{{- end -}}
+                    </div>
+                </div>
+            </div>
+            
+            {{- if .commits -}}
+            <div class="space-y-2">
+                {{- range .commits -}}
+                <div class="border-l-2 border-mondrian_blue pl-3">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:gap-2">
+                        <span
+                            class="inline-block w-fit text-xs text-mondrian_dark_gray font-mono bg-mondrian_light_gray px-1 py-0.5 mb-1 sm:mb-0"
+                            >{{- .type -}}</span
+                        >
+                        <span class="flex-1 text-sm">{{- .subject -}}</span>
+                    </div>
+                    <div class="mt-1">
+                        <a
+                            href="https://github.com/natrimmer/synthetic.software/commit/{{- .hash -}}"
+                            class="text-xs text-mondrian_dark_gray font-mono hover:text-mondrian_yellow transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >{{- .hash -}}</a
+                        >
+                    </div>
+                </div>
+                {{- end -}}
+            </div>
+            {{- end -}}
+        </div>
+        {{- end -}}
+    </div>
+
+    {{- /* Mobile notes */ -}}
+    <div class="md:hidden mb-4 p-4 bg-mondrian_light_gray border border-mondrian_black">
+        <h4 class="text-xs text-mondrian_dark_gray font-semibold mb-2">Notes:</h4>
+        <p class="text-xs text-mondrian_dark_gray mb-2">
+            Changes are grouped by release version, showing all commits included in each version.
+        </p>
+        <p class="text-xs text-mondrian_dark_gray">
+            Commit types: <code class="font-mono">feat</code> (new features), <code class="font-mono">fix</code> (bug fixes),
+            <code class="font-mono">docs</code> (documentation), <code class="font-mono">style</code> (formatting),
+            <code class="font-mono">refactor</code> (code improvements), <code class="font-mono">perf</code> (performance),
+            <code class="font-mono">ci</code> (build/deploy), <code class="font-mono">chore</code> (maintenance).
+        </p>
     </div>
     {{- else -}}
     <div class="text-center py-8">
