@@ -6,7 +6,6 @@ tags:
   - state
   - education
   - software engineering
-draft: true
 ---
 
 I just turned 29, and this year will bring a lot of change. I'll be graduating from college this year, getting a long sought degree, Bachelor's of Science in Computer Science. Not many folks in my family have a college degree, and having grown up with a chip on my shoulder regarding authority, educational, religious, governmental, etc., I was a bit adverse to continuing my education after high school. That is an incredibly brief accounting of my educational journey, but for this conversation, it will suffice.
