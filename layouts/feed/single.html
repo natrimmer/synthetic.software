@@ -1,22 +1,22 @@
 {{define "main"}}
 <div>
-    <div class="flex justify-between w-full items-end">
-        <h3 class="text-3xl font-semibold">{{.Title}}</h3>
-        <span class="h-max pb-1">
-            <p class="text-xs font-mono text-mondrian_dark_gray">
+    <div class="flex flex-col sm:flex-row sm:justify-between w-full items-start sm:items-end gap-2 sm:gap-0">
+        <h3 class="text-2xl sm:text-3xl font-semibold">{{.Title}}</h3>
+        <span class="h-max">
+            <p class="text-sm sm:text-xs font-mono text-mondrian_dark_gray">
                 posted: {{.Date.Format "2006-01-02"}}{{.Date.Format "15:04"}}
             </p>
         </span>
     </div>
     <hr />
     <article class="mt-4">
-        <div class="text-sm leading-relaxed mb-4">{{.Content}}</div>
+        <div class="text-base sm:text-sm leading-relaxed mb-4">{{.Content}}</div>
         {{with .Params.tags}}
         <footer class="flex flex-wrap gap-2">
             {{range .}}
             <a
                 href="/tags/{{ . | urlize }}/"
-                class="px-2 py-1 text-xs border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow hover:border-mondrian_black focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                class="px-2 py-1 text-sm sm:text-xs border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow hover:border-mondrian_black focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
             >
                 #{{.}}</a
             >
@@ -31,7 +31,7 @@
                 {{with .PrevInSection}}
                 <a
                     href="{{ .RelPermalink }}"
-                    class="text-xs py-1 px-2 border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="text-sm sm:text-xs py-2 sm:py-1 px-3 sm:px-2 border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                 >
                     ←{{.Title}}</a
                 >
@@ -41,7 +41,7 @@
                 {{with .NextInSection}}
                 <a
                     href="{{ .RelPermalink }}"
-                    class="text-xs py-1 px-2 border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="text-sm sm:text-xs py-2 sm:py-1 px-3 sm:px-2 border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                 >
                     {{.Title}} →</a
                 >

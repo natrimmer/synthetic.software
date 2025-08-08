@@ -2,16 +2,16 @@
 <div
     class="mb-4 w-full lg:w-1/2 border border-mondrian_white hover:bg-mondrian_bright_white hover:border-mondrian_black transition-colors p-4"
 >
-    <div class="flex justify-between w-full items-end">
-        <h3 class="text-3xl font-semibold">{{.Title}}</h3>
-        <span class="h-max pb-1">
-            <p class="text-xs font-mono text-mondrian_dark_gray">
+    <div class="flex flex-col sm:flex-row sm:justify-between w-full items-start sm:items-end gap-2 sm:gap-0">
+        <h3 class="text-2xl sm:text-3xl font-semibold">{{.Title}}</h3>
+        <span class="h-max">
+            <p class="text-sm sm:text-xs font-mono text-mondrian_dark_gray">
                 posted: {{.Date.Format "2006-01-02"}}
             </p>
             {{with .Params.updated}} {{$dateOnly := $.Date.Format "2006-01-02"}}
             {{$updatedOnly := (time .).Format "2006-01-02"}} {{if ne $dateOnly
             $updatedOnly}}
-            <p class="text-xs font-mono text-mondrian_dark_gray">
+            <p class="text-sm sm:text-xs font-mono text-mondrian_dark_gray">
                 updated: {{(time .).Format "2006-01-02"}}
             </p>
             {{end}} {{end}}
@@ -19,13 +19,13 @@
     </div>
     <hr />
     <article class="mt-4">
-        <div class="text-sm leading-relaxed mb-4">{{.Content}}</div>
+        <div class="text-base sm:text-sm leading-relaxed mb-4">{{.Content}}</div>
         {{with .Params.tags}}
         <footer class="flex flex-wrap gap-2">
             {{range .}}
             <a
                 href="/tags/{{ . | urlize }}/"
-                class="px-2 py-1 text-xs border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                class="px-2 py-1 text-sm sm:text-xs border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_yellow focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
             >
                 #{{.}}</a
             >
@@ -35,13 +35,13 @@
     </article>
     {{/* Navigation between note items */}}
     <nav class="mt-4 pt-4 border-t border-gray-300">
-        <h2 class="mb-2 text-xl font-bold">Other articles:</h2>
+        <h2 class="mb-2 text-lg sm:text-xl font-bold">Other articles:</h2>
         <div class="flex justify-between items-center">
             <div>
                 {{with .PrevInSection}}
                 <a
                     href="{{ .RelPermalink }}"
-                    class="text-xs py-1 px-2 border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="text-sm sm:text-xs py-2 sm:py-1 px-3 sm:px-2 border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                 >
                     ← {{.Title}}</a
                 >
@@ -51,7 +51,7 @@
                 {{with .NextInSection}}
                 <a
                     href="{{ .RelPermalink }}"
-                    class="text-xs py-1 px-2 border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="text-sm sm:text-xs py-2 sm:py-1 px-3 sm:px-2 border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                 >
                     {{.Title}} →</a
                 >
