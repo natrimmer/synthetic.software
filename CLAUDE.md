@@ -114,9 +114,18 @@ queue/               # Pending feed items (processed automatically)
 
 - The development server (`hugo-dev`) automatically processes new feed items when added via `feed-add`
 - Git hooks handle formatting (gofmt, nixfmt), linting (golangci-lint, shellcheck), and security checks
+- Pre-commit hooks prevent accidental commits of private keys and large files
 - Version tags are used for Hugo build metadata and changelog generation
 - All Go tools must pass linting and tests before deployment
 - Feed items support hashtag-based tagging for automatic categorization
+
+## License
+
+This project is dual-licensed:
+- **Code and infrastructure**: MIT License (see LICENSE file)
+- **Blog content and articles**: Copyright remains with the author
+
+The MIT license covers Hugo templates, Go automation tools, Cloudflare Worker, and build configuration. Personal writing and blog content in the `content/` directory remain under copyright protection.
 
 ### Template Development
 
