@@ -25,7 +25,15 @@
         >
     </div>
     <ul class="space-y-1">
-        {{- range first 3 .Site.Data.blogroll -}}
+        {{- $seenDomains := slice -}}
+        {{- $uniquePosts := slice -}}
+        {{- range .Site.Data.blogroll -}}
+            {{- if and (not (in $seenDomains .domain)) (lt (len $uniquePosts) 3) -}}
+                {{- $seenDomains = $seenDomains | append .domain -}}
+                {{- $uniquePosts = $uniquePosts | append . -}}
+            {{- end -}}
+        {{- end -}}
+        {{- range $uniquePosts -}}
         <li
             class="text-xs flex justify-between items-start gap-2 border-b border-b-mondrian_gray"
         >
