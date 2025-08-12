@@ -24,6 +24,9 @@
     pkgs.hugo
     # pkgs.wrangler
     pkgs.tailwindcss_4
+
+    # Utils
+    pkgs.ffmpeg
   ];
 
   #----------------------------------------------------------------------------
