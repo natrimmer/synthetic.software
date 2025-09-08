@@ -41,12 +41,18 @@ $allDescendantPages ".Date" "desc") 10 -}}{{- if gt (len $paginator.Pages) 0 -}}
         class="hover:bg-mondrian_bright_white border border-mondrian_white hover:border-mondrian_black transition-colors mb-2 p-2"
     >
         <div class="flex flex-col">
-            <a
-                href="{{ .RelPermalink }}"
-                class="w-full text-center shadow-mondrian px-1 py-0.5 border border-mondrian_black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-xs mb-2"
-            >
-                {{ .Title }} →</a
-            >
+            <div class="flex items-center mb-2 gap-3">
+                <h4 class="text-lg font-medium">{{ .Title }}</h4>
+                <div
+                    class="hidden md:flex flex-1 border-b border-dotted border-mondrian_black opacity-40"
+                ></div>
+                <a
+                    href="{{ .RelPermalink }}"
+                    class="flex-shrink-0 text-center shadow-mondrian px-2 py-1 border border-mondrian_black font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-xs"
+                >
+                    read →</a
+                >
+            </div>
             <div class="flex-col w-full">
                 <footer
                     class="flex flex-wrap items-center gap-3 text-xs font-mono text-mondrian_dark_gray"
