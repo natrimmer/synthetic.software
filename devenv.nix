@@ -22,7 +22,6 @@
     pkgs.nixd
     pkgs.golangci-lint
     pkgs.hugo
-    # pkgs.wrangler
     pkgs.tailwindcss_4
 
     # Utils
@@ -265,48 +264,6 @@
       hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --disableFastRender --enableGitInfo
     '';
 
-    workers-auth.exec = ''
-      _log AUTH "Cloudflare Workers"
-      wrangler auth login
-      _log OK "Authentication complete"
-    '';
-
-    workers-whoami.exec = ''
-      _log INFO "Current Cloudflare account"
-      wrangler whoami
-    '';
-
-    workers-dev.exec = ''
-      _section "Workers Development"
-      _step "Building Hugo site first"
-      hugo-build
-      _step "Starting Workers dev server"
-      _log SERVER "Starting at http://localhost:8787"
-      wrangler dev --local --port 8787
-    '';
-
-    workers-deploy-dry.exec = ''
-      _section "Workers Deployment (Dry Run)"
-      _step "Building Hugo site"
-      hugo-build
-      _step "Checking deployment"
-      wrangler deploy --dry-run --compatibility-date 2025-04-01
-    '';
-
-    workers-deploy.exec = ''
-      _section "Workers Deployment"
-      _step "Building Hugo site"
-      hugo-build
-      _step "Deploying to Cloudflare"
-      wrangler deploy --compatibility-date 2025-04-01
-      _log DONE "Site deployed successfully"
-    '';
-
-    workers-logs.exec = ''
-      _log LOGS "Workers runtime logs"
-      wrangler tail
-    '';
-
     # Version management scripts
     _get-current-version.exec = ''
       # Get current version from git tags, default to v0.0.0 if none exist
@@ -412,14 +369,6 @@
       echo "∘ hugo-build               - Build complete Hugo site"
       echo "∘ hugo-dev                 - Start Hugo dev server"
       echo "∘ feed-add                 - Add feed item (feed-add \"content\" tag1 tag2)"
-      echo ""
-      echo "Cloudflare Workers:"
-      echo "∘ workers-auth             - Authenticate with Cloudflare"
-      echo "∘ workers-whoami           - Show current account"
-      echo "∘ workers-dev              - Build + start Workers dev server"
-      echo "∘ workers-deploy-dry       - Test deployment (dry run)"
-      echo "∘ workers-deploy           - Deploy to production"
-      echo "∘ workers-logs             - Watch runtime logs"
       echo ""
       echo "Version management:"
       echo "∘ major                    - Bump major version"
