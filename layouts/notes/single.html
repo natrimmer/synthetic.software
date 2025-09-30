@@ -1,8 +1,10 @@
 {{- define "main" -}}
 <div
-    class="mb-4 w-full lg:w-1/2 border border-mondrian_white hover:bg-mondrian_bright_white hover:border-mondrian_black transition-colors p-4"
+    class="mb-4 w-full border border-mondrian_white hover:bg-mondrian_bright_white hover:border-mondrian_black transition-colors p-4"
 >
-    <div class="flex flex-col sm:flex-row sm:justify-between w-full items-start sm:items-end gap-2 sm:gap-0">
+    <div
+        class="flex flex-col sm:flex-row sm:justify-between w-full items-start sm:items-end gap-2 sm:gap-0"
+    >
         <h3 class="text-2xl sm:text-3xl font-semibold">{{- .Title -}}</h3>
         <span class="h-max">
             <p class="text-sm sm:text-xs font-mono text-mondrian_dark_gray">
@@ -19,7 +21,9 @@
     </div>
     <hr />
     <article class="mt-4">
-        <div class="text-base sm:text-sm leading-relaxed mb-4">{{- .Content -}}</div>
+        <div class="text-base sm:text-sm leading-relaxed mb-4">
+            {{- .Content -}}
+        </div>
         {{- with .Params.tags -}}
         <footer class="flex flex-wrap gap-2">
             {{- range . -}}
