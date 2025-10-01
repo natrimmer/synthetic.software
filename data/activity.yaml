@@ -1,0 +1,46 @@
+activity:
+  reading:
+    active:
+      - title: "Operating Systems: Three Easy Pieces"
+        authors:
+          - "Remzi H. Arpaci-Dusseau"
+          - "Andrea C. Arpaci-Dusseau"
+      - title: "Nature's Metropolis: Chicago and the Great West"
+        authors:
+          - "William Cronon"
+      - title: "Marrow and Bone"
+        authors:
+          - "Walter Kempowski"
+      - title: "Butter"
+        authors:
+          - "Asako Yuzuki"
+  watching:
+    active:
+      - title: "Mindhunter"
+      - title: "Becoming Led Zeppelin"
+  listening:
+    active:
+      - title: "The David Pakman Show"
+        type: "podcast"
+      - title: "Democracy Now!"
+        type: "podcast"
+      - title: "Making Sense with Sam Harris"
+        type: "podcast"
+      - title: "The Changelog"
+        type: "podcast"
+      - title: "Oxide and Friends"
+        type: "podcast"
+      - title: "The History of English Podcast"
+        type: "podcast"
+      - title: "Turn On The Bright Lights"
+        artist: "Interpol"
+        type: "music"
+      - title: "Fear"
+        artist: "John Cale"
+        type: "music"
+      - title: "the chase"
+        artist: "They Are Gutting a Body of Water"
+        type: "music"
+      - title: "In the Aeroplane Over the Sea"
+        artist: "Neutral Milk Hotel"
+        type: "music"
