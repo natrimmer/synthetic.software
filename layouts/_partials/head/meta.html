@@ -1,8 +1,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>
-	{{- .Title -}}
-	{{- if not .IsHome -}}
-		∿ {{- .Site.Title -}}
-	{{- end -}}
+    {{- if .IsHome -}} {{- .Site.Title | lower -}} {{- else -}} ~{{- range
+    .Ancestors.Reverse -}}/{{.Title | lower}}{{- end -}}/{{.Title | lower -}}
+    {{- end -}}
 </title>
