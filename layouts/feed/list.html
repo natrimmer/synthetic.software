@@ -62,7 +62,12 @@ $allDescendantPages ".Date" "desc") 10 -}}{{- if gt (len $paginator.Pages) 0 -}}
                 <span>]</span>
                 {{- end -}}
             </div>
-            {{- $page.Content -}}
+            <div class="flex items-start gap-2">
+                <span class="text-mondrian_dark_gray font-bold flex-shrink-0"
+                    >›</span
+                >
+                <div class="flex-1">{{- $page.Content -}}</div>
+            </div>
         </article>
         {{- end -}}
     </div>

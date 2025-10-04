@@ -10,9 +10,7 @@
 <nav class="w-full font-mono">
     <ul class="flex flex-col gap-2 lg:gap-2 lg:px-0">
         {{- range $navigation -}}
-        <li
-            class="{{- if eq .name "HOME" }} lg:flex lg:justify-end {{- else }} md:flex md:justify-end {{- end }}"
-        >
+        <li class="lg:flex lg:justify-end">
             {{- $isCurrentPage := false -}}
             {{- if eq .url $.RelPermalink -}}
             {{- $isCurrentPage = true -}}

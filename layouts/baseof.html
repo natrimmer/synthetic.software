@@ -92,19 +92,21 @@
                             {{- /* Breadcrumb navigation */ -}}{{- if not
                             .IsHome -}}
                             <nav
-                                class="text-sm mb-4 font-mono bg-mondrian_yellow h-8 px-2 py-1 border border-mondrian_black shadow-mondrian font-semibold"
+                                class="text-sm mb-4 font-mono bg-mondrian_yellow px-2 py-1 border border-mondrian_black shadow-mondrian font-semibold overflow-x-auto"
                             >
-                                <pre class="inline">~</pre>
-                                {{- range .Ancestors.Reverse -}}
-                                <pre class="inline">/</pre>
-                                <a
-                                    href="{{ .RelPermalink }}"
-                                    class="hover:underline"
-                                    >{{.Title}}</a
-                                >
-                                {{- end -}}
-                                <pre class="inline">/</pre>
-                                <span class="">{{.Title}}</span>
+                                <div class="whitespace-nowrap">
+                                    <pre class="inline">~</pre>
+                                    {{- range .Ancestors.Reverse -}}
+                                    <pre class="inline">/</pre>
+                                    <a
+                                        href="{{ .RelPermalink }}"
+                                        class="hover:underline"
+                                        >{{.Title}}</a
+                                    >
+                                    {{- end -}}
+                                    <pre class="inline">/</pre>
+                                    <span class="">{{.Title}}</span>
+                                </div>
                             </nav>
                             {{- end -}}{{- block "main" . -}}{{- end -}}
                         </main>
