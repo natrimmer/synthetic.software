@@ -128,65 +128,83 @@
     {{- /* Mobile card view */ -}}
     <div class="md:hidden space-y-4 mb-4">
         {{- range .releases -}}
-        <div
-            class="border border-mondrian_black bg-mondrian_white p-4 shadow-mondrian hover:bg-mondrian_bright_white"
-        >
-            <div class="flex justify-between items-start mb-3">
-                <div>
+        <details class="group">
+            <summary
+                class="cursor-pointer flex items-center justify-between p-4 bg-mondrian_yellow border border-mondrian_black shadow-mondrian hover:bg-mondrian_bright_white transition-colors [&::-webkit-details-marker]:hidden [&::marker]:hidden"
+            >
+                <div class="flex items-center gap-2">
+                    <svg
+                        class="w-4 h-4 transition-transform group-open:rotate-90 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5l7 7-7 7"
+                        />
+                    </svg>
                     {{- if eq .tag "unversioned" -}}
-                    <span class="font-mono text-sm text-mondrian_dark_gray"
+                    <span class="font-mono text-sm font-semibold"
                         >UNVERSIONED</span
                     >
                     {{- else -}}
-                    <a
-                        href="https://github.com/natrimmer/synthetic.software/releases/tag/{{- .tag -}}"
-                        class="font-mono text-sm underline hover:text-mondrian_blue transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        >{{- .tag -}}</a
+                    <span class="font-mono text-sm font-semibold"
+                        >{{- .tag -}}</span
                     >
                     {{- end -}}
-                    <div class="text-xs font-mono text-mondrian_dark_gray mt-1">
+                    <span class="text-xs font-mono text-mondrian_black">
                         {{- .date | dateFormat "Jan 2, 2006" -}}
-                    </div>
+                    </span>
                 </div>
-                <div class="text-right">
-                    <div
-                        class="text-xs font-mono bg-mondrian_light_gray px-2 py-1 border border-mondrian_black"
-                    >
-                        {{- len .commits -}} commit{{- if ne (len .commits) 1
-                        -}}s{{- end -}}
-                    </div>
+                <div
+                    class="text-xs font-mono bg-mondrian_light_gray px-2 py-1 border border-mondrian_black"
+                >
+                    {{- len .commits }} commit{{- if ne (len .commits) 1 -}}s{{-
+                    end -}}
                 </div>
-            </div>
+            </summary>
 
-            {{- if .commits -}}
-            <div class="space-y-2">
-                {{- range .commits -}}
-                <div class="border-l-2 border-mondrian_blue pl-3">
-                    <div
-                        class="flex flex-col sm:flex-row sm:items-start sm:gap-2"
-                    >
-                        <span
-                            class="inline-block w-fit text-xs text-mondrian_dark_gray font-mono bg-mondrian_light_gray px-1 py-0.5 mb-1 sm:mb-0"
-                            >{{- .type -}}</span
-                        >
-                        <span class="flex-1 text-sm">{{- .subject -}}</span>
+            <div
+                class="p-4 border-x border-b border-mondrian_black bg-mondrian_white"
+            >
+                {{- if .commits -}}
+                <div class="space-y-2">
+                    {{- range .commits -}}
+                    <div class="flex items-start gap-3">
+                        <div
+                            class="w-3 h-3 rounded-full bg-mondrian_blue border border-mondrian_black flex-shrink-0 mt-1"
+                        ></div>
+                        <div class="flex-1">
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-start sm:gap-2"
+                            >
+                                <span
+                                    class="inline-block w-fit text-xs text-mondrian_dark_gray font-mono bg-mondrian_light_gray px-1 py-0.5 mb-1 sm:mb-0"
+                                    >{{- .type -}}</span
+                                >
+                                <span class="flex-1 text-sm"
+                                    >{{- .subject -}}</span
+                                >
+                            </div>
+                            <div class="mt-1">
+                                <a
+                                    href="https://github.com/natrimmer/synthetic.software/commit/{{- .hash -}}"
+                                    class="text-xs text-mondrian_dark_gray font-mono hover:text-mondrian_yellow transition-colors"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >{{- .hash -}}</a
+                                >
+                            </div>
+                        </div>
                     </div>
-                    <div class="mt-1">
-                        <a
-                            href="https://github.com/natrimmer/synthetic.software/commit/{{- .hash -}}"
-                            class="text-xs text-mondrian_dark_gray font-mono hover:text-mondrian_yellow transition-colors"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            >{{- .hash -}}</a
-                        >
-                    </div>
+                    {{- end -}}
                 </div>
                 {{- end -}}
             </div>
-            {{- end -}}
-        </div>
+        </details>
         {{- end -}}
     </div>
 
