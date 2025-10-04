@@ -8,12 +8,18 @@ activity:
       - title: "Nature's Metropolis: Chicago and the Great West"
         authors:
           - "William Cronon"
+        notes: "A very intriguing look at the relationship between rural and urban economies."
+      - title: "Determined: A Science of Life without Free Will"
+        authors:
+          - "Robert Sapolsky"
+        notes: "For those not convinced of free will, this book is a great read."
       - title: "Marrow and Bone"
         authors:
           - "Walter Kempowski"
       - title: "Butter"
         authors:
           - "Asako Yuzuki"
+        notes: "I crave butter everytime I pick this up."
   watching:
     active:
       - title: "Mindhunter"
@@ -22,16 +28,19 @@ activity:
     active:
       - title: "The David Pakman Show"
         type: "podcast"
+        notes: "David is well articulated and reasonable. His commentary is refreshing."
       - title: "Democracy Now!"
         type: "podcast"
       - title: "Making Sense with Sam Harris"
         type: "podcast"
+        notes: "Sam is very rational. His guests are often interesting. The AI doomsayers are interesting despite not completely convincing."
       - title: "The Changelog"
         type: "podcast"
       - title: "Oxide and Friends"
         type: "podcast"
       - title: "The History of English Podcast"
         type: "podcast"
+        notes: "I adore this podcast."
       - title: "Turn On The Bright Lights"
         artist: "Interpol"
         type: "music"
@@ -41,6 +50,8 @@ activity:
       - title: "the chase"
         artist: "They Are Gutting a Body of Water"
         type: "music"
+        notes: "Some of the best contemporary shoegaze."
       - title: "In the Aeroplane Over the Sea"
         artist: "Neutral Milk Hotel"
         type: "music"
+        notes: "Oh Comely gets stuck in my head for days."
