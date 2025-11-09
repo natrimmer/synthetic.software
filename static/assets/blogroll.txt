@@ -7,3 +7,6 @@ https://danluu.com/atom.xml
 https://jvns.ca/atom.xml
 https://simonwillison.net/atom/everything/
 https://ethanmarcotte.com/wrote/feed.xml
+https://bcantrill.dtrace.org/index.xml
+https://ahl.dtrace.org/feed/feed.xml
+https://www.brendangregg.com/blog/rss.xml
