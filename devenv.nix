@@ -92,7 +92,7 @@
     '';
 
     feed-processor-build.exec = ''
-      _log BUILD "feed-processor"
+      _log BUILD "feed-processor" >&2
       mkdir -p tools/bin
       go build -o tools/bin/feed-processor ./tools/cmd/feed-processor
     '';

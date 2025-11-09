@@ -11,6 +11,7 @@ import (
 type Config struct {
 	SourceDir string
 	DestDir   string
+	InputFile string
 	Verbose   bool
 }
 
@@ -24,13 +25,16 @@ func ParseArgs(args []string, minArgs int, usage string) Config {
 		Verbose: false,
 	}
 
-	if minArgs >= 2 {
+	// Parse positional arguments based on what's available
+	if len(args) > 1 {
 		config.SourceDir = args[1]
+		config.InputFile = args[1] // Alias for single input file use case
 	}
-	if minArgs >= 3 {
+	if len(args) > 2 {
 		config.DestDir = args[2]
 	}
 
+	// Parse flags starting from minArgs position
 	for _, arg := range args[minArgs:] {
 		if arg == "--verbose" || arg == "-v" {
 			config.Verbose = true

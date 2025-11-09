@@ -24,12 +24,12 @@ func main() {
 
 	nextID, err := hugo.GetNextID(cfg.DestDir)
 	if err != nil {
-		log.Fatal("Error getting next ID:", err)
+		log.Fatalf("Error getting next ID: %v", err)
 	}
 
 	files, err := findTextFiles(cfg.SourceDir)
 	if err != nil {
-		log.Fatal("Error finding files:", err)
+		log.Fatalf("Error finding files: %v", err)
 	}
 
 	if len(files) == 0 {

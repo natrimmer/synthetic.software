@@ -12,10 +12,15 @@ import (
 )
 
 func main() {
-	inputFile := "static/assets/blogroll.txt"
+	cfg := config.ParseArgs(os.Args, 1, "blogroll-generator [input-file] [--verbose]")
 
-	if len(os.Args) > 1 {
-		inputFile = os.Args[1]
+	inputFile := "static/assets/blogroll.txt"
+	if cfg.InputFile != "" {
+		inputFile = cfg.InputFile
+	}
+
+	if cfg.Verbose {
+		log.Printf("Reading feed URLs from %s", inputFile)
 	}
 
 	urls, err := config.ReadURLs(inputFile)
@@ -23,13 +28,23 @@ func main() {
 		log.Fatalf("Error reading URLs from %s: %v", inputFile, err)
 	}
 
+	if cfg.Verbose {
+		log.Printf("Found %d feed URLs to process", len(urls))
+	}
+
 	var allPosts []feeds.Post
 
 	for _, feedURL := range urls {
+		if cfg.Verbose {
+			log.Printf("Fetching feed: %s", feedURL)
+		}
 		posts, err := feeds.FetchAndParse(feedURL, 3)
 		if err != nil {
 			log.Printf("Error processing %s: %v", feedURL, err)
 			continue
+		}
+		if cfg.Verbose {
+			log.Printf("Retrieved %d posts from %s", len(posts), feedURL)
 		}
 		allPosts = append(allPosts, posts...)
 	}
@@ -37,6 +52,10 @@ func main() {
 	sort.Slice(allPosts, func(i, j int) bool {
 		return allPosts[i].PubDate.After(allPosts[j].PubDate)
 	})
+
+	if cfg.Verbose {
+		log.Printf("Writing %d total posts to stdout", len(allPosts))
+	}
 
 	writeYAML(allPosts)
 }
