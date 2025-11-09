@@ -101,11 +101,11 @@
                                     <a
                                         href="{{ .RelPermalink }}"
                                         class="hover:underline"
-                                        >{{.Title}}</a
+                                        >{{- replace (lower .Title) " " "_" -}}</a
                                     >
                                     {{- end -}}
                                     <pre class="inline">/</pre>
-                                    <span class="">{{.Title}}</span>
+                                    <span class="">{{- replace (lower .Title) " " "_" -}}</span>
                                 </div>
                             </nav>
                             {{- end -}}{{- block "main" . -}}{{- end -}}
