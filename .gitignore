@@ -17,3 +17,8 @@ static/fonts/
 tools/bin/
 
 .DS_Store
+
+# Ignore generated data files
+data/blogroll.yaml
+data/changelog.yaml
+hugo_stats.json
