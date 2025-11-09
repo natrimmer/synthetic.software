@@ -98,7 +98,7 @@
     '';
 
     blogroll-generator-build.exec = ''
-      _log BUILD "blogroll-generator"
+      _log BUILD "blogroll-generator" >&2
       mkdir -p tools/bin
       go build -o tools/bin/blogroll-generator ./tools/cmd/blogroll-generator
     '';
@@ -116,7 +116,7 @@
 
     blogroll-generator-run.exec = ''
       blogroll-generator-build
-      ./tools/bin/blogroll-generator "$@"
+      ./tools/bin/blogroll-generator "$@" > data/blogroll.yaml
     '';
 
     changelog-generator-run.exec = ''
