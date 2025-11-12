@@ -1,0 +1,374 @@
+---
+title: "Hugo to SvelteKit: Migration Report"
+date: 2025-11-10
+tags: ["hugo", "sveltekit", "migration", "static sites", "web development"]
+---
+
+I recently migrated synthetic.software from Hugo to SvelteKit. Both builds are production-ready, so I compared them to see what changed.
+
+## Why I Started This
+
+Hugo's Go templating wasn't ergonomic. The templates are difficult to read and reason about. The whitespace control syntax (`{{-` and `-}}`) is necessary for clean output but makes the code harder to parse visually. The developer tooling is immature. There are no decent formatters for HTML with Go templating, which means manually maintaining formatting consistency across 22 template files. SvelteKit gave me TypeScript throughout, components with better readability, and mature tooling (Prettier, ESLint, TypeScript). The templates are easier to work with.
+
+## Test Environment
+
+All benchmarks were run on:
+- **System:** MacBook Air
+- **Chip:** Apple M2
+- **Memory:** 8 GB
+- **OS:** macOS 15.6.1
+- **Hugo:** v0.150.0
+- **Node:** v22.20.0
+
+## Build Output Comparison
+
+| Metric | Hugo | SvelteKit | Change |
+|--------|------|-----------|--------|
+| **Total Size** | 4.9M | 2.2M | -55% |
+| **Files** | 198 | 199 | Same |
+| **Average HTML** | 43 KB | 16 KB | -63% |
+| **CSS** | 64 KB | 44 KB | -31% |
+| **JavaScript** | 0 KB | 0 KB | Same |
+
+The per-page HTML reduction is significant. The homepage went from 35 KB to 8.4 KB (76% smaller). The feed/2025 page dropped from 44 KB to 16 KB (63% smaller). This difference comes from how the two systems handle whitespace. Hugo's Go templates require explicit whitespace control with `{{-` and `-}}` syntax. Even with minification enabled via `hugo --minify`, the output includes Go template artifacts and structural whitespace that's difficult to eliminate. Svelte compiles templates directly to JavaScript that generates minimal HTML. The Svelte compiler optimizes output during compilation rather than relying on post-processing minification. Both builds use the same Tailwind CSS and serve identical visual content, but Svelte's compilation approach produces more compact markup.
+
+**Zero JavaScript:** Both implementations deliver zero client-side JavaScript. Hugo does this by default. SvelteKit typically includes JavaScript for client-side navigation and hydration, but this can be disabled. I set `export const csr = false` in the root layout file to disable client-side rendering entirely. The build still generates JavaScript files in `_app/immutable/` (SvelteKit's default behavior for progressive enhancement), so I added a post-build script that removes all .js files while keeping the CSS. The final build has no script tags in the HTML. This configuration makes SvelteKit behave like a traditional SSG rather than a hybrid framework.
+
+```json
+"postbuild": "find build/_app -name '*.js' -delete && find build/_app -type d -empty -delete"
+```
+
+## Build Performance Benchmarking
+
+I wrote a benchmark script to measure production build performance for both systems. The script runs 5 complete builds for each system, measuring both execution time and peak memory usage.
+
+### Build Time Measurement
+
+The script uses `/usr/bin/time -l` to capture detailed timing and memory statistics for each build:
+
+```bash
+# Hugo build benchmark (simplified)
+for i in $(seq 1 5); do
+    /usr/bin/time -l devenv shell hugo-build 2>&1 | tee /tmp/hugo_bench_$i.log
+    real_time=$(grep "real" /tmp/hugo_bench_$i.log | awk '{print $1}')
+    peak_mem=$(grep "maximum resident set size" /tmp/hugo_bench_$i.log | awk '{printf "%.1f", $1/1024/1024}')
+    echo "Time: ${real_time}s, Peak Memory: ${peak_mem} MB"
+    rm -rf public/
+    sleep 1
+done
+```
+
+**Hugo Results (5 passes):**
+```
+Pass 1/5: Time: 7.00s, Peak Memory: 113.0 MB
+Pass 2/5: Time: 6.22s, Peak Memory: 113.2 MB
+Pass 3/5: Time: 7.83s, Peak Memory: 114.2 MB
+Pass 4/5: Time: 5.28s, Peak Memory: 111.9 MB
+Pass 5/5: Time: 5.13s, Peak Memory: 111.4 MB
+
+Average: 6.29s
+```
+
+Hugo shows consistent build times around 6-7 seconds with peak memory usage staying under 115 MB. The variation between runs (5.13s to 7.83s) is likely due to filesystem caching and system load.
+
+```bash
+# SvelteKit build benchmark (simplified)
+for i in $(seq 1 5); do
+    /usr/bin/time -l npm run build 2>&1 | tee /tmp/svelte_bench_$i.log
+    real_time=$(grep "real" /tmp/svelte_bench_$i.log | awk '{print $1}')
+    peak_mem=$(grep "maximum resident set size" /tmp/svelte_bench_$i.log | awk '{printf "%.1f", $1/1024/1024}')
+    echo "Time: ${real_time}s, Peak Memory: ${peak_mem} MB"
+    rm -rf build/ .svelte-kit/
+    sleep 1
+done
+```
+
+**SvelteKit Results (5 passes):**
+```
+Pass 1/5: Time: 18.37s, Peak Memory: 206.8 MB
+Pass 2/5: Time: 20.01s, Peak Memory: 179.7 MB
+Pass 3/5: Time: 16.03s, Peak Memory: 198.1 MB
+Pass 4/5: Time: 16.86s, Peak Memory: 209.7 MB
+Pass 5/5: Time: 13.48s, Peak Memory: 203.8 MB
+
+Average: 16.95s
+```
+
+SvelteKit builds take approximately 17 seconds on average with peak memory around 200 MB. The longer build time is expected given the additional work Vite does for module resolution, TypeScript compilation, and Svelte component processing.
+
+**Build Performance Summary:** Hugo is 60% faster at build time (6.29s vs 16.95s) and uses roughly half the memory (113 MB vs 200 MB peak). For this site with 87-190 pages, Hugo's compilation model is more efficient. SvelteKit's build process includes TypeScript compilation, component processing, and Vite's optimization pipeline, which adds overhead but provides better developer experience during development.
+
+### Development Server Memory
+
+I measured development server memory usage by starting each dev server and monitoring its memory consumption over 30 seconds:
+
+```bash
+# Hugo dev server monitoring
+devenv shell hugo-dev >/dev/null 2>&1 &
+HUGO_PID=$!
+sleep 5
+
+for i in {1..30}; do
+    mem=$(ps -o rss= -p $HUGO_PID | awk '{printf "%.1f", $1/1024}')
+    hugo_mem_samples+=("$mem")
+    sleep 1
+done
+
+hugo_mem_avg=$(printf '%s\n' "${hugo_mem_samples[@]}" | awk '{sum+=$1} END {printf "%.1f", sum/NR}')
+hugo_mem_max=$(printf '%s\n' "${hugo_mem_samples[@]}" | sort -n | tail -1)
+```
+
+**Results:**
+```
+Hugo dev server:       Average: 3.4 MB,  Peak: 4.7 MB
+SvelteKit dev server:  Average: 46.0 MB, Peak: 47.5 MB
+```
+
+Hugo's development server is extremely lightweight, using less than 5 MB of memory. This makes sense since Hugo simply watches files and rebuilds on changes. SvelteKit's dev server uses about 10x more memory (46 MB average) because it runs Vite's dev server with HMR, TypeScript compilation, and module resolution. The memory difference is significant but 46 MB is still reasonable for a modern development tool.
+
+## Implementation
+
+The preprocessing logic is nearly identical. Both implementations need to generate a blogroll from RSS feeds and a changelog from git history. The Hugo version uses custom Go tools (418 lines total using only stdlib). The SvelteKit version uses TypeScript scripts (425 lines using rss-parser and yaml packages). The logic is almost the same. Both parse git commands, group commits by release and type, and output YAML. The Go version is slightly more verbose with struct definitions while the TypeScript version uses type annotations and external libraries. For templates, Hugo uses 22 .html files with Go template syntax (2,456 lines). SvelteKit uses 15 Svelte components plus 13 server files (3,238 lines). The SvelteKit implementation includes data fetching logic that Hugo handles separately, which explains the line count difference.
+
+**Dependencies:** Hugo runs with zero external dependencies. The Go tools use only the standard library. SvelteKit requires Node.js and 26 npm packages (3 runtime, 23 dev). This is the main tradeoff. Hugo is self-contained. SvelteKit needs a JavaScript toolchain.
+
+**Build Process:** The Hugo build processes feeds with Go tools, updates the blogroll and changelog, sets git environment variables, then runs Hugo with minification. The SvelteKit build runs prebuild TypeScript scripts (version, blogroll, changelog), syncs SvelteKit routes, runs Vite build, then removes .js files. Hugo requires pre-built Go binaries. SvelteKit runs everything through npm. Both approaches work, but SvelteKit integrates better with standard CI/CD pipelines.
+
+## Comprehensive Comparison
+
+| Category | Hugo | SvelteKit | Winner |
+|----------|------|-----------|--------|
+| **Build Output** |
+| Total Size | 4.9M | 2.2M | SvelteKit (-55%) |
+| Average HTML Size | 43 KB | 16 KB | SvelteKit (-63%) |
+| CSS Size | 64 KB | 44 KB | SvelteKit (-31%) |
+| Client JS | 0 KB | 0 KB | Tie |
+| **Performance** |
+| Build Time | 6.29s | 16.95s | Hugo (60% faster) |
+| Build Memory | 113 MB | 200 MB | Hugo (43% less) |
+| Dev Server Memory | 3.4 MB | 46 MB | Hugo (93% less) |
+| **Development** |
+| Template Syntax | Go templates | Svelte/TypeScript | SvelteKit |
+| Code Formatting | Manual | Prettier | SvelteKit |
+| Type Safety | None | Full TypeScript | SvelteKit |
+| HMR Quality | Basic rebuild | Vite HMR | SvelteKit |
+| Component Model | Partials | Svelte components | SvelteKit |
+| **Implementation** |
+| Dependencies | 0 | 26 npm packages | Hugo |
+| Preprocessing Code | 418 lines (Go) | 425 lines (TypeScript) | Tie |
+
+## Why I Switched
+
+The Hugo implementation was working fine. I switched for smaller output (55% reduction in build size, 63% smaller HTML), unified tooling (everything in TypeScript instead of Go templates plus Go tools), flexibility (can enable JavaScript per-route if needed later), and standardized deployment tooling. The tradeoff is dependencies. Hugo has none. SvelteKit needs 26 npm packages, but the packages are all standard tools (Vite, SvelteKit, Tailwind, TypeScript).
+
+Hugo remains significantly faster at build time (60% faster) and uses less memory. For this 87-page site, the build time difference (6s vs 17s) is negligible in practice. If I were building a 10,000-page documentation site, Hugo's build performance would matter more. For my use case, the development experience and output size were more important than build speed.
+
+## Architecture
+
+Both implementations use the same content structure. Markdown files with front matter, processed at build time, output as static HTML. The main difference is in the templating layer.
+
+Hugo uses Go templates with explicit whitespace control. SvelteKit uses Svelte components with TypeScript. Hugo separates data fetching from rendering. SvelteKit combines them in `+page.server.ts` files. The SvelteKit architecture feels more cohesive. Data loading and rendering are in the same file. Components are reusable across routes. TypeScript provides type safety throughout.
+
+Both builds deploy the same way to Cloudflare Workers with static asset serving. Both are just directories of HTML, CSS, and assets.
+
+## Caveats
+
+These benchmarks compare my specific implementations, not vanilla Hugo vs vanilla SvelteKit:
+
+**Build Process Differences:**
+- Hugo measurements include custom Go preprocessing tools (blogroll generator, changelog generator) and git environment variable setup
+- SvelteKit measurements include TypeScript preprocessing scripts (version, blogroll, changelog), route synchronization, and post-build JavaScript removal
+- Vanilla Hugo or SvelteKit installations would have different performance characteristics without these custom build steps
+
+**Configuration Differences:**
+- Hugo uses `hugo --minify` for post-processing optimization
+- SvelteKit uses Vite's built-in optimization and Svelte's compilation, plus `export const csr = false` to disable client-side rendering
+- SvelteKit includes a post-build script to remove JavaScript files: `find build/_app -name '*.js' -delete`
+- Both use Tailwind CSS but with different build integration points
+
+**Hardware Specificity:**
+- All benchmarks run on a MacBook Air M2 with 8 GB memory
+- Results would differ on x86 hardware, different memory configurations, or under different system loads
+- The 5-pass benchmark accounts for filesystem caching effects but may not represent CI/CD performance
+
+## Appendix: Full Benchmark Script
+
+The complete benchmark script is available for those who want to reproduce these tests or adapt them for their own comparisons:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Benchmark script for comparing Hugo and SvelteKit build performance
+# Measures build times and memory usage for both static site generators
+
+PASSES="${1:-5}"
+HUGO_DIR="/Users/gnat/data/projects/synthetic"
+SVELTE_DIR="/Users/gnat/data/projects/synthetic/syn_svelte"
+
+echo "==================================================================="
+echo "Static Site Build Performance Benchmark"
+echo "==================================================================="
+echo "System: $(system_profiler SPHardwareDataType | grep "Model Name" | awk -F: '{print $2}' | xargs)"
+echo "Chip: $(system_profiler SPHardwareDataType | grep "Chip" | awk -F: '{print $2}' | xargs)"
+echo "Memory: $(system_profiler SPHardwareDataType | grep "Memory" | awk -F: '{print $2}' | xargs)"
+echo "OS: macOS $(sw_vers -productVersion)"
+echo "Passes: $PASSES"
+echo ""
+
+# Hugo version
+echo "Hugo: $(cd "$HUGO_DIR" && devenv shell hugo version 2>/dev/null | grep -o 'v[0-9.]*' | head -1)"
+echo "Node: $(node --version)"
+echo ""
+
+echo "==================================================================="
+echo "HUGO BUILD BENCHMARK"
+echo "==================================================================="
+
+# Clean Hugo build
+cd "$HUGO_DIR"
+rm -rf public/
+
+hugo_times=()
+for i in $(seq 1 "$PASSES"); do
+    echo -n "Pass $i/$PASSES: "
+
+    # Measure build time and peak memory
+    /usr/bin/time -l devenv shell hugo-build 2>&1 | tee /tmp/hugo_bench_$i.log >/dev/null
+
+    # Extract real time (wall clock time)
+    real_time=$(grep "real" /tmp/hugo_bench_$i.log | awk '{print $1}')
+
+    # Extract peak memory usage (in bytes, convert to MB)
+    peak_mem=$(grep "maximum resident set size" /tmp/hugo_bench_$i.log | awk '{printf "%.1f", $1/1024/1024}')
+
+    hugo_times+=("$real_time")
+
+    echo "Time: ${real_time}s, Peak Memory: ${peak_mem} MB"
+
+    # Clean for next pass
+    rm -rf public/
+    sleep 1
+done
+
+echo ""
+
+echo "==================================================================="
+echo "SVELTEKIT BUILD BENCHMARK"
+echo "==================================================================="
+
+# Clean SvelteKit build
+cd "$SVELTE_DIR"
+rm -rf build/
+
+svelte_times=()
+for i in $(seq 1 "$PASSES"); do
+    echo -n "Pass $i/$PASSES: "
+
+    # Measure build time and peak memory
+    /usr/bin/time -l npm run build 2>&1 | tee /tmp/svelte_bench_$i.log >/dev/null
+
+    # Extract real time (wall clock time)
+    real_time=$(grep "real" /tmp/svelte_bench_$i.log | awk '{print $1}')
+
+    # Extract peak memory usage (in bytes, convert to MB)
+    peak_mem=$(grep "maximum resident set size" /tmp/svelte_bench_$i.log | awk '{printf "%.1f", $1/1024/1024}')
+
+    svelte_times+=("$real_time")
+
+    echo "Time: ${real_time}s, Peak Memory: ${peak_mem} MB"
+
+    # Clean for next pass
+    rm -rf build/ .svelte-kit/
+    sleep 1
+done
+
+echo ""
+
+echo "==================================================================="
+echo "SUMMARY"
+echo "==================================================================="
+
+# Calculate average times
+hugo_avg=$(printf '%s\n' "${hugo_times[@]}" | awk '{sum+=$1} END {printf "%.2f", sum/NR}')
+svelte_avg=$(printf '%s\n' "${svelte_times[@]}" | awk '{sum+=$1} END {printf "%.2f", sum/NR}')
+
+echo "Hugo average build time: ${hugo_avg}s"
+echo "SvelteKit average build time: ${svelte_avg}s"
+echo ""
+
+# Calculate percentage difference
+if (( $(echo "$hugo_avg > $svelte_avg" | bc -l) )); then
+    pct=$(echo "scale=1; (($hugo_avg - $svelte_avg) / $hugo_avg) * 100" | bc)
+    echo "SvelteKit is ${pct}% faster"
+else
+    pct=$(echo "scale=1; (($svelte_avg - $hugo_avg) / $svelte_avg) * 100" | bc)
+    echo "Hugo is ${pct}% faster"
+fi
+
+echo ""
+echo "==================================================================="
+echo "DEV SERVER MEMORY USAGE"
+echo "==================================================================="
+echo "Starting dev servers to measure memory usage..."
+echo "Each server will run for 30 seconds while monitoring memory."
+echo ""
+
+# Hugo dev server memory
+echo -n "Hugo dev server: "
+cd "$HUGO_DIR"
+devenv shell hugo-dev >/dev/null 2>&1 &
+HUGO_PID=$!
+sleep 5  # Give it time to start
+
+# Monitor memory for 30 seconds
+hugo_mem_samples=()
+for i in {1..30}; do
+    if ps -p $HUGO_PID > /dev/null; then
+        mem=$(ps -o rss= -p $HUGO_PID | awk '{printf "%.1f", $1/1024}')
+        hugo_mem_samples+=("$mem")
+    fi
+    sleep 1
+done
+
+kill $HUGO_PID 2>/dev/null || true
+wait $HUGO_PID 2>/dev/null || true
+
+hugo_mem_avg=$(printf '%s\n' "${hugo_mem_samples[@]}" | awk '{sum+=$1} END {printf "%.1f", sum/NR}')
+hugo_mem_max=$(printf '%s\n' "${hugo_mem_samples[@]}" | sort -n | tail -1)
+echo "Average: ${hugo_mem_avg} MB, Peak: ${hugo_mem_max} MB"
+
+sleep 2
+
+# SvelteKit dev server memory
+echo -n "SvelteKit dev server: "
+cd "$SVELTE_DIR"
+npm run dev >/dev/null 2>&1 &
+SVELTE_PID=$!
+sleep 5  # Give it time to start
+
+# Monitor memory for 30 seconds
+svelte_mem_samples=()
+for i in {1..30}; do
+    if ps -p $SVELTE_PID > /dev/null; then
+        mem=$(ps -o rss= -p $SVELTE_PID | awk '{printf "%.1f", $1/1024}')
+        svelte_mem_samples+=("$mem")
+    fi
+    sleep 1
+done
+
+kill $SVELTE_PID 2>/dev/null || true
+wait $SVELTE_PID 2>/dev/null || true
+
+svelte_mem_avg=$(printf '%s\n' "${svelte_mem_samples[@]}" | awk '{sum+=$1} END {printf "%.1f", sum/NR}')
+svelte_mem_max=$(printf '%s\n' "${svelte_mem_samples[@]}" | sort -n | tail -1)
+echo "Average: ${svelte_mem_avg} MB, Peak: ${svelte_mem_max} MB"
+
+echo ""
+echo "==================================================================="
+echo "BENCHMARK COMPLETE"
+echo "==================================================================="
+
+# Cleanup
+rm -f /tmp/hugo_bench_*.log /tmp/svelte_bench_*.log
+```

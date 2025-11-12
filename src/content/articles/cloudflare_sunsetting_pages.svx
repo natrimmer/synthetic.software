@@ -1,0 +1,65 @@
+---
+title: "Cloudflare Sunsetting Pages"
+date: 2025-08-12
+tags: ["cloudflare", "workers", "pages", "migration", "web development"]
+---
+
+<p>
+    If you travel to the
+    <a
+        href="https://developers.cloudflare.com/pages/"
+        aria-label="View Cloudflare Pages documentation"
+        label="Cloudflare Pages documentation"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="hover:text-mondrian_blue transition-colors focus:outline focus:outline-offset-2 focus:outline-mondrian_blue underline"
+        >Cloudflare Pages documentation</a
+    >, you may notice the sparkly little link shown below on the left-hand
+    toolbar:
+</p>
+<figure class="my-2 w-60 mx-auto">
+    <img
+        src="/assets/images/articles/migrate_to_workers.gif"
+        alt="Migration to Cloudflare Workers"
+        class="w-full border border-mondrian_black shadow-mondrian"
+    />
+    <figcaption class="text-center text-sm text-gray-500">
+        <em>Sparkly little link</em>
+    </figcaption>
+</figure>
+<p>
+    That link will take you to a
+    <a
+        href="https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/"
+        aria-label="View migration guide from Pages to Workers"
+        label="Migration guide from Pages to Workers"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="hover:text-mondrian_blue transition-colors focus:outline focus:outline-offset-2 focus:outline-mondrian_blue underline"
+        >migration guide</a
+    >. While Cloudflare hasn't officially announced Pages' deprecation, their
+    strategic direction is clear. In their recent
+    <a
+        href="https://blog.cloudflare.com/full-stack-development-on-cloudflare-workers/"
+        aria-label="View Cloudflare's full-stack development blog post"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="hover:text-mondrian_blue transition-colors focus:outline focus:outline-offset-2 focus:outline-mondrian_blue underline"
+        >full-stack development post</a
+    >:
+</p>
+<blockquote
+    class="my-4 pl-4 border-l-4 border-mondrian_blue text-mondrian_dark_gray italic"
+>
+    "Cloudflare Pages will continue to be supported, but, going forward, all of
+    our investment, optimizations, and feature work will be dedicated to
+    improving Workers. Now that Workers supports both serving static assets
+    <b>and</b>
+    server-side rendering, you should <b>start with Workers</b>."
+</blockquote>
+<p>
+    The message is clear: while Pages isn't going away immediately, Workers is
+    the platform receiving active development. When rolling out this site, I had
+    intended on using Pages. However, noticing all the above I went with Workers
+    instead, despite being fully static.
+</p>

@@ -1,0 +1,203 @@
+---
+title: "Recommended Software"
+date: 2025-04-17
+updated: 2025-07-18
+type: "notes"
+tags: ["software", "tools", "productivity", "macOS", "open source", "recommendations", "linked list"]
+---
+
+<table
+    class="w-full border-collapse border border-mondrian_white"
+    aria-describedby="table-note"
+>
+    <caption class="sr-only">
+        List of recommended software
+    </caption>
+    <thead>
+        <tr
+            class="border-b border-b-mondrian_black bg-mondrian_white text-left font-sans"
+        >
+            <th class="w-1/6 pl-1" scope="col">Software</th>
+            <th scope="col">Description</th>
+            <th class="w-1/12 pl-1" scope="col">Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                Zed
+            </td>
+            <td class="text-sm align-top py-1">
+                Zed is a code editor built in Rust that prioritizes speed and
+                responsiveness. Super clean and minimalist UI that's similar to
+                VS Code, but it's more lightweight and faster. The dev team
+                pushes updates based on user feedback regularly. And it's open
+                source!
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="https://zed.dev/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Zed site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                Raycast
+            </td>
+            <td class="text-sm align-top py-1">
+                Raycast is a productivity tool that replaces your Mac's
+                Spotlight with a customizable command center, allowing quick
+                access to apps, files, and services through extensible plugins
+                and keyboard shortcuts.
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="https://www.raycast.com/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Raycast site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                GNU Emacs
+            </td>
+            <td class="text-sm align-top py-1">
+                GNU Emacs, possibly the perfect text editor.
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="https://www.gnu.org/software/emacs/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open GNU Emacs site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                1Password
+            </td>
+            <td class="text-sm align-top py-1">
+                1Password is the essential tool I recommend to everyone – it
+                securely manages all your passwords and syncs across devices.
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="https://1password.com/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open 1Password site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                AeroSpace
+            </td>
+            <td class="text-sm align-top py-1">
+                "AeroSpace is an i3-like tiling window manager for macOS". As a
+                tiling window manager proselitizer, it is an absolute necessity
+                for macOS. It's the closest I've gotten to the DWM heaven.
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="https://github.com/nikitabobko/AeroSpace"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open AeroSpace GitHub site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot id="table-note">
+        <tr>
+            <th
+                colspan="3"
+                class="text-xs text-mondrian_dark_gray p-1 text-left"
+            >
+                Notes:
+            </th>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-xs text-mondrian_dark_gray p-1">
+                There is no particular order.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-xs text-mondrian_dark_gray p-1">
+                If a link is dead or the site is down,
+                <a
+                    href="/contact/"
+                    class="underline hover:text-mondrian_red transition-colors"
+                    aria-label="Contact link"
+                    >please let me know</a
+                >.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-xs text-mondrian_dark_gray p-1">
+                I removed `warp.dev` from this list. I enjoyed using it until
+                too many AI features were pushed into the product. I kept
+                accidently triggering a chat, and then having to turn those
+                features off. Half of the features I liked about it can be
+                replicated using PS_PROMPT and PS1 in your shell configuration.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-xs text-mondrian_dark_gray p-1">
+                I removed Obsidian from this list. I've been disillusioned by
+                the markdown, Obsidian obsession of late. It is ironically
+                starting to feel less extensible and more bloated. On top of
+                that, the more I learn about org mode, the more it rounds out
+                the rough edges of using markdown for personal knowledge
+                management and overall digital organization. I'll be writing
+                more on this soon.
+            </td>
+        </tr>
+    </tfoot>
+</table>

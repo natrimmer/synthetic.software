@@ -1,0 +1,60 @@
+---
+title: "Brodsky: art and perseverance"
+date: 2025-01-10
+updated: 2025-09-08
+type: "notes"
+tags: ["Brodsky", "art", "poetry", "history", "perseverance", "Akhmatova", "Glück", "morality"]
+---
+
+<div class="pl-2 border-l-2">
+    <blockquote class="mb-2" cite="The Keening Muse">
+        <p>
+            More than any other art, poetry is a form of sentimental education,
+            and the lines that Akhmatova readers learned by heart were to temper
+            their hearts against the new era's onslaught of vulgarity. The
+            comprehension of the metaphysics of personal drama betters one's
+            chances of weathering the drama of history. This is why, and not
+            because of the epigrammatic beauty of her lines only, the public
+            clung to them so unwittingly. It was an instinctive reaction; the
+            instinct being that of self-preservation, for the stampede of
+            history was getting more and more audible.
+        </p>
+        <footer>—Joseph Brodsky, <cite>The Keening Muse</cite></footer>
+    </blockquote>
+</div>
+<p>
+    I haven't read much of Akhmatova, but I can't help but think about Louise
+    Glück's Parable of the King when I read this quote. Glück's king embodies
+    exactly the kind of morally blind leadership that creates the historical
+    'onslaught' Brodsky describes - and when faced with that corruption, we can
+    find solace in the aspects of humanity that bring us closer, particularly
+    art. It isn't prescriptive, but it is a form of perseverance.
+</p>
+<div class="pl-2 border-l-2 mt-4">
+    <blockquote class="mb-2" cite="Louise Glück">
+        <p>
+            The great king looking ahead<br />
+            saw not fate but simply<br />
+            dawn glittering over<br />
+            the unknown island: as a king<br />
+            he thought in the imperative—best<br />
+            not to reconsider direction, best<br />
+            to keep going forward<br />
+            over the radiant water. Anyway,<br />
+            what is fate but a strategy for ignoring<br />
+            history, with its moral<br />
+            dilemmas, a way of regarding<br />
+            the present, where decisions<br />
+            are made, as the necessary<br />
+            link between the past (images of the king<br />
+            as a young prince) and the glorious future (images<br />
+            of slave girls). Whatever<br />
+            it was ahead, why did it have to be<br />
+            so blinding? Who could have known<br />
+            that wasn't the usual sun<br />
+            but flames rising over a world<br />
+            about to become extinct?
+        </p>
+        <footer>—Louise Glück, <cite>Parable of the King</cite></footer>
+    </blockquote>
+</div>

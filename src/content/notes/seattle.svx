@@ -1,0 +1,228 @@
+---
+date: 2025-07-18
+updated: 2025-09-08
+tags: ["Seattle", "recommendations", "linked list"]
+title: "Seattle - Recommendations & Notes"
+---
+
+<table
+    class="w-full border-collapse border border-mondrian_white"
+    aria-describedby="table-note"
+>
+    <caption class="sr-only">
+        List of recommendations and notes about Seattle
+    </caption>
+    <thead>
+        <tr
+            class="border-b border-b-mondrian_black bg-mondrian_white text-left font-sans"
+        >
+            <th class="w-1/6 pl-1" scope="col">Place</th>
+            <th scope="col">Description</th>
+            <th class="w-1/12 pl-1" scope="col">Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                Le Caviste
+            </td>
+            <td class="text-sm align-top py-1">
+                A French wine bar in South Lake Union, great prices and great
+                staff.
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="http://lecavisteseattle.com/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Le Caviste site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                Cafe Suliman
+            </td>
+            <td class="text-sm align-top py-1">
+                Small Middle Eastern cafe in the Melrose Market. It's wonderful.
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="https://www.cafesuliman.com/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Cafe Suliman site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                L'Oursin
+            </td>
+            <td class="text-sm align-top py-1">
+                French café attitude and fare. It's a great meal, and the bar
+                program is top notch too with one of the best collections of
+                Calvados in the city.
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="https://www.loursinseattle.com/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open L'Oursin site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                Local Tide
+            </td>
+            <td class="text-sm align-top py-1">
+                Fremont seafood spot. It's casual. It's delicious. It's
+                consistently perfect. The shrimp toast is a must.
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="https://www.localtide.com/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Local Tide site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                Espresso Vivace
+            </td>
+            <td class="text-sm align-top py-1">
+                Espresso Vivace is a coffee roaster and cafe in Capitol Hill,
+                with another location in South Lake Union. My favorite coffee in
+                the city.
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="https://espressovivace.com/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Espresso Vivace site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                Temple Pastries
+            </td>
+            <td class="text-sm align-top py-1">
+                Insane pastries. The chocolate buckwheat shortbread is my
+                favorite. (and the cardamom almond brioche wow)
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="https://www.templepastries.com/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Temple Pastries site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+        <tr
+            class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray"
+        >
+            <td
+                class="text-left font-mono text-xs align-top pt-1 pl-1"
+                scope="row"
+            >
+                Market House Meats
+            </td>
+            <td class="text-sm align-top py-1">
+                The best reuben sandwich in Seattle. You'll need a nap
+                afterwards, but it is very much worth it.
+            </td>
+            <td class="align-top p-1">
+                <a
+                    href="http://www.markethousemeats.co/"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Market House Meats site in a new tab"
+                >
+                    LINK →
+                </a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot id="table-note">
+        <tr>
+            <th
+                colspan="3"
+                class="text-xs text-mondrian_dark_gray p-1 text-left"
+            >
+                Notes:
+            </th>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-xs text-mondrian_dark_gray p-1">
+                The places here are in no particular order.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-xs text-mondrian_dark_gray p-1">
+                If a link is dead or the site is down,
+                <a
+                    href="/contact/"
+                    class="underline hover:text-mondrian_red transition-colors"
+                    aria-label="Contact link"
+                    >please let me know</a
+                >.
+            </td>
+        </tr>
+    </tfoot>
+</table>
