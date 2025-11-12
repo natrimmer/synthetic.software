@@ -28,7 +28,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 CARI Aesthetics
             </td>
@@ -55,7 +54,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Modern Font Stacks
             </td>
@@ -82,7 +80,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 MAKING SOFTWARE
             </td>
@@ -108,7 +105,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Leah Neukirchen's site
             </td>
@@ -136,7 +132,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Bitsavers
             </td>
@@ -160,7 +155,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Minifeed
             </td>
@@ -185,7 +179,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 CSS Screensavers
             </td>
@@ -209,7 +202,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Summer Afternoon
             </td>
@@ -242,7 +234,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Modern Font Stacks
             </td>
@@ -268,7 +259,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Diceware
             </td>
@@ -292,7 +282,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Scan of the Month
             </td>
@@ -317,7 +306,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 oimo.io
             </td>
@@ -342,7 +330,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Generated Space
             </td>
@@ -367,7 +354,6 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 How to Center in CSS
             </td>

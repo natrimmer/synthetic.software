@@ -28,7 +28,6 @@ tags: ["software", "tools", "productivity", "macOS", "open source", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Zed
             </td>
@@ -56,7 +55,6 @@ tags: ["software", "tools", "productivity", "macOS", "open source", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 Raycast
             </td>
@@ -83,7 +81,6 @@ tags: ["software", "tools", "productivity", "macOS", "open source", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 GNU Emacs
             </td>
@@ -107,7 +104,6 @@ tags: ["software", "tools", "productivity", "macOS", "open source", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 1Password
             </td>
@@ -132,7 +128,6 @@ tags: ["software", "tools", "productivity", "macOS", "open source", "recommendat
         >
             <td
                 class="text-left font-mono text-xs align-top pt-1 pl-1"
-                scope="row"
             >
                 AeroSpace
             </td>
