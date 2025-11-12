@@ -1,33 +1,31 @@
 # synthetic.software
 
-A Hugo-based personal website featuring automated feed processing and blogroll generation.
-
 ## Overview
 
 This project contains the source code for synthetic.software, a personal website that combines:
 
-- A Hugo static site generator setup
-- Custom Go tools for content automation
+- A SvelteKit static site generator
+- Custom TypeScript tools for content automation
 - Cloudflare Workers deployment
 - Nix development environment
 
 ## Architecture
 
-- **Hugo Site**: Static site generator configuration with custom themes and layouts
-- **Feed Processor**: Go tool that processes text files from a queue into Hugo content with automatic tagging
-- **Blogroll Generator**: Go tool that fetches RSS feeds and generates YAML data files
-- **Cloudflare Worker**: Simple static asset serving worker
+- **SvelteKit Site**: Static site generator with TypeScript components and server-side rendering
+- **Blogroll Generator**: TypeScript tool that fetches RSS feeds and generates YAML data files
+- **Changelog Generator**: TypeScript tool that parses git history and generates version changelog
+- **Cloudflare Worker**: Static asset serving worker
 
 ## Project Structure
 
 ```
-content/          # Hugo content (articles, notes, feed items)
-layouts/          # Hugo templates and partials
-static/           # Static assets (fonts, images, icons)
-tools/            # Go automation tools
-  cmd/            # Command-line applications
-  internal/       # Shared Go packages
-src/              # Cloudflare Worker source
+src/
+  content/              # Markdown content (articles, notes, feed items)
+  lib/components/       # Svelte components
+  routes/               # SvelteKit routes
+  scripts/              # Build automation scripts
+static/                 # Static assets (fonts, images, icons)
+build/                  # Build output directory
 ```
 
 ## Development
@@ -41,21 +39,52 @@ The project uses devenv for development environment management.
 ### Setup
 
 ```bash
-devenv shell
-hugo-dev
+dev
 ```
+
+The development server will be available at `http://localhost:5173` with hot module replacement.
 
 ## Content Management
 
 The site supports multiple content types:
 
-- **Articles**: Long-form technical content
-- **Feed**: Short-form posts processed from text files
+- **Articles**: Long-form technical content (`.svx` files with frontmatter)
+- **Feed**: Short-form posts organized by date
 - **Notes**: Curated links and brief observations
 - **Blogroll**: Automatically generated from RSS feeds
 
-Feed items are processed from text files placed in the `queue/` directory, with automatic tag extraction and Hugo frontmatter generation.
+All content is written in Markdown with frontmatter and processed at build time.
+
+## Build
+
+Build the SvelteKit site:
+
+```bash
+build
+```
+
+The build process:
+
+1. Runs prebuild scripts (version, blogroll, changelog generation)
+2. Syncs SvelteKit routes
+3. Builds the site with Vite
+4. Removes JavaScript files (static-only output)
+
+Build output is in `syn_svelte/build/`.
 
 ## Deployment
 
-The site is deployed to Cloudflare Pages with a custom worker for static asset serving.
+The site is deployed to Cloudflare Workers with static asset serving.
+
+The worker serves static assets from `build/` as configured in `wrangler.jsonc`.
+
+## Migration from Hugo
+
+This project was previously built with Hugo and has been migrated to SvelteKit. The migration resulted in:
+
+- 55% smaller build output
+- 63% smaller HTML per page
+- Better developer experience with TypeScript throughout
+- Better tooling (Vite HMR, Prettier, ESLint)
+
+See `src/content/articles/hugo_to_sveltekit.svx` for the full migration report and benchmarks.
