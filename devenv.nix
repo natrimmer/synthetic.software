@@ -20,7 +20,7 @@
 
     build.exec = ''
       pnpm install
-      pnpm run build
+      pnpm run build:full
     '';
 
     dev.exec = ''
@@ -30,7 +30,7 @@
 
     serve.exec = ''
       pnpm install
-      pnpm run build
+      pnpm run build:full
       npx serve build
     '';
 

@@ -5,7 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "npm run prebuild && vite build && npm run postbuild",
+		"build": "vite build && npm run postbuild",
+		"build:full": "npm run prebuild && npm run build",
 		"postbuild": "find build/_app -name '*.js' -delete && find build/_app -type d -empty -delete",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
@@ -40,7 +41,8 @@
 		"tsx": "^4.19.2",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.46.1",
-		"vite": "^7.1.10"
+		"vite": "^7.1.10",
+		"wrangler": "^4.47.0"
 	},
 	"dependencies": {
 		"rss-parser": "^3.13.0",
