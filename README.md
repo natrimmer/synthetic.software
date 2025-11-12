@@ -37,13 +37,57 @@ The project uses devenv for development environment management.
 - Nix (I'm a fan of [Determinate Nix](https://determinate.systems/))
 - [devenv.sh](https://devenv.sh)
 
-### Setup
+### Available Commands
+
+**Dependencies:**
+
+- `install` - Install/update dependencies
+
+**Build:**
+
+- `build` - Quick build (no content generation)
+- `build-full` - Full build with content generation
+- `generate` - Run content generation scripts only
+
+**Development:**
+
+- `dev` - Start development server
+- `preview` - Preview production build (run build first)
+- `serve` - Full build + preview (convenience combo)
+
+**Quality:**
+
+- `check` - Run type checks
+- `lint` - Run linter
+- `format` - Format code
+
+### Quick Start
 
 ```bash
+# First time setup
+install
+
+# Start development server
 dev
 ```
 
 The development server will be available at `http://localhost:5173` with hot module replacement.
+
+### Common Workflows
+
+```bash
+# Quick iteration on existing content
+build
+preview
+
+# Full production preview
+serve
+
+# Regenerate content only (blogroll, changelog)
+generate
+build
+preview
+```
 
 ## Content Management
 
@@ -58,20 +102,28 @@ All content is written in Markdown with frontmatter and processed at build time.
 
 ## Build
 
-Build the SvelteKit site:
+The project supports two build modes:
+
+**Quick Build** (for iteration):
 
 ```bash
 build
 ```
 
-The build process:
+**Full Build** (for production):
 
-1. Runs prebuild scripts (version, blogroll, changelog generation)
+```bash
+build-full
+```
+
+The full build process:
+
+1. Runs generation scripts (version, blogroll, changelog)
 2. Syncs SvelteKit routes
 3. Builds the site with Vite
 4. Removes JavaScript files (static-only output)
 
-Build output is in `syn_svelte/build/`.
+Build output is in `build/`.
 
 ## Deployment
 

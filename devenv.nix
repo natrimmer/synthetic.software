@@ -18,53 +18,88 @@
       echo hello from $GREET
     '';
 
-    build.exec = ''
+    # Dependency management
+    install.exec = ''
       pnpm install
+    '';
+
+    # Build commands
+    build.exec = ''
+      pnpm run build
+    '';
+
+    build-full.exec = ''
       pnpm run build:full
     '';
 
+    generate.exec = ''
+      pnpm run generate
+    '';
+
+    # Development
     dev.exec = ''
-      pnpm install
       pnpm run dev
     '';
 
-    serve.exec = ''
-      pnpm install
-      pnpm run build:full
-      npx serve build
+    preview.exec = ''
+      pnpm run preview
     '';
 
+    # Convenience combos
+    serve.exec = ''
+      pnpm run build:full
+      pnpm run preview
+    '';
+
+    # Quality checks
     check.exec = ''
-      pnpm install
       pnpm run check
     '';
 
     lint.exec = ''
-      pnpm install
       pnpm run lint
     '';
 
     format.exec = ''
-      pnpm install
       pnpm run format
     '';
 
     commands.exec = ''
       echo "Available commands:"
-      echo "  hello    - Greet from the environment"
-      echo "  build    - Install dependencies and build the project"
-      echo "  dev      - Install dependencies and start the development server"
-      echo "  serve    - Install dependencies, build the project, and serve it"
-      echo "  check    - Install dependencies and run type checks"
-      echo "  lint     - Install dependencies and run the linter"
-      echo "  format   - Install dependencies and format the code"
-      echo "  commands - List available commands"
+      echo ""
+      echo "Dependencies:"
+      echo "  install     - Install/update dependencies"
+      echo ""
+      echo "Build:"
+      echo "  build       - Quick build (no content generation)"
+      echo "  build-full  - Full build with content generation"
+      echo "  generate    - Run content generation scripts only"
+      echo ""
+      echo "Development:"
+      echo "  dev         - Start development server"
+      echo "  preview     - Preview production build (run build first)"
+      echo "  serve       - Full build + preview (convenience combo)"
+      echo ""
+      echo "Quality:"
+      echo "  check       - Run type checks"
+      echo "  lint        - Run linter"
+      echo "  format      - Format code"
+      echo ""
+      echo "Other:"
+      echo "  hello       - Greet from the environment"
+      echo "  commands    - Show this help"
     '';
   };
 
   enterShell = ''
+    echo ""
+    echo ""
     hello
     commands
+    echo ""
+    echo "💡 Tip: Run 'install' first if you haven't already"
+    echo ""
+    echo ""
   '';
 
   git-hooks.hooks = {
