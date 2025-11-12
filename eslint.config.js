@@ -39,6 +39,7 @@ export default defineConfig(
 		},
 		rules: {
 			// Disable for now because it triggers on external links
+			// following: https://github.com/sveltejs/eslint-plugin-svelte/issues/1353
 			'svelte/no-navigation-without-resolve': 'off'
 		}
 	}
