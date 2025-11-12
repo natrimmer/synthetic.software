@@ -34,7 +34,8 @@ The project uses devenv for development environment management.
 
 ### Prerequisites
 
-- Nix
+- Nix (I'm a fan of [Determinate Nix](https://determinate.systems/))
+- [devenv.sh](https://devenv.sh)
 
 ### Setup
 
