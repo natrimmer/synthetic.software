@@ -63,7 +63,7 @@
 	{#if data.directory.items.length === 0}
 		<p class="mt-4 text-mondrian_dark_gray">No feed items in this period.</p>
 	{:else}
-		<section class="mt-4">
+		<section class="mt-4 mb-4">
 			<div class="overflow-x-auto font-mono text-xs sm:text-sm">
 				{#each data.directory.items as post (post.url)}
 					{@const ContentComponent = getContentComponent(post.url)}
@@ -140,7 +140,7 @@
 				</footer>
 			{/if}
 		</article>
-		<nav class="mt-4 border-t border-gray-300 pt-4">
+		<nav class="mt-4 mb-4">
 			<div class="flex items-center justify-between">
 				<div>
 					{#if data.feedItem.prev}
@@ -148,7 +148,7 @@
 							href={resolve(data.feedItem.prev.url as '/')}
 							class="border border-mondrian_black bg-mondrian_white px-3 py-2 font-mono text-sm shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
 						>
-							←{data.feedItem.prev.title}</a
+							← {data.feedItem.prev.title}</a
 						>
 					{/if}
 				</div>

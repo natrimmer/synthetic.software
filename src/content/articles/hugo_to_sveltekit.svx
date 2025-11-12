@@ -1,7 +1,7 @@
 ---
 title: "Hugo to SvelteKit: Migration Report"
 date: 2025-11-10
-tags: ["hugo", "sveltekit", "migration", "static sites", "web development"]
+tags: ["hugo", "go", "typescript", "sveltekit", "migration", "static sites", "web development"]
 ---
 
 I recently migrated synthetic.software from Hugo to SvelteKit. Both builds are production-ready, so I compared them to see what changed.

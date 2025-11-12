@@ -1,33 +1,30 @@
 ---
 title: "What is the Blogroll?"
 date: 2025-07-23
-tags: ["blogroll", "site meta", "rss", "go", "hugo", "devenv", "design"]
+updated: 2025-11-12
+tags: ["blogroll", "site meta", "rss", "typescript", "sveltekit", "design", "hugo", "go"]
 ---
 
 <h2 class="text-2xl font-bold">Background</h2>
-<p class="mb-2">
-    Sharing and working in public is an ideal that I try to aspire to. Those are
-    two different ideas worth exploring. Sharing in this context means sharing
-    the great work of others, and helping them get more visibility in the small
-    way that I can. Working in public, in this context, means sharing more of my
-    own habits, routines, and the way I live, engage in the world. The blogroll
-    does both of these. It shares writings of others, and it shares what I am
-    reading and what I find interesting. It does so in an interesting way as
-    well. That's what I'll break down here.
+<p>
+    Sharing and working in public is an ideal I aspire to. These are two
+    distinct ideas worth exploring. Sharing means amplifying the work of others
+    and helping them gain visibility. Working in public means being transparent
+    about my own habits, routines, and how I engage with the world. The blogroll
+    accomplishes both: it showcases what others are writing while revealing what
+    I'm reading and finding valuable.
 </p>
-<p class="mb-4">
-    If you're already here wondering what the blogroll I'm referring to is, you
-    should visit it
+<p>
+    If you're wondering what blogroll I'm referring to, visit it
     <a
         href="/blogroll"
         class="underline hover:text-mondrian_red transition-colors"
         >here</a
     >
-    and come back. That being said, a blogroll is a list of links to blogs and
-    websites updated using RSS/Atom feeds. It is a way to aggregate content from
-    multiple sources into one place, allowing readers to curate their own
-    personalized media feed. The inspiration for this blogroll comes from Alex
-    Kladov's blog "matklad", specifically the post
+    and come back. The blogroll is a curated list of blogs and websites that
+    updates automatically using RSS/Atom feeds. It aggregates content from
+    multiple sources into one place, creating a personalized feed. The
+    inspiration comes from Alex Kladov's blog "matklad", specifically the post
     <a
         href="https://matklad.github.io/2025/06/26/rssssr.html"
         class="underline hover:text-mondrian_red transition-colors"
@@ -36,63 +33,21 @@ tags: ["blogroll", "site meta", "rss", "go", "hugo", "devenv", "design"]
         target="_blank"
         title="matklad's blog post: RSS Server Side Reader"
         >"RSS Server Side Reader"</a
-    >. If you want to know more about RSS/Atom feeds, you should read their
-    brief primer on it in that post. It explains it better than I could.
+    >. For more context on RSS/Atom feeds, read their primer—it's more thorough
+    than what I could provide here.
 </p>
 <h2 class="text-2xl font-bold">How it works</h2>
-<p class="mb-2">
-    The goal of software is to abstract away complexity. I take the same
-    approach when building my development environment and CI/CD pipelines. This
-    allows for easy and reliable builds, and during development, it serves as a
-    reproducible way to perform common tasks with minimal overhead.
+<p>
+    The blogroll implementation consists of three components: a TypeScript script
+    that fetches and processes RSS feeds, a YAML data file generated at build
+    time, and a Svelte component that renders the final page. Here's how they
+    work together.
 </p>
-<p class="mb-4">
-    My blogroll implementation has three main components: a build wrapper script
-    that orchestrates everything, a Go binary that fetches RSS feeds and
-    generates data, and a Hugo template that renders the final page. Let me walk
-    through how they work together.
-</p>
-<h3 class="text-lg font-semibold">Build Wrapper Script</h3>
-<p class="mb-2">
-    Hugo doesn't have built-in hooks for running arbitrary commands during the
-    build process, so I created a wrapper script around
-    <code class="code-inline">hugo build</code> using devenv. Devenv allows you
-    to define your development environment declaratively in a
-    <code class="code-inline">devenv.nix</code> file, including dependencies,
-    scripts, processes, and precommit hooks.
-</p>
-<p class="mb-2">
-    The wrapper script preprocesses data before Hugo generates the production
-    build. When I run <code class="code-inline">hugo-build</code> (locally or in
-    CI), it triggers this call stack:
-</p>
-<ol class="list-decimal list-outside pl-4 mb-4">
-    <li>
-        <code class="code-inline">hugo-build:</code> preprocesses data and
-        provides Hugo with additional build data
-    </li>
-    <li>
-        <code class="code-inline">hugo-update-blogroll:</code> calls the Go
-        blogroll generator
-    </li>
-    <li>
-        <code class="code-inline">blogroll-generator-run:</code> ensures the
-        binary is built and runs it
-    </li>
-    <li>
-        <code class="code-inline">blogroll-generator-build:</code> builds the Go
-        binary
-    </li>
-</ol>
-<p class="mb-4">
-    This creates a <code class="code-inline">blogroll.yaml</code> data file that
-    Hugo can use during its build process. All of these scripts can be called
-    individually for development purposes, but the stack is designed to be
-    simple to use in practice.
-</p>
-<h3 class="text-lg font-semibold">Go Code</h3>
-<p class="mb-2">
-    The Go program is responsible for fetching RSS feeds from
+<h3 class="text-lg font-semibold">TypeScript Generator</h3>
+<p>
+    The TypeScript script
+    <code class="code-inline">scripts/generate-blogroll.ts</code> handles feed
+    fetching and data generation. It reads feed URLs from
     <a
         href="/assets/blogroll.txt"
         class="code-inline underline transition-colors hover:text-mondrian_blue"
@@ -100,66 +55,76 @@ tags: ["blogroll", "site meta", "rss", "go", "hugo", "devenv", "design"]
         target="_blank"
         rel="noopener noreferrer"
         >/static/assets/blogroll.txt</a
-    >, parsing them, and generating a YAML file that Hugo can use. The program
-    is intended to be error resilient, if one feed is down or malformed, it logs
-    the error and continues processing the rest rather than failing the entire
-    build.
+    >, fetches each feed using the <code class="code-inline">rss-parser</code>
+    library, and generates a YAML file that SvelteKit consumes during the build.
 </p>
-<p class="mb-2">
-    I deliberately keep the extracted data minimal: title, URL, date, domain,
-    and feed URL. This gives readers enough context to decide what interests
-    them without overwhelming the page. The program handles both RSS and Atom
-    formats by attempting RSS parsing first, then falling back to Atom if that
-    fails.
+<p>
+    The extracted data is deliberately minimal: title, URL, date, domain, and feed
+    URL. This provides enough context for readers to evaluate posts without
+    overwhelming the interface.
 </p>
-<p class="mb-2">
-    One of the more interesting aspects was date parsing. RSS and Atom feeds use
-    wildly different date formats, so the parser tries nine different time
-    formats before giving up on a post. The program also limits each feed to the
-    three most recent posts, then sorts everything chronologically across all
-    feeds to create a unified timeline.
+<p>
+    The <code class="code-inline">rss-parser</code> library handles both RSS and
+    Atom formats transparently, normalizing dates to ISO format regardless of
+    the feed's original date format. The script limits each feed to three recent
+    posts, then sorts everything chronologically to create a unified timeline
+    across all sources.
 </p>
-<p class="mb-4">
-    The blogroll.txt file supports comments (lines starting with #) and
-    automatically filters out empty lines, making it easy to organize and
-    temporarily disable feeds without deleting URLs entirely.
+<p>
+    The <code class="code-inline">blogroll.txt</code> file supports comments
+    (lines starting with #) and automatically filters empty lines, making it
+    straightforward to organize feeds or temporarily disable sources without
+    deletion.
 </p>
-<h3 class="text-lg font-semibold">Hugo Template</h3>
-<p class="mb-2">
-    The Hugo template is where the blogroll comes to life visually. I wanted to
-    create something that felt distinctly technical while remaining readable, so
-    I designed it around a terminal aesthetic that would resonate with the
-    developer audience likely to discover RSS feeds interesting.
+<h3 class="text-lg font-semibold">Build Integration</h3>
+<p>
+    The blogroll generator runs during the prebuild phase via
+    <code class="code-inline">scripts/prebuild.ts</code>, which orchestrates
+    version generation, blogroll updates, and changelog creation. This happens
+    before SvelteKit's build process begins, ensuring the generated data is
+    available when routes are rendered.
 </p>
-<p class="mb-2">
-    The template starts with a simulated <code class="code-inline">bat</code>
-    command output showing the contents of blogroll.txt. This serves both as
-    transparency (showing exactly which feeds are being followed) and as a
-    visual hook. The template deduplicates feed URLs for this display since
-    multiple recent posts can come from the same feed, building up a unique list
-    as it processes the data. The template handles the case where no blogroll
-    data exists, showing helpful instructions to run the generator.
+<p>
+    The workflow is: run prebuild scripts → generate YAML data → SvelteKit
+    builds routes → static HTML output. In development, you can regenerate the
+    blogroll independently with
+    <code class="code-inline">pnpm run generate:blogroll</code>. To keep the
+    site updated with the latest posts, the blogroll as ran on a "cron"
+    job, scheduled daily via GitHub Actions.
 </p>
-<p class="mb-4">
-    Below that, the posts are displayed in a clean table format with hover
-    effects and external link indicators. I used semantic HTML throughout:
-    proper table headers with <code class="code-inline">scope</code> attributes,
-    <code class="code-inline">time</code> elements with
-    <code class="code-inline">datetime</code> attributes, and descriptive
-    <code class="code-inline">aria-label</code> text for screen readers.
+<h2 class="text-2xl font-bold">Update: Migration to TypeScript</h2>
+<p>
+    When I migrated this site from Hugo to SvelteKit (detailed in
+    <a
+        href="/articles/hugo_to_sveltekit"
+        class="underline hover:text-mondrian_red transition-colors"
+        >Hugo to SvelteKit: Migration Report</a
+    >), the blogroll generator moved from Go to TypeScript. The core logic
+    remained nearly identical—both implementations are about 90 lines that fetch
+    feeds, parse them, and output YAML.
+</p>
+<p>
+    The TypeScript version brings meaningful improvements. Type definitions make
+    the data structure explicit. The tradeoff is dependencies. The Go version
+    used only the standard library,running with zero external dependencies.
+    The TypeScript version requires Node.js and two npm packages:
+    <code class="code-inline">rss-parser</code> and
+    <code class="code-inline">yaml</code>. For this project, the improved
+    developer experience and unified toolchain (everything in TypeScript) justify
+    the additional dependencies. The generator runs only at build time, so the
+    runtime remains dependency-free—just static HTML and CSS.
 </p>
 <h2 class="text-2xl font-bold">Closing thoughts</h2>
-<p class="mb-2">
-    Building this blogroll was as much about the process as the outcome. By
-    sharing both what I read and how I built the tool, I'm hoping to embody both
-    aspects of working in public: amplifying others' voices while being
-    transparent about my own methods and choices.
+<p>
+    Building this blogroll was as much about the process as the result. By
+    sharing both what I read and how I built the system, I'm trying to embody
+    both aspects of working in public: amplifying others' voices while being
+    transparent about my own methods.
 </p>
-<p class="mb-4">
-    If you're interested in setting up something similar, I highly recommend.
-    You're welcome to reach out and share any questions, feedback, or
-    interesting ideas you may have. You can find my contact information on the
-    contact page
+<p>
+    If you're interested in building something similar, I encourage you to try
+    it. Feel free to reach out with questions, feedback, or ideas. You can find
+    my contact information
     <a
         href="/contact"
         class="underline hover:text-mondrian_red transition-colors"

@@ -27,9 +27,18 @@
 		</div>
 		<div class="mb-4 space-y-3 text-sm leading-relaxed">
 			<p>
-				This site was originally written using a custom SSG, first in TypeScript, then in Go. Then I
-				realized I was bikeshedding or reinventing the wheel. Ultimately, I was just creating a
-				worse Hugo. That's when I transitioned the SSG generation to Hugo.
+				This site was originally written using a custom SSG, first in TypeScript, then in Go. After
+				realizing I was reinventing the wheel, I transitioned to Hugo. Eventually, Hugo's Go
+				templating became too restrictive—the lack of type safety and immature tooling made
+				development frustrating. I migrated to SvelteKit for TypeScript throughout, better component
+				ergonomics, and mature developer tooling. You can read more about the migration
+				<a
+					href={resolve('/articles/hugo_to_sveltekit' as '/')}
+					class="underline transition-colors hover:text-mondrian_blue"
+					aria-label="Link to Hugo to SvelteKit migration article"
+				>
+					here
+				</a>.
 			</p>
 		</div>
 
@@ -354,57 +363,25 @@
 						</h5>
 						<ul class="space-y-2.5 p-3">
 							{#each data.reading as item (item.title)}
-								<li class="text-xs leading-relaxed">
-									<div class="flex items-start gap-1.5">
-										<span
-											class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full border border-mondrian_black bg-mondrian_yellow"
-										></span>
-										<div>
-											<span class="font-semibold italic">{item.title}</span>
-											{#if item.authors}
-												<span class="text-mondrian_dark_gray">
-													, {item.authors.join(', ')}
-												</span>
-											{/if}
-										</div>
+								<li class="flex items-start gap-1.5 text-xs leading-relaxed">
+									<span
+										class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full border border-mondrian_black bg-mondrian_yellow"
+									></span>
+									<div class="flex-1">
+										<span class="font-semibold italic">{item.title}</span>
+										{#if item.authors}
+											<span class="text-mondrian_dark_gray">
+												, {item.authors.join(', ')}
+											</span>
+										{/if}
+										{#if item.notes}
+											<div
+												class="mt-1 border-l-2 border-mondrian_dark_gray pl-2 text-xs text-mondrian_dark_gray italic"
+											>
+												{item.notes}
+											</div>
+										{/if}
 									</div>
-									{#if item.notes}
-										<div
-											class="mt-1 border-l-2 border-mondrian_dark_gray pl-2 text-xs text-mondrian_dark_gray italic"
-										>
-											{item.notes}
-										</div>
-									{/if}
-								</li>
-							{/each}
-						</ul>
-					</div>
-				{/if}
-
-				<!-- Watching -->
-				{#if data.watching.length > 0}
-					<div class="border border-mondrian_black bg-mondrian_bright_white shadow-mondrian">
-						<h5
-							class="flex items-center border-b-2 border-dashed border-mondrian_black p-3 font-mono text-sm font-bold tracking-wide uppercase"
-						>
-							Watching
-						</h5>
-						<ul class="space-y-2.5 p-3">
-							{#each data.watching as item (item.title)}
-								<li class="text-xs leading-relaxed">
-									<div class="flex items-start gap-1.5 font-semibold italic">
-										<span
-											class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full border border-mondrian_black bg-mondrian_yellow"
-										></span>
-										<span>{item.title}</span>
-									</div>
-									{#if item.notes}
-										<div
-											class="mt-1 border-l-2 border-mondrian_dark_gray pl-2 text-xs text-mondrian_dark_gray italic"
-										>
-											{item.notes}
-										</div>
-									{/if}
 								</li>
 							{/each}
 						</ul>
@@ -474,6 +451,36 @@
 								</div>
 							{/if}
 						</div>
+					</div>
+				{/if}
+
+				<!-- Watching -->
+				{#if data.watching.length > 0}
+					<div class="border border-mondrian_black bg-mondrian_bright_white shadow-mondrian">
+						<h5
+							class="flex items-center border-b-2 border-dashed border-mondrian_black p-3 font-mono text-sm font-bold tracking-wide uppercase"
+						>
+							Watching
+						</h5>
+						<ul class="space-y-2.5 p-3">
+							{#each data.watching as item (item.title)}
+								<li class="flex items-start gap-1.5 text-xs leading-relaxed">
+									<span
+										class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full border border-mondrian_black bg-mondrian_yellow"
+									></span>
+									<div class="flex-1">
+										<span class="font-semibold italic">{item.title}</span>
+										{#if item.notes}
+											<div
+												class="mt-1 border-l-2 border-mondrian_dark_gray pl-2 text-xs text-mondrian_dark_gray italic"
+											>
+												{item.notes}
+											</div>
+										{/if}
+									</div>
+								</li>
+							{/each}
+						</ul>
 					</div>
 				{/if}
 			</div>

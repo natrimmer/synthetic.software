@@ -22,8 +22,8 @@ activity:
         notes: 'I crave butter everytime I pick this up.'
   watching:
     active:
-      - title: 'Mindhunter'
-      - title: 'Becoming Led Zeppelin'
+      - title: 'Pluribus'
+        notes: "Vince Gilligan's new sci-fi series. Already it's so good. It gets creepy, funny, and thought-provoking all at once. It reminds of His Master's Voice by Stanislaw Lem."
   listening:
     active:
       - title: 'The David Pakman Show'
@@ -44,10 +44,12 @@ activity:
       - title: 'Turn On The Bright Lights'
         artist: 'Interpol'
         type: 'music'
+        notes: 'A classic album that never gets old. Top 5.'
       - title: 'Fear'
         artist: 'John Cale'
         type: 'music'
-      - title: 'the chase'
+        notes: 'Dark and moody. John Cale is a legend.'
+      - title: 'LOTTO'
         artist: 'They Are Gutting a Body of Water'
         type: 'music'
         notes: 'Some of the best contemporary shoegaze.'
@@ -55,3 +57,11 @@ activity:
         artist: 'Neutral Milk Hotel'
         type: 'music'
         notes: 'Oh Comely gets stuck in my head for days.'
+      - title: 'Spiderland'
+        artist: 'Slint'
+        type: 'music'
+        notes: 'Always in rotation.'
+      - title: 'Goat'
+        artist: 'The Jesus Lizard'
+        type: 'music'
+        notes: "I don't even know where to start with this album. It is just so good."
