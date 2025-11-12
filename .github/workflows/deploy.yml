@@ -5,7 +5,7 @@ on:
     branches: [main]
   schedule:
     # Run at midnight UTC for blogroll updates
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
   workflow_dispatch: # Allow manual triggers
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Full history for Hugo git info
+          fetch-depth: 0 # Full history for build git info
 
       - name: Install Nix
         uses: cachix/install-nix-action@v26
@@ -32,17 +32,20 @@ jobs:
       - name: Build the devenv shell and run git hooks
         run: devenv test
 
-      - name: Build Hugo Tools
-        run: devenv shell tools-build
+      - name: Lint Sveltekit code
+        run: devenv shell lint
 
-      - name: Build Hugo Site
-        run: devenv shell hugo-build
+      - name: Check Sveltekit code
+        run: devenv shell check
+
+      - name: Build Site
+        run: devenv shell build
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          wranglerVersion: "4.25.1"
+          wranglerVersion: '4.25.1'
           command: deploy --config wrangler.jsonc
-          workingDirectory: "."
+          workingDirectory: '.'
