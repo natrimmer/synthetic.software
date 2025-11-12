@@ -44,7 +44,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate required files
-        run: pnpm run prebuild
+        run: pnpm run generate
 
       - name: Lint code
         run: pnpm run lint

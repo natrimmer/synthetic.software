@@ -5,8 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && npm run postbuild",
-		"build:full": "npm run prebuild && npm run build",
+		"build": "vite build",
+		"build:full": "pnpm run generate && pnpm run build",
 		"postbuild": "find build/_app -name '*.js' -delete && find build/_app -type d -empty -delete",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
@@ -14,7 +14,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"prebuild": "tsx scripts/prebuild.ts",
+		"generate": "tsx scripts/prebuild.ts",
 		"generate:blogroll": "tsx scripts/generate-blogroll.ts",
 		"generate:changelog": "tsx scripts/generate-changelog.ts"
 	},
