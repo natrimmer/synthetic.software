@@ -5,5 +5,10 @@ yarn.lock
 bun.lock
 bun.lockb
 
+# Generated files
+src/lib/data/blogroll.yaml
+src/lib/data/changelog.yaml
+src/lib/version.ts
+
 # Miscellaneous
 /static/
