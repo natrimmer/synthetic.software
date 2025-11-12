@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: devenv shell pnpm install
 
+      - name: Generate required files
+        run: devenv shell pnpm run prebuild
+
       - name: Build the devenv shell and run git hooks
         run: devenv test
 
