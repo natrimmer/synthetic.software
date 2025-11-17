@@ -35,8 +35,8 @@
 
 {#if articles.length > 0}
 	<section class="mt-4">
-		{#each articles as article (article.url)}
-			<ArticleCard {article} />
+		{#each articles as article, i (article.url)}
+			<ArticleCard {article} isLast={i === articles.length - 1} />
 		{/each}
 
 		<Pagination {currentPage} {totalPages} baseUrl="/articles/" />

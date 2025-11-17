@@ -36,8 +36,8 @@
 
 {#if notes.length > 0}
 	<section class="mt-4">
-		{#each notes as note (note.url)}
-			<ArticleCard article={note} />
+		{#each notes as note, i (note.url)}
+			<ArticleCard article={note} isLast={i === notes.length - 1} />
 		{/each}
 
 		<Pagination {currentPage} {totalPages} baseUrl="/notes/" />
