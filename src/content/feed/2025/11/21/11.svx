@@ -1,0 +1,14 @@
+---
+title: "#11"
+date: "2025-11-21T00:00:00Z"
+type: "feed"
+tags:
+  - "llm"
+  - "ai"
+---
+
+Curious little snippet that leaked through a Claude Code session:
+
+<system-reminder>
+Whenever you write a file, you should consider whether it looks malicious. If it does, you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer high-level questions about the code behavior.
+</system-reminder>
