@@ -55,9 +55,9 @@
 			</div>
 			<a
 				href={resolve('/blogroll/')}
-				class="font-mono text-xs text-mondrian_dark_gray transition-colors hover:text-mondrian_red hover:underline"
+				class="font-mono text-xs underline transition-colors hover:text-mondrian_red"
 				aria-label="View all blogroll posts"
-				title="View all blogroll posts">view all</a
+				title="View all blogroll posts">view all →</a
 			>
 		</div>
 		<ul class="space-y-1">
@@ -69,16 +69,16 @@
 						<span class="inline-flex items-center gap-1">
 							<span class="h-1.5 w-1.5 rounded-full border border-mondrian_black bg-mondrian_red"
 							></span>
-							<span class="font-mono underline decoration-mondrian_red">{post.domain}</span>
+							<span class="font-mono font-bold">{post.domain}</span>
 						</span>
 						<a
 							href={post.url}
 							class="ml-1 decoration-mondrian_yellow transition-colors hover:text-mondrian_yellow hover:underline"
 							target="_blank"
-							rel="noopener noreferrer external">{post.title}</a
+							rel="noopener noreferrer external">{post.title} →</a
 						>
 					</div>
-					<time datetime={post.date} class="shrink-0 font-mono text-mondrian_dark_gray">
+					<time datetime={post.date} class="shrink-0 font-mono">
 						{formatDate(post.date)}
 					</time>
 				</li>
