@@ -13,9 +13,9 @@
 <h1 class="pb-2 text-3xl font-semibold underline decoration-mondrian_yellow decoration-8">
 	Synthetic Software
 </h1>
-<h2 class="pb-4 text-xl font-semibold">I'm Nick, a DevOps engineer.</h2>
+<h2 class="pb-4 text-xl font-semibold">I'm Nick, a Platform engineer.</h2>
 <p class="pb-4">
-	I write about infrastructure, design, and how
+	I aspire to write about infrastructure, design, and how
 	<span
 		class="border border-mondrian_black bg-mondrian_blue px-1 py-0.5 font-mono text-sm font-extralight tracking-widest text-mondrian_white"
 		>simplicity & aestheticism</span
