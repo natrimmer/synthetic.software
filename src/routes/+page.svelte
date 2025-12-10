@@ -10,7 +10,7 @@
 	}
 </script>
 
-<h2 class="pb-4 text-xl font-semibold">I'm Nick, a Platform engineer.</h2>
+<h2 class="pb-4 text-xl font-semibold">I'm Nick, a platform engineer.</h2>
 <p class="pb-4">
 	I aspire to write about infrastructure, design, and how simplicity & aestheticism can make better
 	software.
