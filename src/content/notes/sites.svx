@@ -40,7 +40,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://cari.institute/aesthetics"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open CARI AESTHETICS site in a new tab"
@@ -66,7 +66,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://modernfontstacks.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open MODERN FONT STACKS site in a new tab"
@@ -91,7 +91,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://www.makingsoftware.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open MAKING SOFTWARE site in a new tab"
@@ -118,7 +118,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://leahneukirchen.org/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Leah Neukirchen's site in a new tab"
@@ -141,7 +141,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://bitsavers.org/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Bitsavers website in a new tab"
@@ -165,7 +165,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://minifeed.net/welcome"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Minifeed website in a new tab"
@@ -188,7 +188,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://www.bryanbraun.com/after-dark-css/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open CSS Screensavers website in a new tab"
@@ -220,7 +220,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://summer-afternoon.vlucendo.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Summer Afternoon website in a new tab"
@@ -245,7 +245,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://modernfontstacks.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Modern Font Stacks website in a new tab"
@@ -268,7 +268,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://diceware.dmuth.org/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Diceware website in a new tab"
@@ -292,7 +292,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://www.scanofthemonth.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Scan of the Month website in a new tab"
@@ -316,7 +316,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://oimo.io/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open oimo.io website in a new tab"
@@ -340,7 +340,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://generated.space/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Generated Space website in a new tab"
@@ -364,7 +364,7 @@ tags: ["websites", "resources", "design", "inspiration", "curated", "recommendat
             <td class="align-top p-1">
                 <a
                     href="http://howtocenterincss.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open How to Center in CSS website in a new tab"

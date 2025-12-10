@@ -69,12 +69,14 @@
 		</div>
 		<ul class="space-y-1">
 			{#each data.blogrollPosts as post (post.url)}
-				<li class="flex items-start justify-between gap-2 border-b border-b-mondrian_gray text-xs">
+				<li
+					class="flex items-start justify-between gap-2 border-b border-b-mondrian_dark_gray text-xs"
+				>
 					<div class="flex-1">
 						<span class="inline-flex items-center gap-1">
 							<span class="h-1.5 w-1.5 rounded-full border border-mondrian_black bg-mondrian_red"
 							></span>
-							<span class="font-mono text-mondrian_dark_gray">{post.domain}</span>
+							<span class="font-mono underline decoration-mondrian_red">{post.domain}</span>
 						</span>
 						<a
 							href={post.url}

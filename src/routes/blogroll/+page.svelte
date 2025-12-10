@@ -48,7 +48,7 @@
 				</thead>
 				<tbody>
 					{#each data.posts as post (post.url)}
-						<tr class="border-b border-b-mondrian_dark_gray hover:bg-mondrian_light_gray">
+						<tr class="border-b border-b-mondrian_light_gray hover:bg-mondrian_light_gray">
 							<td class="pt-1 pl-1 text-left align-top font-mono text-xs">
 								<time datetime={post.date}>
 									{formatDate(post.date)}
@@ -91,7 +91,7 @@
 		<div class="mb-4 space-y-4 md:hidden">
 			{#each data.posts as post (post.url)}
 				<div
-					class="border border-mondrian_black bg-mondrian_white p-4 shadow-mondrian hover:bg-mondrian_bright_white"
+					class="border border-mondrian_black bg-mondrian_white p-4 shadow-mondrian hover:bg-mondrian_white"
 				>
 					<div class="mb-3 flex items-start justify-between">
 						<a

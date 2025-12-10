@@ -36,7 +36,7 @@ tags: ["PWA", "Progressive Web Apps", "resources", "web development", "linked li
             </td>
             <td class="align-top p-1">
                 <a
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -60,7 +60,7 @@ tags: ["PWA", "Progressive Web Apps", "resources", "web development", "linked li
             </td>
             <td class="align-top p-1">
                 <a
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     href="https://docs.pwabuilder.com/#/"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -83,7 +83,7 @@ tags: ["PWA", "Progressive Web Apps", "resources", "web development", "linked li
             </td>
             <td class="align-top p-1">
                 <a
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     href="https://web.dev/pwa-checklist/"
                     target="_blank"
                     rel="noopener noreferrer"

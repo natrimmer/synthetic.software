@@ -188,7 +188,7 @@
 
 			<!-- Mobile card view -->
 			<div class="space-y-3 md:hidden">
-				<div class="border border-mondrian_black bg-mondrian_bright_white p-3 shadow-mondrian">
+				<div class="border border-mondrian_black bg-mondrian_white p-3 shadow-mondrian">
 					<div class="mb-2 flex items-start justify-between">
 						<span class="font-mono text-xs font-semibold">Articles</span>
 						<a
@@ -205,7 +205,7 @@
 					</p>
 				</div>
 
-				<div class="border border-mondrian_black bg-mondrian_bright_white p-3 shadow-mondrian">
+				<div class="border border-mondrian_black bg-mondrian_white p-3 shadow-mondrian">
 					<div class="mb-2 flex items-start justify-between">
 						<span class="font-mono text-xs font-semibold">Feed</span>
 						<a
@@ -222,7 +222,7 @@
 					</p>
 				</div>
 
-				<div class="border border-mondrian_black bg-mondrian_bright_white p-3 shadow-mondrian">
+				<div class="border border-mondrian_black bg-mondrian_white p-3 shadow-mondrian">
 					<div class="mb-2 flex items-start justify-between">
 						<span class="font-mono text-xs font-semibold">Notes</span>
 						<a
@@ -239,7 +239,7 @@
 					</p>
 				</div>
 
-				<div class="border border-mondrian_black bg-mondrian_bright_white p-3 shadow-mondrian">
+				<div class="border border-mondrian_black bg-mondrian_white p-3 shadow-mondrian">
 					<div class="mb-2 flex items-start justify-between">
 						<span class="font-mono text-xs font-semibold">Blogroll</span>
 						<a
@@ -256,7 +256,7 @@
 					</p>
 				</div>
 
-				<div class="border border-mondrian_black bg-mondrian_bright_white p-3 shadow-mondrian">
+				<div class="border border-mondrian_black bg-mondrian_white p-3 shadow-mondrian">
 					<div class="mb-2 flex items-start justify-between">
 						<span class="font-mono text-xs font-semibold">Changelog</span>
 						<a
@@ -272,7 +272,7 @@
 					</p>
 				</div>
 
-				<div class="border border-mondrian_black bg-mondrian_bright_white p-3 shadow-mondrian">
+				<div class="border border-mondrian_black bg-mondrian_white p-3 shadow-mondrian">
 					<div class="mb-2 flex items-start justify-between">
 						<span class="font-mono text-xs font-semibold">Sitemap</span>
 						<a
@@ -288,7 +288,7 @@
 					</p>
 				</div>
 
-				<div class="border border-mondrian_black bg-mondrian_bright_white p-3 shadow-mondrian">
+				<div class="border border-mondrian_black bg-mondrian_white p-3 shadow-mondrian">
 					<div class="mb-2 flex items-start justify-between">
 						<span class="font-mono text-xs font-semibold">Contact</span>
 						<a
@@ -355,7 +355,7 @@
 			<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 				<!-- Reading -->
 				{#if data.reading.length > 0}
-					<div class="border border-mondrian_black bg-mondrian_bright_white shadow-mondrian">
+					<div class="border border-mondrian_black bg-mondrian_white shadow-mondrian">
 						<h5
 							class="flex items-center border-b-2 border-dashed border-mondrian_black p-3 font-mono text-sm font-bold tracking-wide uppercase"
 						>
@@ -376,7 +376,7 @@
 										{/if}
 										{#if item.notes}
 											<div
-												class="mt-1 border-l-2 border-mondrian_dark_gray pl-2 text-xs text-mondrian_dark_gray italic"
+												class="mt-1 border-l-2 border-mondrian_light_gray pl-2 text-xs text-mondrian_dark_gray italic"
 											>
 												{item.notes}
 											</div>
@@ -390,7 +390,7 @@
 
 				<!-- Listening -->
 				{#if data.podcasts.length > 0 || data.music.length > 0}
-					<div class="border border-mondrian_black bg-mondrian_bright_white shadow-mondrian">
+					<div class="border border-mondrian_black bg-mondrian_white shadow-mondrian">
 						<h5
 							class="flex items-center border-b-2 border-dashed border-mondrian_black p-3 font-mono text-sm font-bold tracking-wide uppercase"
 						>
@@ -411,7 +411,7 @@
 													{item.title}
 													{#if item.notes}
 														<div
-															class="mt-1 border-l-2 border-mondrian_dark_gray pl-2 text-xs text-mondrian_dark_gray italic"
+															class="mt-1 border-l-2 border-mondrian_light_gray pl-2 text-xs text-mondrian_dark_gray italic"
 														>
 															{item.notes}
 														</div>
@@ -439,7 +439,7 @@
 													{/if}
 													{#if item.notes}
 														<div
-															class="mt-1 border-l-2 border-mondrian_dark_gray pl-2 text-xs text-mondrian_dark_gray italic"
+															class="mt-1 border-l-2 border-mondrian_light_gray pl-2 text-xs text-mondrian_dark_gray italic"
 														>
 															{item.notes}
 														</div>
@@ -456,7 +456,7 @@
 
 				<!-- Watching -->
 				{#if data.watching.length > 0}
-					<div class="border border-mondrian_black bg-mondrian_bright_white shadow-mondrian">
+					<div class="border border-mondrian_black bg-mondrian_white shadow-mondrian">
 						<h5
 							class="flex items-center border-b-2 border-dashed border-mondrian_black p-3 font-mono text-sm font-bold tracking-wide uppercase"
 						>
@@ -472,7 +472,7 @@
 										<span class="font-semibold italic">{item.title}</span>
 										{#if item.notes}
 											<div
-												class="mt-1 border-l-2 border-mondrian_dark_gray pl-2 text-xs text-mondrian_dark_gray italic"
+												class="mt-1 border-l-2 border-mondrian_light_gray pl-2 text-xs text-mondrian_dark_gray italic"
 											>
 												{item.notes}
 											</div>

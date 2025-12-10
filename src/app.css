@@ -7,14 +7,12 @@
 		ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
 	--color-mondrian_black: #272a31;
-	--color-mondrian_bright_white: #fefdfb;
-	--color-mondrian_white: #e7e4e1;
+	--color-mondrian_white: #f6f5f1;
 	--color-mondrian_light_gray: #d5d2cf;
-	--color-mondrian_gray: #c9c6c3;
 	--color-mondrian_dark_gray: #b9b6b4;
-	--color-mondrian_red: #b82116;
-	--color-mondrian_yellow: #e0b705;
-	--color-mondrian_blue: #3d51ba;
+	--color-mondrian_red: #c42520;
+	--color-mondrian_yellow: #e8c32e;
+	--color-mondrian_blue: #2e5cb8;
 
 	--shadow-mondrian: 2px 2px var(--color-mondrian_black);
 	--shadow-mondrian_xl: 4px 4px var(--color-mondrian_black);

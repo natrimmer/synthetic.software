@@ -18,7 +18,7 @@
 </script>
 
 <div
-	class="mb-4 w-full border border-mondrian_white p-4 transition-colors hover:border-mondrian_black hover:bg-mondrian_bright_white"
+	class="mb-4 w-full border border-mondrian_white p-4 transition-colors hover:border-mondrian_black hover:bg-mondrian_white"
 >
 	<div
 		class="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-0"

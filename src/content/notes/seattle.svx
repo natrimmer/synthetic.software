@@ -37,7 +37,7 @@ title: "Seattle - Recommendations & Notes"
             <td class="align-top p-1">
                 <a
                     href="http://lecavisteseattle.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Le Caviste site in a new tab"
@@ -60,7 +60,7 @@ title: "Seattle - Recommendations & Notes"
             <td class="align-top p-1">
                 <a
                     href="https://www.cafesuliman.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Cafe Suliman site in a new tab"
@@ -85,7 +85,7 @@ title: "Seattle - Recommendations & Notes"
             <td class="align-top p-1">
                 <a
                     href="https://www.loursinseattle.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open L'Oursin site in a new tab"
@@ -109,7 +109,7 @@ title: "Seattle - Recommendations & Notes"
             <td class="align-top p-1">
                 <a
                     href="https://www.localtide.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Local Tide site in a new tab"
@@ -134,7 +134,7 @@ title: "Seattle - Recommendations & Notes"
             <td class="align-top p-1">
                 <a
                     href="https://espressovivace.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Espresso Vivace site in a new tab"
@@ -158,7 +158,7 @@ title: "Seattle - Recommendations & Notes"
             <td class="align-top p-1">
                 <a
                     href="https://www.templepastries.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Temple Pastries site in a new tab"
@@ -182,7 +182,7 @@ title: "Seattle - Recommendations & Notes"
             <td class="align-top p-1">
                 <a
                     href="http://www.markethousemeats.co/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Market House Meats site in a new tab"

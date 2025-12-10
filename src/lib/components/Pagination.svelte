@@ -27,7 +27,7 @@
 			{#each Array.from({ length: totalPages }, (_, i) => i + 1) as page (page)}
 				{#if page === currentPage}
 					<span
-						class="border border-mondrian_black bg-mondrian_red px-3 py-1 font-mono text-xs text-mondrian_bright_white"
+						class="border border-mondrian_black bg-mondrian_red px-3 py-1 font-mono text-xs text-mondrian_white"
 					>
 						{page}
 					</span>

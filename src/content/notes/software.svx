@@ -41,7 +41,7 @@ tags: ["software", "tools", "productivity", "macOS", "open source", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://zed.dev/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Zed site in a new tab"
@@ -67,7 +67,7 @@ tags: ["software", "tools", "productivity", "macOS", "open source", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://www.raycast.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Raycast site in a new tab"
@@ -90,7 +90,7 @@ tags: ["software", "tools", "productivity", "macOS", "open source", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://www.gnu.org/software/emacs/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open GNU Emacs site in a new tab"
@@ -114,7 +114,7 @@ tags: ["software", "tools", "productivity", "macOS", "open source", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://1password.com/"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_red hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open 1Password site in a new tab"
@@ -139,7 +139,7 @@ tags: ["software", "tools", "productivity", "macOS", "open source", "recommendat
             <td class="align-top p-1">
                 <a
                     href="https://github.com/nikitabobko/AeroSpace"
-                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_bright_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
+                    class="w-full text-xs py-1 px-1 text-mondrian_black border border-mondrian_black shadow-mondrian font-mono transition-colors bg-mondrian_white hover:bg-mondrian_blue hover:text-mondrian_white text-center inline-block focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open AeroSpace GitHub site in a new tab"

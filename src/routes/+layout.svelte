@@ -62,7 +62,7 @@
 					<a
 						href={resolve('/')}
 						aria-label="Go to the homepage of SYNTHETIC.SOFTWARE"
-						class="md:text-md border border-mondrian_black bg-mondrian_red px-2 py-1 font-mono text-sm tracking-[0.275em] text-mondrian_bright_white hover:cursor-pointer"
+						class="md:text-md border border-mondrian_black bg-mondrian_red px-2 py-1 font-mono text-sm tracking-[0.275em] text-mondrian_white hover:cursor-pointer"
 					>
 						SYNTHETIC.SOFTWARE
 					</a>
@@ -76,7 +76,7 @@
 							aria-label="Visit the changelog"
 							rel="noopener noreferrer"
 							target="_blank"
-							class="border border-mondrian_black bg-mondrian_bright_white px-2 py-1 hover:cursor-pointer"
+							class="border border-mondrian_black bg-mondrian_white px-2 py-1 hover:cursor-pointer"
 						>
 							{VERSION}
 						</a>

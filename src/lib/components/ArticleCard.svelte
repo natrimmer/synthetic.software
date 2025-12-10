@@ -51,7 +51,7 @@
 							{#each article.tags as tag (tag)}
 								<a
 									href={resolve(`/tags/${tag}/` as '/')}
-									class="whitespace-nowrap text-mondrian_yellow transition-colors hover:text-mondrian_bright_white hover:underline"
+									class="whitespace-nowrap text-mondrian_yellow transition-colors hover:text-mondrian_white hover:underline"
 								>
 									{tag}
 								</a>

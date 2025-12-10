@@ -34,7 +34,7 @@
 	{#if data.releases.length > 0}
 		<!-- Desktop table view -->
 		<div
-			class="mb-4 hidden border border-mondrian_white p-4 hover:border-mondrian_black hover:bg-mondrian_bright_white md:block"
+			class="mb-4 hidden border border-mondrian_white p-4 hover:border-mondrian_black hover:bg-mondrian_white md:block"
 		>
 			<table
 				class="w-full border-collapse border border-mondrian_white"
@@ -129,7 +129,7 @@
 			{#each data.releases as release (release.tag)}
 				<details class="group">
 					<summary
-						class="flex cursor-pointer items-center justify-between border border-mondrian_black bg-mondrian_yellow p-4 shadow-mondrian transition-colors hover:bg-mondrian_bright_white [&::-webkit-details-marker]:hidden [&::marker]:hidden"
+						class="flex cursor-pointer items-center justify-between border border-mondrian_black bg-mondrian_yellow p-4 shadow-mondrian transition-colors hover:bg-mondrian_white [&::-webkit-details-marker]:hidden [&::marker]:hidden"
 					>
 						<div class="flex items-center gap-2">
 							<svg
@@ -218,7 +218,7 @@
 
 		<details class="group mb-4">
 			<summary
-				class="flex cursor-pointer items-center gap-2 border border-mondrian_black bg-mondrian_white p-4 transition-colors hover:bg-mondrian_bright_white [&::-webkit-details-marker]:hidden [&::marker]:hidden"
+				class="flex cursor-pointer items-center gap-2 border border-mondrian_black bg-mondrian_white p-4 transition-colors hover:bg-mondrian_white [&::-webkit-details-marker]:hidden [&::marker]:hidden"
 			>
 				<svg
 					class="h-4 w-4 transition-transform group-[[open]]:rotate-90"
@@ -234,7 +234,7 @@
 				>
 			</summary>
 
-			<div class="space-y-2 border-x border-b border-mondrian_black bg-mondrian_bright_white p-4">
+			<div class="space-y-2 border-x border-b border-mondrian_black bg-mondrian_white p-4">
 				<p class="mb-2 text-sm">
 					This site uses
 					<a

@@ -29,7 +29,7 @@
 				{#if post.type === 'notes'}
 					<!-- Notes rendering - matches Hugo notes/list.html structure -->
 					<article
-						class="mb-2 border border-mondrian_white p-2 transition-colors hover:border-mondrian_black hover:bg-mondrian_bright_white"
+						class="mb-2 border border-mondrian_white p-2 transition-colors hover:border-mondrian_black hover:bg-mondrian_white"
 					>
 						<div class="flex flex-col">
 							<a
@@ -67,7 +67,7 @@
 				{:else if post.type === 'feed'}
 					<!-- Feed rendering - matches Hugo feed/list.html structure -->
 					<article
-						class="mb-2 border border-mondrian_white p-1 transition-colors hover:border-mondrian_black hover:bg-mondrian_bright_white"
+						class="mb-2 border border-mondrian_white p-1 transition-colors hover:border-mondrian_black hover:bg-mondrian_white"
 					>
 						<div class="flex">
 							<div class="mr-4 w-8">
