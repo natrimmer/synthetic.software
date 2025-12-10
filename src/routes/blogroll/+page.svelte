@@ -15,25 +15,6 @@
 </script>
 
 <div class="w-full">
-	<div
-		class="mb-4 flex w-full flex-col items-start gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-0"
-	>
-		<h3
-			class="text-2xl font-semibold underline decoration-mondrian_yellow decoration-6 sm:text-3xl sm:decoration-8"
-		>
-			Blogroll
-		</h3>
-		<span class="h-max">
-			<p class="font-mono text-xs text-mondrian_dark_gray">
-				{#if data.posts.length > 0}
-					{data.posts.length} recent posts from feeds I follow
-				{:else}
-					feeds I follow
-				{/if}
-			</p>
-		</span>
-	</div>
-
 	{#if data.posts.length > 0}
 		<!-- Desktop table view -->
 		<div class="mb-4 hidden overflow-x-auto md:block">
@@ -127,7 +108,6 @@
 			{/each}
 		</div>
 
-		<!-- Include content from blogroll.html if any -->
 		<section class="mb-4 flex items-center gap-2">
 			<span>
 				<div class="relative h-4 w-4">

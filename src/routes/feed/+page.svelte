@@ -22,26 +22,6 @@
 	}
 </script>
 
-<div>
-	<div
-		class="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-0"
-	>
-		<h3
-			class="text-2xl font-semibold underline decoration-mondrian_black decoration-6 sm:text-3xl sm:decoration-8"
-		>
-			Feed
-		</h3>
-		<div class="text-left sm:text-right">
-			<span class="h-max">
-				<p class="font-mono text-sm text-mondrian_dark_gray sm:text-xs">
-					{data.totalItems}
-					{data.totalItems === 1 ? 'item' : 'items'}
-				</p>
-			</span>
-		</div>
-	</div>
-</div>
-
 {#if data.posts.length === 0}
 	<p class="mt-4 text-mondrian_dark_gray">No feed items yet.</p>
 {:else}

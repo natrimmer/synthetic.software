@@ -4,10 +4,6 @@
 	export let data: PageData;
 </script>
 
-<svelte:head>
-	<meta name="description" content="All tags used on this site" />
-</svelte:head>
-
 <div>
 	<div class="mb-4 flex w-full items-end justify-between">
 		<h3 class="text-3xl font-semibold underline decoration-mondrian_blue decoration-8">Tags</h3>

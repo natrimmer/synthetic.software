@@ -96,9 +96,7 @@
 				<main class="flex-1">
 					{#if !isHome}
 						<!-- Breadcrumb navigation -->
-						<nav
-							class="mb-4 overflow-x-auto border border-mondrian_black bg-mondrian_yellow px-2 py-1 font-mono text-sm font-semibold shadow-mondrian"
-						>
+						<nav class="mb-4 overflow-x-auto px-2 py-1 font-mono text-sm font-semibold">
 							<div class="whitespace-nowrap">
 								<a href={resolve('/')} class="hover:underline">~</a
 								>{#each breadcrumbs.slice(0, -1) as crumb (crumb.url)}/<a

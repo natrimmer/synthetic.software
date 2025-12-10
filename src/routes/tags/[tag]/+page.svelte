@@ -5,10 +5,6 @@
 	export let data: PageData;
 </script>
 
-<svelte:head>
-	<meta name="description" content="Posts tagged with {data.tag}" />
-</svelte:head>
-
 <div class="mb-4">
 	<div class="flex w-full items-end justify-between">
 		<h3 class="text-3xl font-semibold">#{data.tag}</h3>
