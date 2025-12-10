@@ -22,19 +22,22 @@
 	class:border-mondrian_dark_gray={!isLast}
 >
 	<div class="relative">
-		<div class="article-grid">
+		<div class="grid grid-cols-[auto_1fr_auto] items-baseline gap-2">
 			<a
 				href={resolve(article.url as '/')}
-				class="article-title transition-colors hover:text-mondrian_yellow"
+				class="whitespace-nowrap transition-colors hover:text-mondrian_yellow"
 			>
 				{article.title}
 			</a>
-			<span class="dot-leader" aria-hidden="true">
+			<span
+				class="overflow-hidden tracking-[0.15em] text-clip whitespace-nowrap"
+				aria-hidden="true"
+			>
 				{dotString}
 			</span>
 			<a
 				href={resolve(article.url as '/')}
-				class="article-date tabular-nums transition-colors hover:text-mondrian_yellow"
+				class="whitespace-nowrap tabular-nums transition-colors hover:text-mondrian_yellow"
 			>
 				{formatDate(article.date)}
 			</a>
@@ -71,27 +74,3 @@
 		{/if}
 	</div>
 </article>
-
-<style>
-	.article-grid {
-		display: grid;
-		grid-template-columns: auto 1fr auto;
-		gap: 0.5rem;
-		align-items: baseline;
-	}
-
-	.article-title {
-		white-space: nowrap;
-	}
-
-	.dot-leader {
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: clip;
-		letter-spacing: 0.15em;
-	}
-
-	.article-date {
-		white-space: nowrap;
-	}
-</style>

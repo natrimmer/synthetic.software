@@ -6,7 +6,7 @@ type: "notes"
 tags: ["Brodsky", "art", "poetry", "history", "perseverance", "Akhmatova", "Glück", "morality"]
 ---
 
-<div class="pl-2 border-l-2">
+<div class="pl-2">
     <blockquote class="mb-2" cite="The Keening Muse">
         <p>
             More than any other art, poetry is a form of sentimental education,
@@ -30,7 +30,7 @@ tags: ["Brodsky", "art", "poetry", "history", "perseverance", "Akhmatova", "Glü
     find solace in the aspects of humanity that bring us closer, particularly
     art. It isn't prescriptive, but it is a form of perseverance.
 </p>
-<div class="pl-2 border-l-2 mt-4">
+<div class="pl-2 mt-4">
     <blockquote class="mb-2" cite="Louise Glück">
         <p>
             The great king looking ahead<br />

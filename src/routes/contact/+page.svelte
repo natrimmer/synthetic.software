@@ -1,57 +1,44 @@
 <div class="mb-4">
-	<div
-		class="mb-4 flex w-full flex-col items-start gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-0"
+	<a
+		href="https://github.com/natrimmer"
+		class="mr-2 inline-block border border-black bg-mondrian_white px-3 py-2 font-mono text-sm text-black shadow-mondrian transition-colors hover:bg-mondrian_red hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
+		aria-label="Visit my GitHub profile"
+		rel="noopener noreferrer"
+		target="_blank"
 	>
-		<h3
-			class="text-2xl font-semibold underline decoration-mondrian_red decoration-6 sm:text-3xl sm:decoration-8"
-		>
-			Contact
-		</h3>
-		<span class="h-max">
-			<p class="font-mono text-sm text-mondrian_dark_gray sm:text-xs">get in touch</p>
-		</span>
-	</div>
-	<div class="mb-4">
-		<a
-			href="https://github.com/natrimmer"
-			class="mr-2 inline-block border border-black bg-mondrian_white px-3 py-2 font-mono text-sm text-black shadow-mondrian transition-colors hover:bg-mondrian_red hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
-			aria-label="Visit my GitHub profile"
-			rel="noopener noreferrer"
-			target="_blank"
-		>
-			GitHub
-		</a>
-		<a
-			href="https://linkedin.com/in/nick-trimmer"
-			class="mr-2 inline-block border border-black bg-mondrian_white px-3 py-2 font-mono text-sm text-black shadow-mondrian transition-colors hover:bg-mondrian_yellow hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
-			aria-label="Connect with Nick on LinkedIn"
-			rel="noopener noreferrer"
-			target="_blank"
-		>
-			LinkedIn
-		</a>
-		<a
-			href="mailto:info@synthetic.software"
-			class="mr-2 inline-block border border-black bg-mondrian_white px-3 py-2 font-mono text-sm text-black shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
-			aria-label="Send me an email"
-		>
-			Email
-		</a>
-		<a
-			href="/assets/gpg.key"
-			class="inline-block border border-black bg-mondrian_white px-3 py-2 font-mono text-sm text-black shadow-mondrian transition-colors hover:bg-mondrian_red hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
-			aria-label="Download my GPG key"
-			download
-		>
-			Download GPG key
-		</a>
-	</div>
-	<div>
-		<div
-			class="flex items-center justify-center overflow-hidden bg-mondrian_black p-4 font-mono text-[0.4rem] text-mondrian_yellow sm:text-[0.5rem] md:p-6 md:text-xs lg:p-8 lg:text-sm xl:p-12 xl:text-base 2xl:p-20 2xl:text-lg"
-		>
-			<!-- prettier-ignore -->
-			<pre class="w-min select-all overflow-x-auto max-w-full">-----BEGIN PGP PUBLIC KEY BLOCK-----
+		GitHub
+	</a>
+	<a
+		href="https://linkedin.com/in/nick-trimmer"
+		class="mr-2 inline-block border border-black bg-mondrian_white px-3 py-2 font-mono text-sm text-black shadow-mondrian transition-colors hover:bg-mondrian_yellow hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
+		aria-label="Connect with Nick on LinkedIn"
+		rel="noopener noreferrer"
+		target="_blank"
+	>
+		LinkedIn
+	</a>
+	<a
+		href="mailto:info@synthetic.software"
+		class="mr-2 inline-block border border-black bg-mondrian_white px-3 py-2 font-mono text-sm text-black shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
+		aria-label="Send me an email"
+	>
+		Email
+	</a>
+	<a
+		href="/assets/gpg.key"
+		class="inline-block border border-black bg-mondrian_white px-3 py-2 font-mono text-sm text-black shadow-mondrian transition-colors hover:bg-mondrian_red hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
+		aria-label="Download my GPG key"
+		download
+	>
+		Download GPG key
+	</a>
+</div>
+<div>
+	<div
+		class="flex items-center justify-center overflow-hidden bg-mondrian_black p-4 font-mono text-[0.4rem] text-mondrian_yellow sm:text-[0.5rem] md:p-6 md:text-xs lg:p-8 lg:text-sm xl:p-12 xl:text-base 2xl:p-20 2xl:text-lg"
+	>
+		<!-- prettier-ignore -->
+		<pre class="w-min select-all overflow-x-auto max-w-full">-----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGS+0ncBEAC55Q2rWqxvtFlUqSRISdsfmT7dvpRf5HI9KVAyccXWO7ZQxQaE
 mgpUmFNYa2aQaTkEZ4njXdFmtB/hGSaF/IqBPbcfzsoNm83vR3icr8PLInybDQyb
@@ -103,6 +90,5 @@ OyCqRDMOs6Z1Dr4xXYHGvqbKvQS/8bqHCvoFQTlUgU6ZIvo1Z2pfscFeBki0+0Zw
 XqPrzZQ=
 =VBcA
 -----END PGP PUBLIC KEY BLOCK-----</pre>
-		</div>
 	</div>
 </div>

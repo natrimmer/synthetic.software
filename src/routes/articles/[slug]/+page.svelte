@@ -17,13 +17,11 @@
 	const Content = contentPath ? contentModules[contentPath].default : null;
 </script>
 
-<div
-	class="mb-4 w-full border border-mondrian_white p-4 transition-colors hover:border-mondrian_black hover:bg-mondrian_white"
->
+<div class="w-full">
 	<div
 		class="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-0"
 	>
-		<h3 class="text-2xl font-semibold sm:text-3xl">{article.title}</h3>
+		<h3 class="max-w-2/3 text-2xl font-semibold sm:text-3xl">{article.title}</h3>
 		<span class="h-max">
 			<p class="font-mono text-sm text-mondrian_dark_gray sm:text-xs">
 				posted: {formatDate(article.date)}

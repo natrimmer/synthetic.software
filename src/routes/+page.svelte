@@ -10,17 +10,10 @@
 	}
 </script>
 
-<h1 class="pb-2 text-3xl font-semibold underline decoration-mondrian_yellow decoration-8">
-	Synthetic Software
-</h1>
 <h2 class="pb-4 text-xl font-semibold">I'm Nick, a Platform engineer.</h2>
 <p class="pb-4">
-	I aspire to write about infrastructure, design, and how
-	<span
-		class="border border-mondrian_black bg-mondrian_blue px-1 py-0.5 font-mono text-sm font-extralight tracking-widest text-mondrian_white"
-		>simplicity & aestheticism</span
-	>
-	can make better software.
+	I aspire to write about infrastructure, design, and how simplicity & aestheticism can make better
+	software.
 </p>
 <section class="mb-4 border-b border-dashed border-mondrian_black pb-4">
 	<p>
@@ -47,7 +40,7 @@
 </section>
 
 {#if data.blogrollPosts.length > 0}
-	<section class="mb-4 border border-mondrian_black bg-mondrian_light_gray p-3">
+	<section class="border border-mondrian_black bg-mondrian_light_gray p-3">
 		<div class="mb-2 flex items-center justify-between">
 			<div class="flex items-center gap-2">
 				<span>
