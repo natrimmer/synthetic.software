@@ -64,6 +64,11 @@
       pnpm run format
     '';
 
+    # Content management
+    new-feed.exec = ''
+      ./scripts/new-feed.sh
+    '';
+
     # Version management
     patch.exec = ''
       # Get the latest tag
@@ -181,6 +186,9 @@
       echo "  check       - Run type checks"
       echo "  lint        - Run linter"
       echo "  format      - Format code"
+      echo ""
+      echo "Content:"
+      echo "  new-feed    - Create a new feed item"
       echo ""
       echo "Versioning:"
       echo "  patch       - Increment patch version and tag (e.g., v2.0.5 -> v2.0.6)"
