@@ -64,6 +64,103 @@
       pnpm run format
     '';
 
+    # Version management
+    patch.exec = ''
+      # Get the latest tag
+      LATEST_TAG=$(git tag --sort=-v:refname | head -n 1)
+      if [ -z "$LATEST_TAG" ]; then
+        echo "No existing tags found. Creating v0.0.1"
+        NEW_TAG="v0.0.1"
+      else
+        # Parse version components
+        VERSION=''${LATEST_TAG#v}
+        IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+        PATCH=$((PATCH + 1))
+        NEW_TAG="v$MAJOR.$MINOR.$PATCH"
+      fi
+
+      echo "Current tag: $LATEST_TAG"
+      echo "New tag: $NEW_TAG"
+      read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
+      echo
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
+        git tag "$NEW_TAG"
+        echo "Tag $NEW_TAG created"
+        read -p "Push tag to remote? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+          git push origin "$NEW_TAG"
+          echo "Tag $NEW_TAG pushed"
+        fi
+      else
+        echo "Aborted"
+      fi
+    '';
+
+    minor.exec = ''
+      # Get the latest tag
+      LATEST_TAG=$(git tag --sort=-v:refname | head -n 1)
+      if [ -z "$LATEST_TAG" ]; then
+        echo "No existing tags found. Creating v0.1.0"
+        NEW_TAG="v0.1.0"
+      else
+        # Parse version components
+        VERSION=''${LATEST_TAG#v}
+        IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+        MINOR=$((MINOR + 1))
+        NEW_TAG="v$MAJOR.$MINOR.0"
+      fi
+
+      echo "Current tag: $LATEST_TAG"
+      echo "New tag: $NEW_TAG"
+      read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
+      echo
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
+        git tag "$NEW_TAG"
+        echo "Tag $NEW_TAG created"
+        read -p "Push tag to remote? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+          git push origin "$NEW_TAG"
+          echo "Tag $NEW_TAG pushed"
+        fi
+      else
+        echo "Aborted"
+      fi
+    '';
+
+    major.exec = ''
+      # Get the latest tag
+      LATEST_TAG=$(git tag --sort=-v:refname | head -n 1)
+      if [ -z "$LATEST_TAG" ]; then
+        echo "No existing tags found. Creating v1.0.0"
+        NEW_TAG="v1.0.0"
+      else
+        # Parse version components
+        VERSION=''${LATEST_TAG#v}
+        IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+        MAJOR=$((MAJOR + 1))
+        NEW_TAG="v$MAJOR.0.0"
+      fi
+
+      echo "Current tag: $LATEST_TAG"
+      echo "New tag: $NEW_TAG"
+      read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
+      echo
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
+        git tag "$NEW_TAG"
+        echo "Tag $NEW_TAG created"
+        read -p "Push tag to remote? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+          git push origin "$NEW_TAG"
+          echo "Tag $NEW_TAG pushed"
+        fi
+      else
+        echo "Aborted"
+      fi
+    '';
+
     commands.exec = ''
       echo "Available commands:"
       echo ""
@@ -84,6 +181,11 @@
       echo "  check       - Run type checks"
       echo "  lint        - Run linter"
       echo "  format      - Format code"
+      echo ""
+      echo "Versioning:"
+      echo "  patch       - Increment patch version and tag (e.g., v2.0.5 -> v2.0.6)"
+      echo "  minor       - Increment minor version and tag (e.g., v2.0.5 -> v2.1.0)"
+      echo "  major       - Increment major version and tag (e.g., v2.0.5 -> v3.0.0)"
       echo ""
       echo "Other:"
       echo "  hello       - Greet from the environment"
