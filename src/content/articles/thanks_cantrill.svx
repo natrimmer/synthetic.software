@@ -1,5 +1,13 @@
 ---
 title: "Thanks, Cantrill."
 date: 2025-12-10
-draft: true
+tags: ["ai", "blogging", "writing", "philosophy", "personal"]
 ---
+
+Bryan Cantrill recently published a post entitled ["Your intellectual fly is open"](https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/), and in typical Cantrill fashion, it has left me stunned and wondering. I'm definitely guilty of using LLMs in my own writing, some moments more than others. An aspect that I have been quieting in my subconscious is the fact that nearly all character and intrigue gets gutted from LLM generated text. That applies to text generated given a personal writing sample. That even applies to text rewritten from a first draft. So, here I am with my intellectual fly open, and I must say I appreciate the notice, Cantrill.
+
+What place do LLMs have in any writing process (technical, creative)? I'd think editing and proofreading are decent use cases. The LLM would probably need significant guardrails to prevent it from rewriting large swaths of the passages. Though once prompted, it's just so tempting when you read an idea you have written now expressed in a way that may be more universally palatable to just adopt that version.
+
+There is a small moment in Pluribus where Carol is scarfing down breakfast before Mr. Diabaté. She grabs her toast, smashes a quarter of an avocado into it, piles on some eggs and bacon, and starts eating it like an open faced sandwich. Mr. Diabaté sees that and starts constructing the same thing. He takes a bite and has a little smirk like he's thinking "huh, that's pretty good". Everyone else in the world is congealed into the same consciousness, and Carol just showed him a glimmer of individuality. LLMs have that same level of humanity-devoid "hello, fellow humans" way of speaking that the hivemind in Pluribus possesses.
+
+In a technical future where all of humanity's knowledge and methods are coalesced and accessible, the joy and value of individual discovery is gone. We're seeing it with LLMs today, and I appreciate the reminder that the stink that permeates LLM generated text can be smelled by nearly everyone.
