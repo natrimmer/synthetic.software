@@ -18,11 +18,19 @@ FEED_DIR="$FEED_BASE/$YEAR/$MONTH/$DAY"
 # Create directory structure if it doesn't exist
 mkdir -p "$FEED_DIR"
 
-# Find the next feed item number for today
-NEXT_NUM=1
-while [ -f "$FEED_DIR/$NEXT_NUM.svx" ]; do
-    NEXT_NUM=$((NEXT_NUM + 1))
-done
+# Find the next feed item number globally
+# Get the highest number from all existing feed items
+MAX_NUM=$(find "$FEED_BASE" -name "[0-9]*.svx" -type f |
+    sed 's/.*\/\([0-9]*\)\.svx/\1/' |
+    sort -n |
+tail -1)
+
+# If no feed items exist yet, start at 1, otherwise increment
+if [ -z "$MAX_NUM" ]; then
+    NEXT_NUM=1
+else
+    NEXT_NUM=$((MAX_NUM + 1))
+fi
 
 FEED_FILE="$FEED_DIR/$NEXT_NUM.svx"
 
