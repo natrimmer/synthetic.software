@@ -1,8 +1,8 @@
 ---
+title: "Seattle - Recommendations & Notes"
 date: 2025-07-18
 updated: 2025-09-08
-tags: ["Seattle", "recommendations", "linked list"]
-title: "Seattle - Recommendations & Notes"
+tags: ["seattle", "restaurants", "travel", "recommendations"]
 ---
 
 <table

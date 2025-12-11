@@ -1,10 +1,7 @@
 ---
 title: "#3"
 date: "2025-07-31T11:43:33-07:00"
-tags:
-  - "cloudflare"
-  - "site meta"
-  - "static sites"
+tags: ["cloudflare-workers", "static-site", "cloudflare", "deployment"]
 ---
 
 I've had to create two separate static sites using Cloudflare Workers since they are encouraging migrating from pages. I may put together a short post on a minimal setup for serving a static site with a custom build step.

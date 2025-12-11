@@ -1,9 +1,7 @@
 ---
 title: "#8"
 date: "2025-09-08T10:58:27-07:00"
-tags:
-  - "learning"
-  - "reading"
+tags: ["reading-list", "systems-performance", "operating-systems"]
 ---
 
 I've landed on a reading list for the season: Brendan Gregg's Systems Performance, Arpaci-Dusseau's' Operating Systems: Three Easy Pieces, and Kempowski's Marrow and Bone.

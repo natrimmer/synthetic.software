@@ -1,7 +1,7 @@
 ---
 title: Curious Increase in Personal Computer Alternatives?
 date: 2025-11-19
-tags: ["technology", "personal computers", "history"]
+tags: ["hardware", "personal-computing", "developer-tools", "terminal"]
 ---
 
 I came across the [Caligra c100 Developer Terminal](https://caligra.com/) (see related [Hacker News discussion](https://news.ycombinator.com/item?id=44810847)) recently, and it got me thinking about where we are in the evolution of personal computing. The landing page is extremely sparse with just a $99 pre-order button for a product supposedly shipping as early as January 2026. It almost seems like a veiled cash grab given how little information is actually provided. I'm only writing about it because the "mockup" (if it even is one) looks interesting, reminiscent of old terminal computers from the 80s and 90s. It says it runs [Workbench](https://caligra.com/workbench/), presumably a custom Linux distribution based on Fedora, though once again there's a shocking lack of concrete details.

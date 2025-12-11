@@ -1,12 +1,7 @@
 ---
 title: "#6"
 date: "2025-08-08T10:52:17-07:00"
-tags:
-  - "atlas"
-  - "aws"
-  - "cicd"
-  - "gha"
-  - "postgres"
+tags: ["github-actions", "self-hosted-runner", "vpc", "devops"]
 ---
 
 Referring to [#2](/feed/2025/07/31/2/), I ultimately ended up self hosting a GitHub Runner in the VPC.

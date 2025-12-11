@@ -2,7 +2,7 @@
 title: "Recommended Software"
 date: 2025-04-17
 updated: 2025-07-18
-tags: ["software", "tools", "productivity", "macOS", "open source", "recommendations", "linked list"]
+tags: ["developer-tools", "productivity", "code-editor", "recommendations"]
 ---
 
 <table

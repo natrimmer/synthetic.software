@@ -1,7 +1,7 @@
 ---
 title: "Cloudflare Sunsetting Pages"
 date: 2025-08-12
-tags: ["cloudflare", "workers", "pages", "migration", "web development"]
+tags: ["cloudflare", "cloudflare-pages", "deployment", "migration", "web-hosting"]
 ---
 
 <p>

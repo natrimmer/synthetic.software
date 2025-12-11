@@ -2,7 +2,7 @@
 title: "Brodsky: art and perseverance"
 date: 2025-01-10
 updated: 2025-09-08
-tags: ["Brodsky", "art", "poetry", "history", "perseverance", "Akhmatova", "Glück", "morality"]
+tags: ["poetry", "literature", "philosophy"]
 ---
 
 <div class="pl-2">

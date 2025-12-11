@@ -2,7 +2,7 @@
 title: "What is the Blogroll?"
 date: 2025-07-23
 updated: 2025-11-12
-tags: ["blogroll", "site meta", "rss", "typescript", "sveltekit", "design", "hugo", "go"]
+tags: ["blogging", "curation", "web-culture", "personal-website"]
 ---
 
 <h2 class="text-2xl font-bold">Background</h2>

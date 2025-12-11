@@ -1,9 +1,7 @@
 ---
 title: "#11"
 date: "2025-11-21T00:00:00Z"
-tags:
-  - "llm"
-  - "ai"
+tags: ["claude", "ai", "code-generation", "security"]
 ---
 
 Curious little snippet that leaked through a Claude Code session:
