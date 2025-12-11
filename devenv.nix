@@ -109,11 +109,18 @@
       read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
+        # Update package.json version
+        pnpm version patch --no-git-tag-version
+        git add package.json
+        git commit -m "chore: bump version to ''${NEW_TAG#v}"
+
+        # Create git tag
         git tag -a "$NEW_TAG" -m "Version ''${NEW_TAG#v}"
         echo "Tag $NEW_TAG created"
         read -p "Push tag to remote? (y/n) " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
+          git push origin main
           git push origin "$NEW_TAG"
           echo "Tag $NEW_TAG pushed"
         fi
@@ -141,11 +148,18 @@
       read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
+        # Update package.json version
+        pnpm version minor --no-git-tag-version
+        git add package.json
+        git commit -m "chore: bump version to ''${NEW_TAG#v}"
+
+        # Create git tag
         git tag -a "$NEW_TAG" -m "Version ''${NEW_TAG#v}"
         echo "Tag $NEW_TAG created"
         read -p "Push tag to remote? (y/n) " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
+          git push origin main
           git push origin "$NEW_TAG"
           echo "Tag $NEW_TAG pushed"
         fi
@@ -173,11 +187,18 @@
       read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
+        # Update package.json version
+        pnpm version major --no-git-tag-version
+        git add package.json
+        git commit -m "chore: bump version to ''${NEW_TAG#v}"
+
+        # Create git tag
         git tag -a "$NEW_TAG" -m "Version ''${NEW_TAG#v}"
         echo "Tag $NEW_TAG created"
         read -p "Push tag to remote? (y/n) " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
+          git push origin main
           git push origin "$NEW_TAG"
           echo "Tag $NEW_TAG pushed"
         fi
