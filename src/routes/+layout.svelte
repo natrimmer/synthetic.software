@@ -43,7 +43,7 @@
 		<div class="absolute h-96 w-64 bg-mondrian_red" style="bottom: -20%; right: -10%"></div>
 		<div class="absolute h-24 w-1/2 bg-mondrian_yellow" style="bottom: -5%; right: 33%"></div>
 	</div>
-	<div class="mx-auto max-w-6xl bg-mondrian_white">
+	<div class="mx-auto max-w-6xl">
 		<header class="border-b-2 border-b-mondrian_black p-6">
 			<div
 				class="flex h-full w-full flex-col justify-start gap-4 pt-6 md:flex-row md:items-end md:justify-between md:gap-0 md:pt-10"
@@ -51,7 +51,7 @@
 				<a
 					href={resolve('/')}
 					aria-label="Go to the homepage of SYNTHETIC.SOFTWARE"
-					class="md:text-md border border-mondrian_black bg-mondrian_red px-2 py-1 font-mono text-sm tracking-[0.275em] text-mondrian_white hover:cursor-pointer"
+					class="md:text-md w-min border border-mondrian_black bg-mondrian_red px-2 py-1 font-mono text-sm tracking-[0.275em] text-mondrian_white hover:cursor-pointer"
 				>
 					SYNTHETIC.SOFTWARE
 				</a>
@@ -62,8 +62,6 @@
 					<a
 						href={resolve('/changelog')}
 						aria-label="Visit the changelog"
-						rel="noopener noreferrer"
-						target="_blank"
 						class="border border-mondrian_black bg-mondrian_white px-2 py-1 hover:cursor-pointer"
 					>
 						{VERSION}
@@ -72,7 +70,7 @@
 			</div>
 		</header>
 
-		<main class="mx-auto flex max-w-5xl flex-1 flex-col p-18">
+		<main class="mx-auto flex max-w-5xl flex-1 flex-col p-6 md:p-18">
 			{#if !isHome}
 				<!-- Breadcrumb navigation -->
 				<nav class="mb-6 overflow-x-auto font-mono text-sm font-semibold">

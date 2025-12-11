@@ -56,24 +56,29 @@
 		{/if}
 	</article>
 	<nav class="mt-4 border-t border-gray-300 pt-4">
-		<div class="flex items-center justify-between">
-			<div>
+		<h2 class="mb-2 text-lg font-bold sm:text-xl">Other notes:</h2>
+		<div class="grid grid-cols-2 gap-4">
+			<div class="min-w-0">
 				{#if note.prev}
 					<a
 						href={resolve(note.prev.url as '/')}
-						class="border border-mondrian_black bg-mondrian_white px-3 py-2 font-mono text-sm text-mondrian_black shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
+						class="flex min-w-0 items-center gap-1 border border-mondrian_black bg-mondrian_white px-3 py-2 font-mono text-sm text-mondrian_black shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
+						title={note.prev.title}
 					>
-						← {note.prev.title}</a
+						<span class="shrink-0">←</span>
+						<span class="min-w-0 truncate">{note.prev.title}</span></a
 					>
 				{/if}
 			</div>
-			<div>
+			<div class="flex min-w-0 justify-end">
 				{#if note.next}
 					<a
 						href={resolve(note.next.url as '/')}
-						class="border border-mondrian_black bg-mondrian_white px-3 py-2 font-mono text-sm text-mondrian_black shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
+						class="flex max-w-full min-w-0 items-center gap-1 border border-mondrian_black bg-mondrian_white px-3 py-2 font-mono text-sm text-mondrian_black shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
+						title={note.next.title}
 					>
-						{note.next.title} →</a
+						<span class="min-w-0 truncate">{note.next.title}</span>
+						<span class="shrink-0">→</span></a
 					>
 				{/if}
 			</div>

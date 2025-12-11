@@ -23,25 +23,24 @@
 >
 	<div class="relative">
 		<div class="grid grid-cols-[auto_1fr_auto] items-baseline gap-2">
-			<a
-				href={resolve(article.url as '/')}
-				class="whitespace-nowrap transition-colors hover:text-mondrian_yellow"
-			>
+			<a href={resolve(article.url as '/')} class="transition-colors hover:text-mondrian_yellow">
 				{article.title}
 			</a>
 			<span
-				class="overflow-hidden tracking-[0.15em] text-clip whitespace-nowrap"
+				class="hidden overflow-hidden tracking-[0.15em] text-clip whitespace-nowrap md:inline-block"
 				aria-hidden="true"
 			>
 				{dotString}
 			</span>
 			<a
 				href={resolve(article.url as '/')}
-				class="whitespace-nowrap tabular-nums transition-colors hover:text-mondrian_yellow"
+				class="hidden whitespace-nowrap transition-colors hover:text-mondrian_yellow md:inline-block"
 			>
 				{formatDate(article.date)}
 			</a>
 		</div>
+
+		<span class="font-mono text-xs md:hidden">{formatDate(article.date)}</span>
 
 		<!-- Optional metadata footer (subdued) -->
 		{#if (article.updated && article.updated !== article.date) || article.tags}

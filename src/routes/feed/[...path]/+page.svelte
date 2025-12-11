@@ -82,9 +82,7 @@
 	{/if}
 {:else if data.type === 'item' && data.feedItem}
 	<!-- Individual feed item page -->
-	<div
-		class="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-0"
-	>
+	<div class="flex flex-row items-end justify-between gap-0">
 		<h3 class="text-2xl font-semibold sm:text-3xl">{data.feedItem.title}</h3>
 		<span class="h-max">
 			<p class="font-mono text-sm text-mondrian_dark_gray sm:text-xs">
@@ -96,7 +94,9 @@
 	<article class="mt-4 border-b border-mondrian_light_gray">
 		<div class="mb-4 text-base leading-relaxed sm:text-sm">
 			{#if Content}
-				<Content />
+				<div class="my-12 border border-mondrian_black bg-mondrian_yellow p-6">
+					<Content />
+				</div>
 			{:else}
 				<p>Content not available</p>
 			{/if}
@@ -106,7 +106,7 @@
 				{#each data.feedItem.tags as tag (tag)}
 					<a
 						href={resolve(`/tags/${tag}/` as '/')}
-						class="border border-mondrian_black bg-mondrian_white px-2 py-1 font-mono text-sm shadow-mondrian transition-colors hover:border-mondrian_black hover:bg-mondrian_yellow focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:text-xs"
+						class="border border-mondrian_black bg-mondrian_white px-2 py-1 font-mono text-xs shadow-mondrian transition-colors hover:border-mondrian_black hover:bg-mondrian_yellow focus:outline focus:outline-offset-2 focus:outline-mondrian_blue"
 					>
 						#{tag}</a
 					>

@@ -11,13 +11,11 @@
 </script>
 
 {#if articles.length > 0}
-	<section class="mt-4">
-		{#each articles as article, i (article.url)}
-			<ArticleCard {article} isLast={i === articles.length - 1} />
-		{/each}
+	{#each articles as article, i (article.url)}
+		<ArticleCard {article} isLast={i === articles.length - 1} />
+	{/each}
 
-		<Pagination {currentPage} {totalPages} baseUrl="/articles/" />
-	</section>
+	<Pagination {currentPage} {totalPages} baseUrl="/articles/" />
 {:else}
 	<p class="mt-4 text-mondrian_dark_gray">No articles yet.</p>
 {/if}

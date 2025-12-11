@@ -155,7 +155,7 @@
 	</div>
 
 	<!-- Mobile notes -->
-	<div class="mb-4 border border-mondrian_black bg-mondrian_light_gray p-4 md:hidden">
+	<div class="border border-mondrian_black bg-mondrian_light_gray p-4 md:hidden">
 		<h4 class="mb-2 text-xs font-semibold text-mondrian_dark_gray">Notes:</h4>
 		<p class="mb-2 text-xs text-mondrian_dark_gray">
 			Changes are grouped by release version, showing all commits included in each version.
