@@ -36,6 +36,7 @@ vite.config.ts.timestamp-*
 src/lib/version.ts
 src/lib/data/blogroll.yaml
 src/lib/data/changelog.yaml
+src/lib/data/tags.yaml
 
 static/fonts/
 .zed/

@@ -16,7 +16,9 @@
 		"lint": "prettier --check . && eslint .",
 		"generate": "tsx scripts/prebuild.ts",
 		"generate:blogroll": "tsx scripts/generate-blogroll.ts",
-		"generate:changelog": "tsx scripts/generate-changelog.ts"
+		"generate:changelog": "tsx scripts/generate-changelog.ts",
+		"analyze-tags": "tsx scripts/analyze-tags.ts",
+		"suggest-tags": "tsx scripts/suggest-tags.ts"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.4.0",

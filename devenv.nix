@@ -13,6 +13,8 @@
 
   languages.typescript.enable = true;
 
+  dotenv.enable = true;
+
   scripts = {
     hello.exec = ''
       echo hello from $GREET
@@ -67,6 +69,15 @@
     # Content management
     new-feed.exec = ''
       ./scripts/new-feed.sh
+    '';
+
+    # Tagging system
+    analyze-tags.exec = ''
+      pnpm run analyze-tags
+    '';
+
+    suggest-tags.exec = ''
+      pnpm run suggest-tags
     '';
 
     # Version management
@@ -189,6 +200,10 @@
       echo ""
       echo "Content:"
       echo "  new-feed    - Create a new feed item"
+      echo ""
+      echo "Tagging:"
+      echo "  analyze-tags - Scan all posts and generate tags analysis"
+      echo "  suggest-tags - Generate AI tag suggestions for untagged posts"
       echo ""
       echo "Versioning:"
       echo "  patch       - Increment patch version and tag (e.g., v2.0.5 -> v2.0.6)"
