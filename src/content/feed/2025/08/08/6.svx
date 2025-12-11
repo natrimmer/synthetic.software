@@ -1,7 +1,6 @@
 ---
 title: "#6"
 date: "2025-08-08T10:52:17-07:00"
-type: "feed"
 tags:
   - "atlas"
   - "aws"

@@ -1,7 +1,6 @@
 ---
 title: "#5"
 date: "2025-08-07T18:21:09-07:00"
-type: "feed"
 ---
 
 Anyone know of a huge dataset of guitar chord progressions?

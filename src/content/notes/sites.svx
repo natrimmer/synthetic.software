@@ -2,7 +2,6 @@
 title: "Great Sites"
 date: 2025-01-11
 updated: 2025-07-23
-type: "notes"
 tags: ["websites", "resources", "design", "inspiration", "curated", "recommendations", "linked list"]
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: "#7"
 date: "2025-09-08T10:55:14-07:00"
-type: "feed"
 tags:
   - "site meta"
 ---

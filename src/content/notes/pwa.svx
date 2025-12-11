@@ -2,7 +2,6 @@
 title: "PWA Resources"
 date: 2025-01-18
 updated: 2025-07-23
-type: "notes"
 tags: ["PWA", "Progressive Web Apps", "resources", "web development", "linked list"]
 ---
 

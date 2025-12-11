@@ -1,7 +1,6 @@
 ---
 title: "#8"
 date: "2025-09-08T10:58:27-07:00"
-type: "feed"
 tags:
   - "learning"
   - "reading"

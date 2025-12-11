@@ -1,7 +1,6 @@
 ---
 title: "#3"
 date: "2025-07-31T11:43:33-07:00"
-type: "feed"
 tags:
   - "cloudflare"
   - "site meta"

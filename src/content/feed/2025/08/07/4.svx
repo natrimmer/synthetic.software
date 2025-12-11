@@ -1,7 +1,6 @@
 ---
 title: "#4"
 date: "2025-08-07T18:19:51-07:00"
-type: "feed"
 ---
 
 I just discovered Slack reminders via the Later page. A great feature I became blind to until someone recommended I try it out
