@@ -18,7 +18,8 @@
 		"generate:blogroll": "tsx scripts/generate-blogroll.ts",
 		"generate:changelog": "tsx scripts/generate-changelog.ts",
 		"analyze-tags": "tsx scripts/analyze-tags.ts",
-		"suggest-tags": "tsx scripts/suggest-tags.ts"
+		"suggest-tags": "tsx scripts/suggest-tags.ts",
+		"lint-prose": "tsx scripts/lint-prose.ts"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.4.0",
@@ -47,6 +48,7 @@
 		"wrangler": "^4.47.0"
 	},
 	"dependencies": {
+		"harper.js": "^1.1.0",
 		"rss-parser": "^3.13.0",
 		"tsx": "^4.20.6",
 		"yaml": "^2.8.1"

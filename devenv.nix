@@ -80,6 +80,15 @@
       pnpm run suggest-tags
     '';
 
+    lint-prose.exec = ''
+      if [ -z "$1" ]; then
+        echo "Usage: lint-prose <file-path>"
+        echo "Example: lint-prose src/content/articles/blogroll.svx"
+        exit 1
+      fi
+      pnpm run lint-prose "$1"
+    '';
+
     # Version management
     patch.exec = ''
       # Get the latest tag
@@ -193,7 +202,7 @@
       echo "  preview     - Preview production build (run build first)"
       echo "  serve       - Full build + preview (convenience combo)"
       echo ""
-      echo "Quality:"
+      echo "Code Quality:"
       echo "  check       - Run type checks"
       echo "  lint        - Run linter"
       echo "  format      - Format code"
@@ -202,8 +211,11 @@
       echo "  new-feed    - Create a new feed item"
       echo ""
       echo "Tagging:"
-      echo "  analyze-tags - Scan all posts and generate tags analysis"
-      echo "  suggest-tags - Generate AI tag suggestions for untagged posts"
+      echo "  analyze-tags       - Scan all posts and generate tags analysis"
+      echo "  suggest-tags       - Generate AI tag suggestions for untagged posts"
+      echo ""
+      echo "Writing Quality:"
+      echo "  lint-prose <file>  - Check grammar and prose with Harper"
       echo ""
       echo "Versioning:"
       echo "  patch       - Increment patch version and tag (e.g., v2.0.5 -> v2.0.6)"
