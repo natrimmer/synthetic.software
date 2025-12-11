@@ -111,6 +111,7 @@ async function suggestTags() {
 			const suggestedTags = await callClaudeAPI(post.content_preview, post.title, data.all_tags);
 
 			console.log(`   ✓ Suggested tags: ${suggestedTags.join(', ')}`);
+			console.log(`   Copy-paste format: tags: [${suggestedTags.map((t) => `"${t}"`).join(', ')}]`);
 		} catch (error) {
 			console.log(`   ✗ Error: ${error instanceof Error ? error.message : String(error)}`);
 		}
