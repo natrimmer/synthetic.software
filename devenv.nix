@@ -89,7 +89,7 @@
       read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
-        git tag "$NEW_TAG"
+        git tag -a "$NEW_TAG" -m "Version ''${NEW_TAG#v}"
         echo "Tag $NEW_TAG created"
         read -p "Push tag to remote? (y/n) " -n 1 -r
         echo
@@ -121,7 +121,7 @@
       read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
-        git tag "$NEW_TAG"
+        git tag -a "$NEW_TAG" -m "Version ''${NEW_TAG#v}"
         echo "Tag $NEW_TAG created"
         read -p "Push tag to remote? (y/n) " -n 1 -r
         echo
@@ -153,7 +153,7 @@
       read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
-        git tag "$NEW_TAG"
+        git tag -a "$NEW_TAG" -m "Version ''${NEW_TAG#v}"
         echo "Tag $NEW_TAG created"
         read -p "Push tag to remote? (y/n) " -n 1 -r
         echo
