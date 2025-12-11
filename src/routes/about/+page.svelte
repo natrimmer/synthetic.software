@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import Logo from '$lib/components/Logo.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 </script>
 
 <div class="w-full">
-	<div class="mb-4 space-y-3 leading-relaxed">
-		<p>
+	<div class="mb-4 flex items-start gap-3">
+		<p class="leading-relaxed">
 			This site was originally written using a custom SSG, first in TypeScript, then in Go. After
 			realizing I was reinventing the wheel, I transitioned to Hugo. Eventually, Hugo's Go
 			templating became too restrictive—the lack of type safety and immature tooling made
@@ -21,6 +22,7 @@
 				here
 			</a>.
 		</p>
+		<Logo class="size-36 shrink-0" />
 	</div>
 
 	<div class="mb-4 space-y-3 leading-relaxed">
