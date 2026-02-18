@@ -1,0 +1,11 @@
+---
+title: "Frische Luft"
+date: 2026-02-18
+tags: ["ai", "career", "philosophy", "personal", "writing", "web-culture"]
+---
+
+Things have felt somewhat dire in the software space lately. Dire in the sense that the discourse is dominated by AI, and I suppose this writing won't be much different. I've been feeling overwhelmed by the rapid changes, the uncertainty of my future in this field, and the polarizing takes from the bears and the bulls.
+
+I want fresh air, and I want to be reminded that these abstractions and tools aren't the end for practitioners. They are tools that are meant to solve human problems. If we extrapolate too far, and we see a future where agents are writing code, consuming that code, deploying that code we have to ask to what end? What problems are they solving? Are they problems felt by real people? It's OK to be excited about new and cool technology, but when the time comes to solve human problems let's ensure a human is in the loop. There is human engineering still required in this world despite what CEOs and vibe-coders tell you. LLMs aren't AGI, though they are amazingly powerful, and I have serious doubts they ever could achieve AGI. You know who already has AGI? Humans. Let's not hedge our bets on a future where language models are writing code agentically to solve imaginary problems.
+
+I've needed to take a step back lately, going to the Y and swimming laps to clear my head. There's something about floating on your back in water with your ears submerged and your eyes closed that allows you to separate from the world. There is no noise there.
