@@ -15,7 +15,7 @@
 	I aspire to write about infrastructure, design, and how simplicity & aestheticism can make better
 	software.
 </p>
-<section class="mb-4 border-b border-dashed border-mondrian_black pb-4">
+<section class="mb-4 pb-4">
 	<p>
 		This site has three main sections. The
 		<a
@@ -38,6 +38,17 @@
 		section features in-depth writing.
 	</p>
 </section>
+
+{#if data.latestArticle}
+	<section class="mb-4 w-full border-b border-dashed border-mondrian_black pb-4 text-right">
+		<p class="text-sm">
+			Latest article:
+			<a href={data.latestArticle.url} class="underline transition-colors hover:text-mondrian_blue"
+				>{data.latestArticle.title} →</a
+			>
+		</p>
+	</section>
+{/if}
 
 {#if data.blogrollPosts.length > 0}
 	<section class="border border-mondrian_black bg-mondrian_light_gray p-3">

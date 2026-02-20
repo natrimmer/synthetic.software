@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { parse } from 'yaml';
+import { loadPosts } from '$lib/utils/content';
 import type { PageServerLoad } from './$types';
 
 type BlogrollPost = {
@@ -26,7 +27,15 @@ export const load: PageServerLoad = async () => {
 		}
 	}
 
+	const articleFiles = import.meta.glob('$content/articles/*.svx', {
+		eager: true
+	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
+
+	const articles = await loadPosts(articleFiles, '/articles');
+	const latestArticle = articles[0] ?? null;
+
 	return {
-		blogrollPosts: uniquePosts
+		blogrollPosts: uniquePosts,
+		latestArticle: latestArticle ? { title: latestArticle.title, url: latestArticle.url } : null
 	};
 };
