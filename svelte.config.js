@@ -9,7 +9,7 @@ const config = {
 	preprocess: [vitePreprocess(), mdsvex()],
 	kit: {
 		adapter: adapter({
-			fallback: undefined,
+			fallback: '404.html',
 			pages: 'build',
 			assets: 'build',
 			strict: true
