@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  env.GREET = "synthetic.software";
-
   packages = [
     pkgs.git
     pkgs.nil
@@ -12,20 +10,13 @@
   ];
 
   languages.typescript.enable = true;
-
   dotenv.enable = true;
 
   scripts = {
-    hello.exec = ''
-      echo hello from $GREET
-    '';
-
-    # Dependency management
     install.exec = ''
       pnpm install
     '';
 
-    # Build commands
     build.exec = ''
       pnpm run build
     '';
@@ -38,7 +29,6 @@
       pnpm run generate
     '';
 
-    # Development
     dev.exec = ''
       pnpm run dev
     '';
@@ -47,13 +37,11 @@
       pnpm run preview
     '';
 
-    # Convenience combos
     serve.exec = ''
       pnpm run build:full
       pnpm run preview
     '';
 
-    # Quality checks
     check.exec = ''
       pnpm run check
     '';
@@ -66,12 +54,10 @@
       pnpm run format
     '';
 
-    # Content management
     new-feed.exec = ''
       ./scripts/new-feed.sh
     '';
 
-    # Tagging system
     analyze-tags.exec = ''
       pnpm run analyze-tags
     '';
@@ -89,7 +75,6 @@
       pnpm run lint-prose "$1"
     '';
 
-    # Version management
     patch.exec = ''
       # Get the latest tag
       LATEST_TAG=$(git tag --sort=-v:refname | head -n 1)
@@ -207,55 +192,35 @@
       fi
     '';
 
-    commands.exec = ''
+    syn.exec = ''
       echo "Available commands:"
       echo ""
-      echo "Dependencies:"
-      echo "  install     - Install/update dependencies"
-      echo ""
-      echo "Build:"
-      echo "  build       - Quick build (no content generation)"
-      echo "  build-full  - Full build with content generation"
-      echo "  generate    - Run content generation scripts only"
-      echo ""
-      echo "Development:"
-      echo "  dev         - Start development server"
-      echo "  preview     - Preview production build (run build first)"
-      echo "  serve       - Full build + preview (convenience combo)"
-      echo ""
-      echo "Code Quality:"
-      echo "  check       - Run type checks"
-      echo "  lint        - Run linter"
-      echo "  format      - Format code"
-      echo ""
-      echo "Content:"
-      echo "  new-feed    - Create a new feed item"
-      echo ""
-      echo "Tagging:"
+      echo "  install            - Install/update dependencies"
+      echo "  build              - Quick build (no content generation)"
+      echo "  build-full         - Full build with content generation"
+      echo "  generate           - Run content generation scripts only"
+      echo "  dev                - Start development server"
+      echo "  preview            - Preview production build (run build first)"
+      echo "  serve              - Full build + preview (convenience combo)"
+      echo "  check              - Run type checks"
+      echo "  lint               - Run linter"
+      echo "  format             - Format code"
+      echo "  new-feed           - Create a new feed item"
       echo "  analyze-tags       - Scan all posts and generate tags analysis"
       echo "  suggest-tags       - Generate AI tag suggestions for untagged posts"
-      echo ""
-      echo "Writing Quality:"
       echo "  lint-prose <file>  - Check grammar and prose with Harper"
+      echo "  patch              - Increment patch version and tag (e.g., v2.0.5 -> v2.0.6)"
+      echo "  minor              - Increment minor version and tag (e.g., v2.0.5 -> v2.1.0)"
+      echo "  major              - Increment major version and tag (e.g., v2.0.5 -> v3.0.0)"
       echo ""
-      echo "Versioning:"
-      echo "  patch       - Increment patch version and tag (e.g., v2.0.5 -> v2.0.6)"
-      echo "  minor       - Increment minor version and tag (e.g., v2.0.5 -> v2.1.0)"
-      echo "  major       - Increment major version and tag (e.g., v2.0.5 -> v3.0.0)"
-      echo ""
-      echo "Other:"
-      echo "  hello       - Greet from the environment"
-      echo "  commands    - Show this help"
+      echo "  syn                - Show this help"
     '';
   };
 
   enterShell = ''
     echo ""
     echo ""
-    hello
-    commands
-    echo ""
-    echo "💡 Tip: Run 'install' first if you haven't already"
+    syn
     echo ""
     echo ""
   '';
