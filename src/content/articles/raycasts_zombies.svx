@@ -6,7 +6,7 @@ tags: ["systems-performance", "operating-systems", "hardware", "devops", "debugg
 
 My M2 Air had been degrading slowly for a few weeks. Random fork failures, apps refusing to open, everything grinding to a halt until I restarted. Memory pressure was low. CPU usage was low. Nothing was obviously wrong. The tell was `zsh: fork failed: resource temporarily unavailable`.
 
-That error points to process table exhaustion, not memory. My soft limit was 1333 processes. I ran a simple monitor to watch the climb:
+That error points to process table exhaustion. My soft limit was 1333 processes. I ran the following monitor to watch the climb:
 
 ```
 while true; do echo "$(date +%H:%M:%S) user processes: $(ps aux | grep user | wc -l)"; sleep 30; done
