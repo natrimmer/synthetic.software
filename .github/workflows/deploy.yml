@@ -2,7 +2,7 @@ name: Build and Deploy to Cloudflare Workers
 
 on:
   push:
-    branches: [main]
+    tags: ['v*']
   schedule:
     # Run at midnight UTC for blogroll updates
     - cron: '0 0 * * *'
