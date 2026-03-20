@@ -34,4 +34,6 @@ Raycast Helper (Extensions)
 
 Zombies don't consume CPU or memory. They just occupy slots in the process table until the system can't fork anything new. `pkill -f "Raycast"` and the count dropped from 197 to 0 instantly.
 
+The likely culprit was the Coffee extension, which has known memory leak issues. But the reason it could take down the entire system is that Raycast runs all extensions inside a single unsandboxed Node process. One bad extension can exhaust resources for everything.
+
 I'll be replacing Raycast with Hammerspoon Lua.
