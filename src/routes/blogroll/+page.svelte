@@ -20,7 +20,7 @@
 		<table class="w-full border-collapse border border-mondrian_white">
 			<thead>
 				<tr class="border-b border-b-mondrian_black bg-mondrian_white text-left font-sans">
-					<th class="w-1/12 pl-1" scope="col">Date</th>
+					<th class="w-1/10 pl-1" scope="col">Date</th>
 					<th class="w-1/2 pl-1" scope="col">Post</th>
 					<th class="w-1/6 pl-1" scope="col">Source</th>
 					<th class="w-1/12 pl-1" scope="col">Link</th>

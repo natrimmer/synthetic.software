@@ -153,22 +153,4 @@
 			</details>
 		{/each}
 	</div>
-
-	<!-- Mobile notes -->
-	<div class="border border-mondrian_black bg-mondrian_light_gray p-4 md:hidden">
-		<h4 class="mb-2 text-xs font-semibold text-mondrian_dark_gray">Notes:</h4>
-		<p class="mb-2 text-xs text-mondrian_dark_gray">
-			Changes are grouped by release version, showing all commits included in each version.
-		</p>
-		<p class="text-xs text-mondrian_dark_gray">
-			Commit types: <code class="font-mono">feat</code> (new features),
-			<code class="font-mono">fix</code> (bug fixes),
-			<code class="font-mono">docs</code> (documentation),
-			<code class="font-mono">style</code> (formatting),
-			<code class="font-mono">refactor</code> (code improvements),
-			<code class="font-mono">perf</code> (performance),
-			<code class="font-mono">ci</code> (build/deploy),
-			<code class="font-mono">chore</code> (maintenance).
-		</p>
-	</div>
 {/if}
