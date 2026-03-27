@@ -65,17 +65,7 @@ export async function loadPosts(
 		// Skip drafts
 		if (metadata.draft) continue;
 
-		// Determine URL based on content type
-		let url: string;
-		if (urlPrefix === '/feed') {
-			// Feed items use date hierarchy: /feed/YYYY/MM/DD/N/
-			const match = path.match(/feed\/(.+)\.svx$/);
-			const itemPath = match ? match[1] : slug;
-			url = `/feed/${itemPath}/`;
-		} else {
-			// Articles/notes use simple slug-based URLs
-			url = `${urlPrefix}/${slug}/`;
-		}
+		const url = `${urlPrefix}/${slug}/`;
 
 		posts.push({
 			slug,

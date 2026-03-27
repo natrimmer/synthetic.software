@@ -16,16 +16,11 @@ export const entries: EntryGenerator = async () => {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
 
-	const feedFiles = import.meta.glob('$content/feed/**/*.svx', {
-		eager: true
-	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
-
 	const articles = await loadPosts(articleFiles, '/articles');
 	const notes = await loadPosts(noteFiles, '/notes');
-	const feed = await loadPosts(feedFiles, '/feed');
 
 	// Get all unique tags
-	const tags = aggregateTags(articles, notes, feed);
+	const tags = aggregateTags(articles, notes);
 
 	console.log(
 		'[entries] Found tags:',
@@ -60,22 +55,11 @@ export const load: PageServerLoad = async ({ params }) => {
 		}
 	>;
 
-	const feedFiles = import.meta.glob('$content/feed/**/*.svx', {
-		eager: true
-	}) as Record<
-		string,
-		{
-			metadata: { title: string; date: string; updated?: string; tags?: string[] };
-			default: unknown;
-		}
-	>;
-
 	const articles = await loadPosts(articleFiles, '/articles');
 	const notes = await loadPosts(noteFiles, '/notes');
-	const feed = await loadPosts(feedFiles, '/feed');
 
 	// Get all posts with this tag
-	const posts = getPostsByTag(params.tag, articles, notes, feed);
+	const posts = getPostsByTag(params.tag, articles, notes);
 
 	if (posts.length === 0) {
 		throw error(404, 'Tag not found');
@@ -91,11 +75,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			tags: post.tags,
 			slug: post.slug,
 			// Determine content type from URL for different rendering
-			type: post.url.startsWith('/feed/')
-				? 'feed'
-				: post.url.startsWith('/notes/')
-					? 'notes'
-					: 'articles'
+			type: post.url.startsWith('/notes/') ? 'notes' : 'articles'
 		})),
 		totalItems: posts.length
 	};

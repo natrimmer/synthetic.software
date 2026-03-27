@@ -54,10 +54,6 @@
       pnpm run format
     '';
 
-    new-feed.exec = ''
-      ./scripts/new-feed.sh
-    '';
-
     analyze-tags.exec = ''
       pnpm run analyze-tags
     '';
@@ -205,7 +201,6 @@
       echo "  check              - Run type checks"
       echo "  lint               - Run linter"
       echo "  format             - Format code"
-      echo "  new-feed           - Create a new feed item"
       echo "  analyze-tags       - Scan all posts and generate tags analysis"
       echo "  suggest-tags       - Generate AI tag suggestions for untagged posts"
       echo "  lint-prose <file>  - Check grammar and prose with Harper"

@@ -12,16 +12,11 @@ export const load: PageServerLoad = async () => {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
 
-	const feedFiles = import.meta.glob('$content/feed/**/*.svx', {
-		eager: true
-	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
-
 	const articles = await loadPosts(articleFiles, '/articles');
 	const notes = await loadPosts(noteFiles, '/notes');
-	const feed = await loadPosts(feedFiles, '/feed');
 
 	// Aggregate all tags from all content sources
-	const tags = aggregateTags(articles, notes, feed);
+	const tags = aggregateTags(articles, notes);
 
 	return {
 		tags: tags.map((tag) => ({

@@ -20,7 +20,7 @@ This project contains the source code for synthetic.software, a personal website
 
 ```
 src/
-  content/              # Markdown content (articles, notes, feed items)
+  content/              # Markdown content (articles, notes)
   lib/components/       # Svelte components
   routes/               # SvelteKit routes
   scripts/              # Build automation scripts
@@ -94,7 +94,6 @@ preview
 The site supports multiple content types:
 
 - **Articles**: Long-form technical content (`.svx` files with frontmatter)
-- **Feed**: Short-form posts organized by date
 - **Notes**: Curated links and brief observations
 - **Blogroll**: Automatically generated from RSS feeds
 

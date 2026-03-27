@@ -15,15 +15,8 @@
 ├── ${page.title}`}{/each}{#if data.articles.length > 0}{`
 ├── articles/ (${data.articles.length} total items)`}{#each data.articles as article, index (article.slug)}{#if index === data.articles.length - 1}{`
 │   └── ${article.title.toLowerCase()}`}{:else}{`
-│   ├── ${article.title.toLowerCase()}`}{/if}{/each}{/if}{#if data.totalFeedItems > 0}{`
-├── feed/ (${data.totalFeedItems} total items)`}{#each data.feedByYear as yearData, yearIndex (yearData.year)}{#if yearIndex === data.feedByYear.length - 1}{`
-│   └── ${yearData.year}/ (${yearData.months.reduce((sum, m) => sum + m.items.length, 0)} items)`}{#each yearData.months as monthData, monthIndex (monthData.month)}{#if monthIndex === yearData.months.length - 1}{`
-│       └── ${monthData.month}/ (${monthData.items.length} items)`}{:else}{`
-│       ├── ${monthData.month}/ (${monthData.items.length} items)`}{/if}{/each}{:else}{`
-│   ├── ${yearData.year}/ (${yearData.months.reduce((sum, m) => sum + m.items.length, 0)} items)`}{#each yearData.months as monthData, monthIndex (monthData.month)}{#if monthIndex === yearData.months.length - 1}{`
-│   │   └── ${monthData.month}/ (${monthData.items.length} items)`}{:else}{`
-│   │   ├── ${monthData.month}/ (${monthData.items.length} items)`}{/if}{/each}{/if}{/each}{/if}{#if data.notes.length > 0}{`
+│   ├── ${article.title.toLowerCase()}`}{/if}{/each}{/if}{`
 └── notes/`}{#each data.notes as note, index (note.slug)}{#if index === data.notes.length - 1}{`
     └── ${note.title.toLowerCase()}`}{:else}{`
-    ├── ${note.title.toLowerCase()}`}{/if}{/each}{/if}</pre>
+    ├── ${note.title.toLowerCase()}`}{/if}{/each}</pre>
 </div>

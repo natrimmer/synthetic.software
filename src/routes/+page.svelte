@@ -12,32 +12,20 @@
 
 <h2 class="pb-4 text-xl font-semibold">I'm Nick, a platform engineer.</h2>
 <p class="pb-4">
-	I aspire to write about infrastructure, design, and how simplicity & aestheticism can make better
-	software.
+	I like to write about software infrastructure, design, simplicity, and aestheticism. This site has
+	two main sections. The <a
+		href={resolve('/notes/')}
+		class="underline transition-colors hover:text-mondrian_blue"
+		aria-label="Notes section - evolving ideas and explorations">notes</a
+	>
+	section contains ideas, lists. The
+	<a
+		href={resolve('/articles/')}
+		class="underline transition-colors hover:text-mondrian_blue"
+		aria-label="Articles section - longer form writing">articles</a
+	>
+	section features longer form writing.
 </p>
-<section class="mb-4 pb-4">
-	<p>
-		This site has three main sections. The
-		<a
-			href={resolve('/feed/')}
-			class="underline transition-colors hover:text-mondrian_blue"
-			aria-label="Feed section - brief thoughts and updates">feed</a
-		>
-		captures brief thoughts and updates. The
-		<a
-			href={resolve('/notes/')}
-			class="underline transition-colors hover:text-mondrian_blue"
-			aria-label="Notes section - evolving ideas and explorations">notes</a
-		>
-		section contains ideas, lists. The
-		<a
-			href={resolve('/articles/')}
-			class="underline transition-colors hover:text-mondrian_blue"
-			aria-label="Articles section - in-depth writing">articles</a
-		>
-		section features in-depth writing.
-	</p>
-</section>
 
 {#if data.latestArticle}
 	<section class="mb-4 w-full border-b border-dashed border-mondrian_black pb-4 text-right">

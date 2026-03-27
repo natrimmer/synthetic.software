@@ -22,7 +22,7 @@ const config = {
 		},
 		prerender: {
 			// Explicitly list routes to prerender
-			entries: ['*', '/articles', '/notes', '/feed'],
+			entries: ['*', '/articles', '/notes'],
 			// Handle routes that aren't linked from the homepage
 			handleMissingId: 'warn',
 			handleUnseenRoutes: 'ignore',

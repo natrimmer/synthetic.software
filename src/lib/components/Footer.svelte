@@ -6,11 +6,6 @@
 	const navItems = [
 		{ name: 'HOME', path: '/', description: 'home is where you make it' },
 		{
-			name: 'FEED',
-			path: '/feed/',
-			description: 'short-form thoughts and updates organized chronologically'
-		},
-		{
 			name: 'NOTES',
 			path: '/notes/',
 			description:

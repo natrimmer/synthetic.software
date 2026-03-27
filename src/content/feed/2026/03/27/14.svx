@@ -1,7 +1,0 @@
----
-title: "#14"
-date: "2026-03-27T15:20:11Z"
-tags: ["ai", "claude", "kubernetes", "postgres", "devops", "conferences"]
----
-
-SREcon 2026 was good. Lots of great content. There were focuses on AI, Kubernetes, and Postgres. There was a funny moment when I was standing towards the back of one of the talks and as I look around the crowd there where countless folks actively using Claude Code. The ubiquity was astounding.
