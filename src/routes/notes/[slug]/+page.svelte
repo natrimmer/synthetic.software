@@ -64,7 +64,7 @@
 				{#if note.prev}
 					<a
 						href={resolve(note.prev.url as '/')}
-						class="flex min-w-0 items-center gap-1 border border-mondrian_black bg-mondrian_white px-3 py-2 font-mono text-sm text-mondrian_black shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
+						class="flex w-min max-w-full items-center gap-1 border border-mondrian_black bg-mondrian_white px-3 py-2 font-mono text-sm text-mondrian_black shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
 						title={note.prev.title}
 					>
 						<span class="shrink-0">←</span>
@@ -76,7 +76,7 @@
 				{#if note.next}
 					<a
 						href={resolve(note.next.url as '/')}
-						class="flex max-w-full min-w-0 items-center gap-1 border border-mondrian_black bg-mondrian_white px-3 py-2 font-mono text-sm text-mondrian_black shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
+						class="flex w-min max-w-full items-center gap-1 border border-mondrian_black bg-mondrian_white px-3 py-2 font-mono text-sm text-mondrian_black shadow-mondrian transition-colors hover:bg-mondrian_blue hover:text-mondrian_white focus:outline focus:outline-offset-2 focus:outline-mondrian_blue sm:px-2 sm:py-1 sm:text-xs"
 						title={note.next.title}
 					>
 						<span class="min-w-0 truncate">{note.next.title}</span>
