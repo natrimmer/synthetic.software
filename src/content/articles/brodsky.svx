@@ -1,7 +1,7 @@
 ---
 title: "Brodsky: art and perseverance"
 date: 2025-01-10
-updated: 2025-09-08
+updated: 2026-03-27
 tags: ["poetry", "literature", "philosophy"]
 ---
 
@@ -57,3 +57,9 @@ tags: ["poetry", "literature", "philosophy"]
         <footer>—Louise Glück, <cite>Parable of the King</cite></footer>
     </blockquote>
 </div>
+<p>
+    I can't help but think about art's further role in humanity. Art has a unique property that it exists beyond a particular practical purpose. This means that it can transcend any one era's needs. Consider the washboard: mass produced, found in every home, and now unused. Its existence was bound to a problem in time. Once that problem was solved, the object lost its reason to exist. The same is true of countless things we've built: they serve a need, the need passes, and they fade.
+</p>
+<p>
+    Art doesn't work this way. A cave painting isn't obsolete. A Greek sculpture doesn't stop functioning. No advancement in technology or standard of living has ever made a piece of art unnecessary, because it was never necessary in the first place. Everything built to solve a problem is on borrowed time, waiting for a better solution. Art, having no problem to solve, has nothing to be replaced by. It can exist in perpetuity.
+</p>
