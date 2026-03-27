@@ -21,8 +21,11 @@ export const load: PageServerLoad = async () => {
 		eager: true
 	}) as Record<string, { metadata: PageMetadata }>;
 
+	const isDraft = (path: string) => path.split('/').pop()?.startsWith('draft.') ?? false;
+
 	// Get articles
 	const articles = Object.entries(articlesFiles)
+		.filter(([path]) => !isDraft(path))
 		.map(([path, module]) => ({
 			title: module.metadata.title || getSlugFromPath(path),
 			slug: getSlugFromPath(path)
@@ -31,6 +34,7 @@ export const load: PageServerLoad = async () => {
 
 	// Get notes
 	const notes = Object.entries(notesFiles)
+		.filter(([path]) => !isDraft(path))
 		.map(([path, module]) => ({
 			title: module.metadata.title || getSlugFromPath(path),
 			slug: getSlugFromPath(path)
@@ -39,7 +43,7 @@ export const load: PageServerLoad = async () => {
 
 	// Get feed items (excluding _index files)
 	const feedItems = Object.entries(feedFiles)
-		.filter(([path]) => !path.includes('_index'))
+		.filter(([path]) => !path.includes('_index') && !isDraft(path))
 		.map(([path, module]) => {
 			const match = path.match(/feed\/(.+)\.svx$/);
 			const itemPath = match ? match[1] : '';
