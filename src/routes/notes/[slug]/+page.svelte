@@ -22,16 +22,18 @@
 		class="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-0"
 	>
 		<h3 class="text-2xl font-semibold sm:text-3xl">{note.title}</h3>
-		<span class="h-max">
-			<p class="font-mono text-sm text-mondrian_dark_gray sm:text-xs">
-				posted: {formatDate(note.date)}
-			</p>
+		<div class="font-mono text-sm text-mondrian_dark_gray sm:text-xs">
+			<div class="flex justify-between gap-4">
+				<span>posted:</span>
+				<span>{formatDate(note.date)}</span>
+			</div>
 			{#if note.updated && note.updated !== note.date}
-				<p class="font-mono text-sm text-mondrian_dark_gray sm:text-xs">
-					updated: {formatDate(note.updated)}
-				</p>
+				<div class="flex justify-between gap-4">
+					<span>updated:</span>
+					<span>{formatDate(note.updated)}</span>
+				</div>
 			{/if}
-		</span>
+		</div>
 	</div>
 	<hr />
 	<article class="mt-4">

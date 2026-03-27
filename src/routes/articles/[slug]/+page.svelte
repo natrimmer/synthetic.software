@@ -22,16 +22,18 @@
 		class="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-0"
 	>
 		<h3 class="max-w-2/3 text-2xl font-semibold sm:text-3xl">{article.title}</h3>
-		<span class="h-max">
-			<p class="font-mono text-sm text-mondrian_dark_gray sm:text-xs">
-				posted: {formatDate(article.date)}
-			</p>
+		<div class="font-mono text-sm text-mondrian_dark_gray sm:text-xs">
+			<div class="flex justify-between gap-4">
+				<span>posted:</span>
+				<span>{formatDate(article.date)}</span>
+			</div>
 			{#if article.updated && article.updated !== article.date}
-				<p class="font-mono text-sm text-mondrian_dark_gray sm:text-xs">
-					updated: {formatDate(article.updated)}
-				</p>
+				<div class="flex justify-between gap-4">
+					<span>updated:</span>
+					<span>{formatDate(article.updated)}</span>
+				</div>
 			{/if}
-		</span>
+		</div>
 	</div>
 	<hr />
 	<article class="mt-4">
