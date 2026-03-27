@@ -16,14 +16,10 @@ activity:
       - title: 'Marrow and Bone'
         authors:
           - 'Walter Kempowski'
-      - title: 'Butter'
-        authors:
-          - 'Asako Yuzuki'
-        notes: 'I crave butter everytime I pick this up.'
   watching:
     active:
       - title: 'Pluribus'
-        notes: "Vince Gilligan's new sci-fi series. Already it's so good. It gets creepy, funny, and thought-provoking all at once. It reminds of His Master's Voice by Stanislaw Lem."
+        notes: "Vince Gilligan's new sci-fi series. It's good. It gets creepy, funny, and thought-provoking all at once. It reminds of His Master's Voice by Stanislaw Lem."
   listening:
     active:
       - title: 'The David Pakman Show'
@@ -33,7 +29,6 @@ activity:
         type: 'podcast'
       - title: 'Making Sense with Sam Harris'
         type: 'podcast'
-        notes: 'Sam is very rational. His guests are often interesting. The AI doomsayers are interesting despite not completely convincing.'
       - title: 'The Changelog'
         type: 'podcast'
       - title: 'Oxide and Friends'
@@ -41,6 +36,9 @@ activity:
       - title: 'The History of English Podcast'
         type: 'podcast'
         notes: 'I adore this podcast.'
+      - title: "Cup o' Go"
+        type: 'podcast'
+        notes: 'For all my golang updates'
       - title: 'Turn On The Bright Lights'
         artist: 'Interpol'
         type: 'music'
@@ -49,19 +47,14 @@ activity:
         artist: 'John Cale'
         type: 'music'
         notes: 'Dark and moody. John Cale is a legend.'
-      - title: 'LOTTO'
-        artist: 'They Are Gutting a Body of Water'
-        type: 'music'
-        notes: 'Some of the best contemporary shoegaze.'
       - title: 'In the Aeroplane Over the Sea'
         artist: 'Neutral Milk Hotel'
         type: 'music'
         notes: 'Oh Comely gets stuck in my head for days.'
-      - title: 'Spiderland'
-        artist: 'Slint'
+      - title: 'Fake Train'
+        artist: 'Unwound'
         type: 'music'
-        notes: 'Always in rotation.'
-      - title: 'Goat'
-        artist: 'The Jesus Lizard'
+      - title: 'Perfect from Now On'
+        artist: 'Built to Spill'
         type: 'music'
-        notes: "I don't even know where to start with this album. It is just so good."
+        notes: 'The movement and flow gets me.'

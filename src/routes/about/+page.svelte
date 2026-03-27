@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
 	import Logo from '$lib/components/Logo.svelte';
 	import type { PageData } from './$types';
 
@@ -8,48 +7,39 @@
 
 <div class="w-full">
 	<div class="mb-4 flex items-start gap-3">
-		<p class="leading-relaxed">
-			This site was originally written using a custom SSG, first in TypeScript, then in Go. After
-			realizing I was reinventing the wheel, I transitioned to Hugo. Eventually, Hugo's Go
-			templating became too restrictive—the lack of type safety and immature tooling made
-			development frustrating. I migrated to SvelteKit for TypeScript throughout, better component
-			ergonomics, and mature developer tooling. You can read more about the migration
-			<a
-				href={resolve('/articles/hugo_to_sveltekit' as '/')}
-				class="underline transition-colors hover:text-mondrian_blue"
-				aria-label="Link to Hugo to SvelteKit migration article"
-			>
-				here
-			</a>.
-		</p>
+		<div class="mb-4 space-y-3 leading-relaxed">
+			<p>
+				I'm a
+				<span
+					class="underline decoration-dotted hover:cursor-help"
+					title="It means I write software to support the writing of software."
+				>
+					Platform Engineer
+				</span>
+				at the
+				<a
+					href="https://www.mcgovern.org/"
+					class="underline transition-colors hover:text-mondrian_blue"
+					aria-label="Link to Patrick J. McGovern Foundation website"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Patrick J. McGovern Foundation
+				</a>.
+			</p>
+			<p>
+				Most of my time is spent working on infrastructure with some fullstack work as well. My
+				interests include application performance, observability, reliability, and the developer
+				experience.
+			</p>
+			<p>
+				This site is maintained as well as I can. I go through phases of content inspiration or
+				motivation. I sometimes see an ideal version of myself capable of writing and sharing more,
+				but I realize I can't write for writing's sake. I need something I actually want to share.
+				That threshold feels high to me.
+			</p>
+		</div>
 		<Logo class="size-36 shrink-0" />
-	</div>
-
-	<div class="mb-4 space-y-3 leading-relaxed">
-		<p>
-			I'm a
-			<span
-				class="underline decoration-dotted hover:cursor-help"
-				title="It means I write software to support the writing of software."
-			>
-				Platform Engineer
-			</span>
-			at the
-			<a
-				href="https://www.mcgovern.org/"
-				class="underline transition-colors hover:text-mondrian_blue"
-				aria-label="Link to Patrick J. McGovern Foundation website"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				Patrick J. McGovern Foundation
-			</a>.
-		</p>
-		<p>
-			Most of my time is spent working on infrastructure with some fullstack work as well. My
-			interests include application performance, observability, reliability, and the developer
-			experience.
-		</p>
 	</div>
 
 	<div class="border-t border-dashed border-mondrian_black pt-4">
