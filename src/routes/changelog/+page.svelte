@@ -56,11 +56,6 @@
 							<div class="space-y-1">
 								{#each release.commits as commit (commit.hash)}
 									<div class="flex items-start gap-2">
-										<span
-											class="inline-block min-w-12 bg-mondrian_light_gray px-1 py-0.5 font-mono text-xs text-mondrian_dark_gray"
-										>
-											{commit.type}
-										</span>
 										<span class="flex-1">{commit.subject}</span>
 										<a
 											href="https://github.com/natrimmer/synthetic.software/commit/{commit.hash}"
@@ -81,11 +76,11 @@
 	</table>
 
 	<!-- Mobile card view -->
-	<div class="mb-4 space-y-4 md:hidden">
+	<div class="mb-4 space-y-2 md:hidden">
 		{#each data.releases as release (release.tag)}
 			<details class="group">
 				<summary
-					class="flex cursor-pointer items-center justify-between border border-mondrian_black bg-mondrian_yellow p-4 shadow-mondrian transition-colors hover:bg-mondrian_white [&::-webkit-details-marker]:hidden [&::marker]:hidden"
+					class="flex cursor-pointer items-center justify-between border border-mondrian_black p-2 transition-colors [&::-webkit-details-marker]:hidden [&::marker]:hidden"
 				>
 					<div class="flex items-center gap-2">
 						<svg
@@ -121,29 +116,17 @@
 					{#if release.commits.length > 0}
 						<div class="space-y-2">
 							{#each release.commits as commit (commit.hash)}
-								<div class="flex items-start gap-3">
-									<div
-										class="mt-1 h-3 w-3 shrink-0 rounded-full border border-mondrian_black bg-mondrian_blue"
-									></div>
-									<div class="flex-1">
-										<div class="flex flex-col sm:flex-row sm:items-start sm:gap-2">
-											<span
-												class="mb-1 inline-block w-fit bg-mondrian_light_gray px-1 py-0.5 font-mono text-xs text-mondrian_dark_gray sm:mb-0"
-											>
-												{commit.type}
-											</span>
-											<span class="flex-1 text-sm">{commit.subject}</span>
-										</div>
-										<div class="mt-1">
-											<a
-												href="https://github.com/natrimmer/synthetic.software/commit/{commit.hash}"
-												class="font-mono text-xs text-mondrian_dark_gray transition-colors hover:text-mondrian_yellow"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												{commit.hash}
-											</a>
-										</div>
+								<div class="flex items-start">
+									<div class="flex flex-col sm:flex-row sm:items-start sm:gap-2">
+										<a
+											href="https://github.com/natrimmer/synthetic.software/commit/{commit.hash}"
+											class="mr-2 font-mono text-sm underline transition-colors hover:text-mondrian_yellow"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											{commit.hash}
+										</a>
+										<span class="flex-1 text-sm">{commit.subject}</span>
 									</div>
 								</div>
 							{/each}
