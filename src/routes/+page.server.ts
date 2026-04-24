@@ -1,6 +1,6 @@
+import { loadPosts } from '$lib/utils/content';
 import { readFileSync } from 'fs';
 import { parse } from 'yaml';
-import { loadPosts } from '$lib/utils/content';
 import type { PageServerLoad } from './$types';
 
 type BlogrollPost = {
@@ -16,12 +16,12 @@ export const load: PageServerLoad = async () => {
 	const blogrollYaml = readFileSync(blogrollPath, 'utf-8');
 	const blogrollData = parse(blogrollYaml) as BlogrollPost[];
 
-	// Get unique posts by domain (first post from each domain), limit to 3
+	// Get unique posts by domain (first post from each domain), limit to 5
 	const seenDomains = new Set<string>();
 	const uniquePosts: BlogrollPost[] = [];
 
 	for (const post of blogrollData) {
-		if (!seenDomains.has(post.domain) && uniquePosts.length < 3) {
+		if (!seenDomains.has(post.domain) && uniquePosts.length < 5) {
 			seenDomains.add(post.domain);
 			uniquePosts.push(post);
 		}

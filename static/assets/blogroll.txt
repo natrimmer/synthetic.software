@@ -8,3 +8,5 @@ https://simonwillison.net/atom/everything/
 https://bcantrill.dtrace.org/index.xml
 https://ahl.dtrace.org/feed/feed.xml
 https://www.brendangregg.com/blog/rss.xml
+https://rednafi.com/index.xml
+https://charity.wtf/feed/
