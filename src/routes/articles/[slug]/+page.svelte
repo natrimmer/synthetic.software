@@ -8,12 +8,13 @@
 	const article = data.article;
 
 	// Dynamically import the content component based on slug
-	const contentModules = import.meta.glob('$content/articles/*.svx', { eager: true }) as Record<
-		string,
-		{ default: Component }
-	>;
+	const contentModules = import.meta.glob('$content/articles/*.{svx,org}', {
+		eager: true
+	}) as Record<string, { default: Component }>;
 
-	const contentPath = Object.keys(contentModules).find((p) => p.includes(`/${article.slug}.svx`));
+	const contentPath = Object.keys(contentModules).find((p) =>
+		p.match(new RegExp(`/${article.slug}\\.(svx|org)$`))
+	);
 	const Content = contentPath ? contentModules[contentPath].default : null;
 </script>
 

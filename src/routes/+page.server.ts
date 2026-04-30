@@ -27,7 +27,7 @@ export const load: PageServerLoad = async () => {
 		}
 	}
 
-	const articleFiles = import.meta.glob('$content/articles/*.svx', {
+	const articleFiles = import.meta.glob('$content/articles/*.{svx,org}', {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
 

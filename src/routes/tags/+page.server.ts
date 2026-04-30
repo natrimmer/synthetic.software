@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	// Load all content types that have tags
-	const articleFiles = import.meta.glob('$content/articles/*.svx', {
+	const articleFiles = import.meta.glob('$content/articles/*.{svx,org}', {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
 

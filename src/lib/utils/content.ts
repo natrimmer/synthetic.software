@@ -35,7 +35,7 @@ export function getSlugFromPath(path: string): string {
 		path
 			.split('/')
 			.pop()
-			?.replace(/\.svx$/, '') || ''
+			?.replace(/\.(svx|org)$/, '') || ''
 	);
 }
 

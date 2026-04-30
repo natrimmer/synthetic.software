@@ -8,7 +8,7 @@ type PageMetadata = {
 
 export const load: PageServerLoad = async () => {
 	// Load all content
-	const articlesFiles = import.meta.glob('$content/articles/*.svx', {
+	const articlesFiles = import.meta.glob('$content/articles/*.{svx,org}', {
 		eager: true
 	}) as Record<string, { metadata: PageMetadata }>;
 

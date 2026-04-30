@@ -5,7 +5,7 @@ import type { EntryGenerator, PageServerLoad } from './$types';
 // This function tells SvelteKit which slugs to prerender at build time
 export const entries: EntryGenerator = async () => {
 	console.log('[entries] Starting entries function for articles');
-	const articleFiles = import.meta.glob('$content/articles/*.svx', {
+	const articleFiles = import.meta.glob('$content/articles/*.{svx,org}', {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string } }>;
 
@@ -23,7 +23,7 @@ export const entries: EntryGenerator = async () => {
 };
 
 export const load: PageServerLoad = async ({ params }) => {
-	const articleFiles = import.meta.glob('$content/articles/*.svx', {
+	const articleFiles = import.meta.glob('$content/articles/*.{svx,org}', {
 		eager: true
 	}) as Record<
 		string,

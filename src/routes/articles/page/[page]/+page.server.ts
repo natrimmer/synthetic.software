@@ -5,7 +5,7 @@ import type { EntryGenerator, PageServerLoad } from './$types';
 const PER_PAGE = 10;
 
 const getArticleFiles = () =>
-	import.meta.glob('$content/articles/*.svx', {
+	import.meta.glob('$content/articles/*.{svx,org}', {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
 

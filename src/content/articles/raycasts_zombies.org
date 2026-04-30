@@ -1,38 +1,36 @@
----
-title: "Raycast's Zombies"
-date: 2026-03-20
-tags: ["systems-performance", "operating-systems", "hardware", "devops", "debugging", "productivity"]
----
+#+TITLE: Raycast's Zombies
+#+DATE: 2026-03-20
+#+FILETAGS: :systems-performance:operating-systems:hardware:devops:debugging:productivity:
 
-My M2 Air had been degrading slowly for a few weeks. Random fork failures, apps refusing to open, everything grinding to a halt until I restarted. Memory pressure was low. CPU usage was low. Nothing was obviously wrong. The tell was `zsh: fork failed: resource temporarily unavailable`.
+My M2 Air had been degrading slowly for a few weeks. Random fork failures, apps refusing to open, everything grinding to a halt until I restarted. Memory pressure was low. CPU usage was low. Nothing was obviously wrong. The tell was =zsh: fork failed: resource temporarily unavailable=.
 
 That error points to process table exhaustion. My soft limit was 1333 processes. I ran the following monitor to watch the climb:
 
-```
+#+BEGIN_SRC sh
 while true; do echo "$(date +%H:%M:%S) user processes: $(ps aux | grep user | wc -l)"; sleep 30; done
-```
+#+END_SRC
 
 387 processes at 08:51. 588 at 09:25. Six new processes per minute with zero user activity. To find what was accumulating:
 
-```
+#+BEGIN_SRC sh
 ps aux | grep user | awk '{print $11}' | sort | uniq -c | sort -rn | head -30
-```
+#+END_SRC
 
 This showed 197 defunct processes at the top. To find their parent:
 
-```
+#+BEGIN_SRC sh
 ps -ef | grep defunct | head -5
-```
+#+END_SRC
 
 Every zombie shared the same PPID: 1152. One more command:
 
-```
+#+BEGIN_SRC sh
 ps -p 1152 -o pid,ppid,comm
-```
+#+END_SRC
 
 Raycast Helper (Extensions)
 
-Zombies don't consume CPU or memory. They just occupy slots in the process table until the system can't fork anything new. `pkill -f "Raycast"` and the count dropped from 197 to 0 instantly.
+Zombies don't consume CPU or memory. They just occupy slots in the process table until the system can't fork anything new. =pkill -f "Raycast"= and the count dropped from 197 to 0 instantly.
 
 The likely culprit was the Coffee extension, which has known memory leak issues. But the reason it could take down the entire system is that Raycast runs all extensions inside a single unsandboxed Node process. One bad extension can exhaust resources for everything.
 
