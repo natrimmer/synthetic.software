@@ -235,7 +235,12 @@
     shellcheck.enable = true; # Lint shell scripts
     statix.enable = true; # Lint Nix code
     deadnix.enable = true; # Find unused Nix code
-    eslint.enable = true; # Lint JavaScript/TypeScript code
+    eslint = {
+      enable = true;
+      # Nix provides eslint 10.x; project uses 9.x — incompatible scope manager API.
+      # Use the project-local binary so versions stay in sync with package.json.
+      entry = pkgs.lib.mkForce "pnpm exec eslint --fix";
+    };
 
     #----------------------------------------
     # Security & Safety Hooks
