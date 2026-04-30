@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	// Load all markdown files from local content directory at build time
-	const articleFiles = import.meta.glob('$content/articles/*.{svx,org}', {
+	const articleFiles = import.meta.glob('$content/articles/*.org', {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
 

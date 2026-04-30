@@ -22,7 +22,7 @@ function getAllFiles(dir: string, fileList: string[] = []): string[] {
 		const filePath = join(dir, file);
 		if (statSync(filePath).isDirectory()) {
 			getAllFiles(filePath, fileList);
-		} else if (file.endsWith('.svx') && !file.startsWith('_')) {
+		} else if (file.endsWith('.org') && !file.startsWith('_')) {
 			fileList.push(filePath);
 		}
 	});
@@ -37,61 +37,27 @@ type Frontmatter = {
 };
 
 function extractFrontmatter(content: string): { frontmatter: Frontmatter; body: string } | null {
-	const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
-	const match = content.match(frontmatterRegex);
-
-	if (!match) return null;
-
-	const frontmatterText = match[1];
-	const body = match[2];
-
-	// Parse frontmatter manually (simple YAML parsing)
 	const frontmatter: Frontmatter = {};
-	const lines = frontmatterText.split('\n');
-	let currentKey: string | null = null;
-	let inArray = false;
+	const lines = content.split('\n');
+	let bodyStart = 0;
 
-	lines.forEach((line) => {
-		const trimmedLine = line.trim();
-
-		// Skip empty lines
-		if (!trimmedLine) return;
-
-		// Handle key-value pairs
-		if (trimmedLine.includes(':') && !trimmedLine.startsWith('-')) {
-			const colonIndex = trimmedLine.indexOf(':');
-			const key = trimmedLine.substring(0, colonIndex).trim();
-			const value = trimmedLine.substring(colonIndex + 1).trim();
-
-			currentKey = key;
-
-			// Check if value is an array
-			if (value.startsWith('[') && value.endsWith(']')) {
-				// Inline array format: tags: ["tag1", "tag2"]
-				const arrayContent = value.slice(1, -1);
-				frontmatter[key] = arrayContent
-					.split(',')
-					.map((item) => item.trim().replace(/^["']|["']$/g, ''));
-				inArray = false;
-			} else if (value === '') {
-				// Multi-line array format
-				frontmatter[key] = [];
-				inArray = true;
-			} else {
-				// Regular value
-				frontmatter[key] = value.replace(/^["']|["']$/g, '');
-				inArray = false;
+	for (let i = 0; i < lines.length; i++) {
+		const line = lines[i];
+		const keywordMatch = line.match(/^#\+(\w+):\s*(.*)$/);
+		if (keywordMatch) {
+			const key = keywordMatch[1].toLowerCase();
+			const value = keywordMatch[2].trim();
+			if (key === 'title') {
+				frontmatter.title = value;
+			} else if (key === 'filetags') {
+				// :tag1:tag2:tag3: → ['tag1', 'tag2', 'tag3']
+				frontmatter.tags = value.split(':').filter(Boolean);
 			}
-		} else if (trimmedLine.startsWith('-') && inArray && currentKey) {
-			// Array item in multi-line format
-			const arrayValue = trimmedLine
-				.substring(1)
-				.trim()
-				.replace(/^["']|["']$/g, '');
-			frontmatter[currentKey].push(arrayValue);
+			bodyStart = i + 1;
 		}
-	});
+	}
 
+	const body = lines.slice(bodyStart).join('\n');
 	return { frontmatter, body };
 }
 

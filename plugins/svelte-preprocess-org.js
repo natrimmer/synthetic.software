@@ -27,7 +27,6 @@ function parseOrgDate(value) {
 
 /**
  * Walk a uniorg AST and extract file-level keyword values.
- * Parses once; both metadata extraction and hast conversion use the same tree.
  * @param {import('uniorg').OrgData} tree
  * @returns {{ title?: string, date?: string, updated?: string, tags?: string[], draft?: boolean }}
  */
@@ -64,39 +63,42 @@ function extractKeywords(tree) {
 	return meta;
 }
 
+// Single pipeline: parse → hast → HTML.
+// allowDangerousHtml required for #+BEGIN_EXPORT html blocks to pass through unescaped.
+const processor = unified()
+	.use(uniorgParse)
+	.use(uniorgRehype)
+	.use(rehypeStringify, { allowDangerousHtml: true });
+
+// Separate parser for metadata extraction (avoids touching the hast pipeline).
+const metaParser = unified().use(uniorgParse);
+
 /**
  * @returns {import('@sveltejs/kit').Preprocessor}
  */
 export function orgPreprocessor() {
-	// Both pipelines share the same parser instance.
-	// The toHast transformer accepts a pre-parsed tree directly,
-	// so we parse once and branch: keywords from the tree, HTML from the tree.
-	const parser = unified().use(uniorgParse);
-	const toHast = unified().use(uniorgRehype);
-	const stringify = unified().use(rehypeStringify);
-
 	return {
 		name: 'svelte-preprocess-org',
 		async markup({ content, filename }) {
 			if (!filename?.endsWith('.org')) return;
 
-			// Parse once.
-			const tree = parser.parse(content);
-
-			// Branch 1: extract metadata from keyword nodes.
+			// Extract metadata from keyword nodes.
+			const tree = metaParser.parse(content);
 			const metadata = extractKeywords(tree);
 
-			// Branch 2: org AST → hast → HTML string.
-			// Run as a two-step pipeline so we can pass the already-parsed tree.
-			const hast = toHast.runSync(tree);
-			const html = stringify.stringify(hast);
+			// org → HTML via full pipeline.
+			// Using processor.process() (not runSync+stringify) — the only
+			// documented path that guarantees raw nodes from #+BEGIN_EXPORT html
+			// are passed through correctly by rehype-stringify.
+			const result = await processor.process(content);
+			const html = String(result.value);
 
-			// Escape </script> to prevent Svelte's template parser from closing
-			// the module script block early (e.g. in code examples showing HTML).
+			// Escape </script> to prevent Svelte's template parser from treating
+			// it as the end of the module script block.
 			const safeHtml = html.replace(/<\/script>/gi, '<\\/script>');
 
-			// JSON.stringify produces valid JS string literals — safe embedding
-			// regardless of quotes, backticks, or dollar signs in content.
+			// JSON.stringify produces a valid JS string literal regardless of
+			// quotes, backticks, or dollar signs in the content.
 			const code = `<script module>
   export const metadata = ${JSON.stringify(metadata)};
 </script>

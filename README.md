@@ -93,11 +93,11 @@ preview
 
 The site supports multiple content types:
 
-- **Articles**: Long-form technical content (`.svx` files with frontmatter)
+- **Articles**: Long-form technical content (`.org` files with org keywords)
 - **Notes**: Curated links and brief observations
 - **Blogroll**: Automatically generated from RSS feeds
 
-All content is written in Markdown with frontmatter and processed at build time.
+All content is written in org-mode and processed at build time.
 
 ## Build
 
@@ -139,4 +139,4 @@ This project was previously built with Hugo and has been migrated to SvelteKit. 
 - Better developer experience with TypeScript throughout
 - Better tooling (Vite HMR, Prettier, ESLint)
 
-See `src/content/articles/hugo_to_sveltekit.svx` for the full migration report and benchmarks.
+See `src/content/articles/hugo_to_sveltekit.org` for the full migration report and benchmarks.

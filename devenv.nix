@@ -65,7 +65,7 @@
     lint-prose.exec = ''
       if [ -z "$1" ]; then
         echo "Usage: lint-prose <file-path>"
-        echo "Example: lint-prose src/content/articles/blogroll.svx"
+        echo "Example: lint-prose src/content/articles/blogroll.org"
         exit 1
       fi
       pnpm run lint-prose "$1"

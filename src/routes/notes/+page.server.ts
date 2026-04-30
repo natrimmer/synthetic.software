@@ -2,7 +2,7 @@ import { loadPosts, paginatePosts } from '$lib/utils/content';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-	const noteFiles = import.meta.glob('$content/notes/*.svx', {
+	const noteFiles = import.meta.glob('$content/notes/*.org', {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
 

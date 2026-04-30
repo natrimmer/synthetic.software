@@ -27,7 +27,7 @@ export type Post = {
 
 /**
  * Extract slug from file path
- * @param path - File path like '/content/articles/my-post.svx'
+ * @param path - File path like '/content/articles/my-post.org'
  * @returns slug like 'my-post'
  */
 export function getSlugFromPath(path: string): string {
@@ -35,7 +35,7 @@ export function getSlugFromPath(path: string): string {
 		path
 			.split('/')
 			.pop()
-			?.replace(/\.(svx|org)$/, '') || ''
+			?.replace(/\.org$/, '') || ''
 	);
 }
 

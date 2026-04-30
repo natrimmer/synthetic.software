@@ -23,14 +23,20 @@ async function lintProse(filePath: string) {
 		process.exit(1);
 	}
 
-	// Extract content from frontmatter if it's a .svx file
+	// Strip org keywords and markup for linting
 	let textToLint = content;
-	if (filePath.endsWith('.svx') || filePath.endsWith('.md')) {
-		const frontmatterRegex = /^---\s*\n[\s\S]*?\n---\s*\n([\s\S]*)$/;
-		const match = content.match(frontmatterRegex);
-		if (match) {
-			textToLint = match[1];
-		}
+	if (filePath.endsWith('.org')) {
+		textToLint = content
+			.replace(/^#\+\w+:.*$/gm, '') // remove #+KEYWORD: lines
+			.replace(/\[\[.*?\]\[([^\]]*)\]\]/g, '$1') // [[url][text]] → text
+			.replace(/\[\[.*?\]\]/g, '') // [[url]] → empty
+			.replace(/^\|[-+|]+\|$/gm, '') // table separator rows
+			.replace(
+				/^\|.*\|$/gm,
+				(
+					row // table rows → plain text
+				) => row.split('|').slice(1, -1).join(' ')
+			);
 	}
 
 	// Strip HTML tags for cleaner linting
@@ -86,7 +92,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
 	if (!filePath) {
 		console.error('Usage: lint-prose <file-path>');
-		console.error('Example: lint-prose src/content/articles/blogroll.svx');
+		console.error('Example: lint-prose src/content/articles/blogroll.org');
 		process.exit(1);
 	}
 

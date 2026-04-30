@@ -8,11 +8,11 @@ export const entries: EntryGenerator = async () => {
 	console.log('[entries] Starting entries function for tags');
 
 	// Load all content types
-	const articleFiles = import.meta.glob('$content/articles/*.{svx,org}', {
+	const articleFiles = import.meta.glob('$content/articles/*.org', {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
 
-	const noteFiles = import.meta.glob('$content/notes/*.svx', {
+	const noteFiles = import.meta.glob('$content/notes/*.org', {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string; tags?: string[] } }>;
 
@@ -35,7 +35,7 @@ export const entries: EntryGenerator = async () => {
 
 export const load: PageServerLoad = async ({ params }) => {
 	// Load all content types
-	const articleFiles = import.meta.glob('$content/articles/*.{svx,org}', {
+	const articleFiles = import.meta.glob('$content/articles/*.org', {
 		eager: true
 	}) as Record<
 		string,
@@ -45,7 +45,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		}
 	>;
 
-	const noteFiles = import.meta.glob('$content/notes/*.svx', {
+	const noteFiles = import.meta.glob('$content/notes/*.org', {
 		eager: true
 	}) as Record<
 		string,

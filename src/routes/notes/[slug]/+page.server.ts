@@ -3,7 +3,7 @@ import { error } from '@sveltejs/kit';
 import type { EntryGenerator, PageServerLoad } from './$types';
 
 export const entries: EntryGenerator = async () => {
-	const noteFiles = import.meta.glob('$content/notes/*.svx', {
+	const noteFiles = import.meta.glob('$content/notes/*.org', {
 		eager: true
 	}) as Record<string, { metadata: { title: string; date: string } }>;
 
@@ -15,7 +15,7 @@ export const entries: EntryGenerator = async () => {
 };
 
 export const load: PageServerLoad = async ({ params }) => {
-	const noteFiles = import.meta.glob('$content/notes/*.svx', {
+	const noteFiles = import.meta.glob('$content/notes/*.org', {
 		eager: true
 	}) as Record<
 		string,
