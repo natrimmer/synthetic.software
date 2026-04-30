@@ -1,0 +1,20 @@
+#+TITLE: Cloudflare Sunsetting Pages
+#+DATE: 2025-08-12
+#+FILETAGS: :cloudflare:cloudflare-pages:deployment:migration:web-hosting:
+
+If you travel to the [[https://developers.cloudflare.com/pages/][Cloudflare Pages documentation]], you may notice the sparkly little link shown below on the left-hand toolbar:
+
+#+BEGIN_EXPORT html
+<figure class="my-2 w-60 mx-auto">
+  <img src="/assets/images/articles/migrate_to_workers.gif" alt="Migration to Cloudflare Workers" class="w-full border border-mondrian_black shadow-mondrian" />
+  <figcaption class="text-center text-sm text-gray-500"><em>Sparkly little link</em></figcaption>
+</figure>
+#+END_EXPORT
+
+That link will take you to a [[https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/][migration guide]]. While Cloudflare hasn't officially announced Pages' deprecation, their strategic direction is clear. In their recent [[https://blog.cloudflare.com/full-stack-development-on-cloudflare-workers/][full-stack development post]]:
+
+#+BEGIN_QUOTE
+Cloudflare Pages will continue to be supported, but, going forward, all of our investment, optimizations, and feature work will be dedicated to improving Workers. Now that Workers supports both serving static assets *and* server-side rendering, you should *start with Workers*.
+#+END_QUOTE
+
+The message is clear: while Pages isn't going away immediately, Workers is the platform receiving active development. When rolling out this site, I had intended on using Pages. However, noticing all the above I went with Workers instead, despite being fully static.

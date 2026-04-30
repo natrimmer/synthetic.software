@@ -1,0 +1,42 @@
+#+TITLE: What is the Blogroll?
+#+DATE: 2025-07-23
+#+UPDATED: 2025-11-12
+#+FILETAGS: :blogging:curation:web-culture:personal-website:
+
+** Background
+
+Sharing and working in public is an ideal I aspire to. These are two distinct ideas worth exploring. Sharing means amplifying the work of others and helping them gain visibility. Working in public means being transparent about my own habits, routines, and how I engage with the world. The blogroll accomplishes both: it showcases what others are writing while revealing what I'm reading and finding valuable.
+
+If you're wondering what blogroll I'm referring to, visit it [[/blogroll][here]] and come back. The blogroll is a curated list of blogs and websites that updates automatically using RSS/Atom feeds. It aggregates content from multiple sources into one place, creating a personalized feed. The inspiration comes from Alex Kladov's blog "matklad", specifically the post [[https://matklad.github.io/2025/06/26/rssssr.html]["RSS Server Side Reader"]]. For more context on RSS/Atom feeds, read their primer—it's more thorough than what I could provide here.
+
+** How it works
+
+The blogroll implementation consists of three components: a TypeScript script that fetches and processes RSS feeds, a YAML data file generated at build time, and a Svelte component that renders the final page. Here's how they work together.
+
+*** TypeScript Generator
+
+The TypeScript script =scripts/generate-blogroll.ts= handles feed fetching and data generation. It reads feed URLs from [[/assets/blogroll.txt][/static/assets/blogroll.txt]], fetches each feed using the =rss-parser= library, and generates a YAML file that SvelteKit consumes during the build.
+
+The extracted data is deliberately minimal: title, URL, date, domain, and feed URL. This provides enough context for readers to evaluate posts without overwhelming the interface.
+
+The =rss-parser= library handles both RSS and Atom formats transparently, normalizing dates to ISO format regardless of the feed's original date format. The script limits each feed to three recent posts, then sorts everything chronologically to create a unified timeline across all sources.
+
+The =blogroll.txt= file supports comments (lines starting with #) and automatically filters empty lines, making it straightforward to organize feeds or temporarily disable sources without deletion.
+
+*** Build Integration
+
+The blogroll generator runs during the prebuild phase via =scripts/prebuild.ts=, which orchestrates version generation, blogroll updates, and changelog creation. This happens before SvelteKit's build process begins, ensuring the generated data is available when routes are rendered.
+
+The workflow is: run prebuild scripts → generate YAML data → SvelteKit builds routes → static HTML output. In development, you can regenerate the blogroll independently with =pnpm run generate:blogroll=. To keep the site updated with the latest posts, the blogroll as ran on a "cron" job, scheduled daily via GitHub Actions.
+
+** Update: Migration to TypeScript
+
+When I migrated this site from Hugo to SvelteKit (detailed in [[/articles/hugo_to_sveltekit][Hugo to SvelteKit: Migration Report]]), the blogroll generator moved from Go to TypeScript. The core logic remained nearly identical—both implementations are about 90 lines that fetch feeds, parse them, and output YAML.
+
+The TypeScript version brings meaningful improvements. Type definitions make the data structure explicit. The tradeoff is dependencies. The Go version used only the standard library, running with zero external dependencies. The TypeScript version requires Node.js and two npm packages: =rss-parser= and =yaml=. For this project, the improved developer experience and unified toolchain (everything in TypeScript) justify the additional dependencies. The generator runs only at build time, so the runtime remains dependency-free—just static HTML and CSS.
+
+** Closing thoughts
+
+Building this blogroll was as much about the process as the result. By sharing both what I read and how I built the system, I'm trying to embody both aspects of working in public: amplifying others' voices while being transparent about my own methods.
+
+If you're interested in building something similar, I encourage you to try it. Feel free to reach out with questions, feedback, or ideas. You can find my contact information [[/contact][here]].

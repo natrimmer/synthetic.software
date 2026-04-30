@@ -1,10 +1,8 @@
----
-title: "Thanks, Cantrill."
-date: 2025-12-10
-tags: ["ai", "blogging", "writing", "philosophy", "personal"]
----
+#+TITLE: Thanks, Cantrill.
+#+DATE: 2025-12-10
+#+FILETAGS: :ai:blogging:writing:philosophy:personal:
 
-Bryan Cantrill recently published a post entitled ["Your intellectual fly is open"](https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/), and in typical Cantrill fashion, it has left me stunned and wondering. I'm definitely guilty of using LLMs in my own writing, some moments more than others. An aspect that I have been quieting in my subconscious is the fact that nearly all character and intrigue gets gutted from LLM generated text. That applies to text generated given a personal writing sample. That even applies to text rewritten from a first draft. So, here I am with my intellectual fly open, and I must say I appreciate the notice, Cantrill.
+Bryan Cantrill recently published a post entitled [[https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/][Your intellectual fly is open]], and in typical Cantrill fashion, it has left me stunned and wondering. I'm definitely guilty of using LLMs in my own writing, some moments more than others. An aspect that I have been quieting in my subconscious is the fact that nearly all character and intrigue gets gutted from LLM generated text. That applies to text generated given a personal writing sample. That even applies to text rewritten from a first draft. So, here I am with my intellectual fly open, and I must say I appreciate the notice, Cantrill.
 
 What place do LLMs have in any writing process (technical, creative)? I'd think editing and proofreading are decent use cases. The LLM would probably need significant guardrails to prevent it from rewriting large swaths of the passages. Though once prompted, it's just so tempting when you read an idea you have written now expressed in a way that may be more universally palatable to just adopt that version.
 

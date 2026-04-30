@@ -1,8 +1,6 @@
----
-title: "Frische Luft"
-date: 2026-02-18
-tags: ["ai", "career", "philosophy", "personal", "writing", "web-culture"]
----
+#+TITLE: Frische Luft
+#+DATE: 2026-02-18
+#+FILETAGS: :ai:career:philosophy:personal:writing:web-culture:
 
 Things have felt somewhat dire in the software space lately. Dire in the sense that the discourse is dominated by AI, and I suppose this writing won't be much different. I've been feeling overwhelmed by the rapid changes, the uncertainty of my future in this field, and the polarizing takes from the bears and the bulls.
 

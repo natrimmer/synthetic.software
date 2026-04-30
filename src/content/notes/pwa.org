@@ -1,0 +1,12 @@
+#+TITLE: PWA Resources
+#+DATE: 2025-01-18
+#+UPDATED: 2025-07-23
+#+FILETAGS: :pwa:web-development:resources:
+
+| Site                    | Description                                                                            | Link                                                                                         |
+|-------------------------+----------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------|
+| MDN                     | Mozilla Developer Network's guide to Progressive Web Apps.                             | [[https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps][LINK →]]               |
+| PWA Builder Documentation | Documentation for PWA Builder, a tool to help build Progressive Web Apps and release them to app stores. | [[https://docs.pwabuilder.com/#/][LINK →]] |
+| PWA Checklist           | Google's Progressive Web App Checklist.                                                | [[https://web.dev/pwa-checklist/][LINK →]]                                                   |
+
+If a link is dead or the site is down, [[/contact/][please let me know]].

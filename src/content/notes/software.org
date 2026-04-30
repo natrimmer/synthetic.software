@@ -1,0 +1,25 @@
+#+TITLE: Recommended Software
+#+DATE: 2025-04-17
+#+UPDATED: 2026-04-23
+#+FILETAGS: :developer-tools:productivity:code-editor:recommendations:
+
+| Software     | Description                                                                                                                                                                                                         | Link                                                       |
+|--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------|
+| Zed          | Zed is a code editor built in Rust that prioritizes speed and responsiveness. Super clean and minimalist UI that's similar to VS Code, but it's more lightweight and faster. The dev team pushes updates based on user feedback regularly. And it's open source! | [[https://zed.dev/][LINK →]] |
+| GNU Emacs    | GNU Emacs, possibly the perfect text editor.                                                                                                                                                                        | [[https://www.gnu.org/software/emacs/][LINK →]]            |
+| 1Password    | 1Password is the essential tool I recommend to everyone – it securely manages all your passwords and syncs across devices.                                                                                           | [[https://1password.com/][LINK →]]                        |
+| AeroSpace *  | "AeroSpace is an i3-like tiling window manager for macOS". As a tiling window manager proselitizer, it is an absolute necessity for macOS. It's the closest I've gotten to the DWM heaven.                         | [[https://github.com/nikitabobko/AeroSpace][LINK →]]       |
+| Hammerspoon  | Hammerspoon is an automation tool for macOS. I like to think of it as a bunch of little hooks into macOS operations to extend their functionality. I use it to add keyboard shortcuts for app launching, window management, and caffeination status. | [[https://www.hammerspoon.org][LINK →]] |
+| Ghostty      | Ghostty is a terminal emulator. It is fast and simple. It's built on a portable library that enables great terminal emulation in other applications.                                                                 | [[https://ghostty.org][LINK →]]                           |
+
+There is no particular order.
+
+If a link is dead or the site is down, [[/contact/][please let me know]].
+
+I removed Warp from this list. I enjoyed using it until too many AI features were pushed into the product. I kept accidently triggering a chat, and then having to turn those features off. Half of the features I liked about it can be replicated using PS_PROMPT and PS1 in a shell configuration.
+
+I removed Obsidian from this list. I've been disillusioned by the markdown, Obsidian obsession of late. It is ironically starting to feel less extensible and more bloated. On top of that, the more I learn about org mode, the more it rounds out the rough edges of using markdown for personal knowledge management and overall digital organization. I'll be writing more on this soon.
+
+I've removed Raycast from this list. View [[/articles/raycasts_zombies/][Raycast's Zombies]].
+
+(*) I no longer use AeroSpace. I use Hammerspoon keyboard shortcuts instead. I still recommend it though.

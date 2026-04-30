@@ -1,0 +1,18 @@
+#+TITLE: Seattle - Recommendations & Notes
+#+DATE: 2025-07-18
+#+UPDATED: 2025-09-08
+#+FILETAGS: :seattle:restaurants:travel:recommendations:
+
+| Place              | Description                                                                                                                             | Link                                              |
+|--------------------+-----------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------|
+| Le Caviste         | A French wine bar in South Lake Union, great prices and great staff.                                                                    | [[http://lecavisteseattle.com/][LINK →]]           |
+| Cafe Suliman       | Small Middle Eastern cafe in the Melrose Market. It's wonderful.                                                                        | [[https://www.cafesuliman.com/][LINK →]]           |
+| L'Oursin           | French café attitude and fare. It's a great meal, and the bar program is top notch too with one of the best collections of Calvados in the city. | [[https://www.loursinseattle.com/][LINK →]] |
+| Local Tide         | Fremont seafood spot. It's casual. It's delicious. It's consistently perfect. The shrimp toast is a must.                               | [[https://www.localtide.com/][LINK →]]            |
+| Espresso Vivace    | Espresso Vivace is a coffee roaster and cafe in Capitol Hill, with another location in South Lake Union. My favorite coffee in the city. | [[https://espressovivace.com/][LINK →]]           |
+| Temple Pastries    | Insane pastries. The chocolate buckwheat shortbread is my favorite. (and the cardamom almond brioche wow)                               | [[https://www.templepastries.com/][LINK →]]       |
+| Market House Meats | The best reuben sandwich in Seattle. You'll need a nap afterwards, but it is very much worth it.                                        | [[http://www.markethousemeats.co/][LINK →]]       |
+
+The places here are in no particular order.
+
+If a link is dead or the site is down, [[/contact/][please let me know]].

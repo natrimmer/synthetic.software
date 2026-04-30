@@ -1,0 +1,25 @@
+#+TITLE: Great Sites
+#+DATE: 2025-01-11
+#+UPDATED: 2026-04-23
+#+FILETAGS: :web-design:typography:resources:curation:
+
+| Site                  | Description                                                                                                                                                                              | Link                                                         |
+|-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------|
+| CARI Aesthetics       | The Consumer Aesthetics Research Institute's comprehensive index of visual aesthetic trends. A fascinating catalog of design movements from the 1970s to present day, coining terms like Y2K Futurism and Frutiger Aero. | [[https://cari.institute/aesthetics][LINK →]] |
+| Modern Font Stacks    | System font stacks organized by typeface classification for instant loading. No downloads, no layout shifts, just beautiful typography using fonts already installed on modern operating systems. Perfect for performance-focused web design. | [[https://modernfontstacks.com/][LINK →]] |
+| MAKING SOFTWARE       | Stunning aesthetics in this one. A collection of writings about software development and computing. Can't wait for the articles and book to be published.                                 | [[https://www.makingsoftware.com/][LINK →]]                  |
+| Leah Neukirchen's site | Incredible personal site with an impressive breadth of content. The consistency and quality of the work is inspiring. Her technical blog posts are knowledgeable and well-written. Combined with a simple and clean design, it's a great example of a personal site done right. | [[https://leahneukirchen.org/][LINK →]] |
+| Bitsavers             | Online archive preserving historic computer documentation.                                                                                                                               | [[https://bitsavers.org/][LINK →]]                          |
+| Minifeed              | Curated blog reader and search engine. The design is clean and simple with a similar philosophy to this site.                                                                            | [[https://minifeed.net/welcome][LINK →]]                    |
+| CSS Screensavers      | "Recreating After Dark screensavers in CSS."                                                                                                                                             | [[https://www.bryanbraun.com/after-dark-css/][LINK →]]      |
+| Summer Afternoon      | "The memories of those summer days in our childhood when time seemed to pass slowly often evoke a strong sense of nostalgia for many of us." — Vicente Lucendo                           | [[https://summer-afternoon.vlucendo.com/][LINK →]]          |
+| Diceware              | "Generate high-entropy passwords the easy way!"                                                                                                                                          | [[https://diceware.dmuth.org/][LINK →]]                      |
+| Scan of the Month     | CT scans of everyday objects. Not to mention the website's design is excellent.                                                                                                          | [[https://www.scanofthemonth.com/][LINK →]]                  |
+| oimo.io               | Developer's portfolio site. The works tab contains amazing in-browser physics simulations.                                                                                               | [[https://oimo.io/][LINK →]]                               |
+| Generated Space       | Impressive collection of generative art with source code links and beautiful demonstrations.                                                                                             | [[https://generated.space/][LINK →]]                        |
+| How to Center in CSS  | A classic. Simple form to generate CSS for centering elements because why is it so hard?                                                                                                 | [[http://howtocenterincss.com/][LINK →]]                     |
+| Train Jazz            | This site plays sounds generated via NYC train data. The site is beautiful, and the idea is original.                                                                                   | [[https://www.trainjazz.com][LINK →]]                       |
+
+The sites here are in no particular order.
+
+If a link is dead or the site is down, [[/contact/][please let me know]].
