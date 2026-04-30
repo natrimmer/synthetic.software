@@ -7,34 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      harper.js:
-        specifier: ^1.1.0
-        version: 1.1.0
-      rehype-stringify:
-        specifier: ^10.0.1
-        version: 10.0.1
-      rss-parser:
-        specifier: ^3.13.0
-        version: 3.13.0
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      unified:
-        specifier: ^11.0.5
-        version: 11.0.5
-      uniorg:
-        specifier: ^1.4.0
-        version: 1.4.0
-      uniorg-parse:
-        specifier: ^3.2.1
-        version: 3.2.1
-      uniorg-rehype:
-        specifier: ^2.2.0
-        version: 2.2.0
-      yaml:
-        specifier: ^2.8.1
-        version: 2.8.1
     devDependencies:
       '@eslint/compat':
         specifier: ^1.4.0
@@ -72,6 +44,9 @@ importers:
       globals:
         specifier: ^16.4.0
         version: 16.5.0
+      harper.js:
+        specifier: ^1.1.0
+        version: 1.1.0
       mdsvex:
         specifier: ^0.12.6
         version: 0.12.6(svelte@5.43.5)
@@ -84,6 +59,12 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.7.1
         version: 0.7.1(prettier-plugin-svelte@3.4.0(prettier@3.6.2)(svelte@5.43.5))(prettier@3.6.2)
+      rehype-stringify:
+        specifier: ^10.0.1
+        version: 10.0.1
+      rss-parser:
+        specifier: ^3.13.0
+        version: 3.13.0
       svelte:
         specifier: ^5.41.0
         version: 5.43.5
@@ -93,18 +74,36 @@ importers:
       tailwindcss:
         specifier: ^4.1.14
         version: 4.1.17
+      tsx:
+        specifier: ^4.20.6
+        version: 4.20.6
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
       typescript-eslint:
         specifier: ^8.46.1
         version: 8.46.4(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+      unified:
+        specifier: ^11.0.5
+        version: 11.0.5
+      uniorg:
+        specifier: ^1.4.0
+        version: 1.4.0
+      uniorg-parse:
+        specifier: ^3.2.1
+        version: 3.2.1
+      uniorg-rehype:
+        specifier: ^2.2.0
+        version: 2.2.0
       vite:
         specifier: ^7.1.10
         version: 7.2.2(@types/node@22.19.0)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.20.6)(yaml@2.8.1)
       wrangler:
         specifier: ^4.47.0
         version: 4.47.0
+      yaml:
+        specifier: ^2.8.1
+        version: 2.8.1
 
 packages:
 
