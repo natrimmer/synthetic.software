@@ -14,13 +14,13 @@
 <p class="pb-4">
 	I like to write about software infrastructure, design, simplicity, and aestheticism. This site has
 	two main sections. The <a
-		href={resolve('/notes/')}
+		href={resolve('/notes')}
 		class="underline transition-colors hover:text-mondrian_blue"
 		aria-label="Notes section - evolving ideas and explorations">notes</a
 	>
 	section contains ideas, lists. The
 	<a
-		href={resolve('/articles/')}
+		href={resolve('/articles')}
 		class="underline transition-colors hover:text-mondrian_blue"
 		aria-label="Articles section - longer form writing">articles</a
 	>
@@ -53,7 +53,7 @@
 				<h3 class="text-sm font-semibold">Recent posts from blogs I follow</h3>
 			</div>
 			<a
-				href={resolve('/blogroll/')}
+				href={resolve('/blogroll')}
 				class="font-mono text-xs underline transition-colors hover:text-mondrian_red"
 				aria-label="View all blogroll posts"
 				title="View all blogroll posts">view all →</a

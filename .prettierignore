@@ -12,3 +12,5 @@ src/lib/version.ts
 
 # Miscellaneous
 /static/
+# SvelteKit template with %sveltekit.*% placeholders; crashes prettier 3.6.2 html parser
+src/app.html

@@ -85,17 +85,15 @@
 		</a>
 		<span class="h-1.5 w-1.5 rounded-full border border-mondrian_black bg-mondrian_light_gray"
 		></span>
-		<a href={resolve('/changelog/')} class="transition-colors hover:text-mondrian_red">
+		<a href={resolve('/changelog')} class="transition-colors hover:text-mondrian_red">
 			changelog
 		</a>
 		<span class="h-1.5 w-1.5 rounded-full border border-mondrian_black bg-mondrian_light_gray"
 		></span>
-		<a href={resolve('/sitemap/')} class="transition-colors hover:text-mondrian_blue"> sitemap </a>
+		<a href={resolve('/sitemap')} class="transition-colors hover:text-mondrian_blue"> sitemap </a>
 		<span class="h-1.5 w-1.5 rounded-full border border-mondrian_black bg-mondrian_light_gray"
 		></span>
-		<a href={resolve('/contact/')} class="transition-colors hover:text-mondrian_yellow">
-			contact
-		</a>
+		<a href={resolve('/contact')} class="transition-colors hover:text-mondrian_yellow"> contact </a>
 		<span class="h-1.5 w-1.5 rounded-full border border-mondrian_black bg-mondrian_light_gray"
 		></span>
 		<a href="mailto:info@synthetic.software" class="transition-colors hover:text-mondrian_blue">

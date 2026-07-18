@@ -1,0 +1,7 @@
+# Content-hashed build assets never change under a given name — cache forever.
+/_app/immutable/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Favicons, article images, gpg key — rarely change, not hashed. Day cache.
+/assets/*
+  Cache-Control: public, max-age=86400
