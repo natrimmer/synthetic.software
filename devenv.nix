@@ -1,5 +1,24 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  # Thin wrappers over the matching `pnpm run <name>` script.
+  pnpmRun =
+    lib.genAttrs
+      [
+        "build"
+        "generate"
+        "dev"
+        "preview"
+        "check"
+        "lint"
+        "format"
+        "analyze-tags"
+        "suggest-tags"
+      ]
+      (name: {
+        exec = "pnpm run ${name}";
+      });
+in
 {
   packages = [
     pkgs.git
@@ -12,54 +31,13 @@
   languages.typescript.enable = true;
   dotenv.enable = true;
 
-  scripts = {
-    install.exec = ''
-      pnpm install
-    '';
-
-    build.exec = ''
-      pnpm run build
-    '';
-
-    build-full.exec = ''
-      pnpm run build:full
-    '';
-
-    generate.exec = ''
-      pnpm run generate
-    '';
-
-    dev.exec = ''
-      pnpm run dev
-    '';
-
-    preview.exec = ''
-      pnpm run preview
-    '';
+  scripts = pnpmRun // {
+    install.exec = "pnpm install";
+    build-full.exec = "pnpm run build:full";
 
     serve.exec = ''
       pnpm run build:full
       pnpm run preview
-    '';
-
-    check.exec = ''
-      pnpm run check
-    '';
-
-    lint.exec = ''
-      pnpm run lint
-    '';
-
-    format.exec = ''
-      pnpm run format
-    '';
-
-    analyze-tags.exec = ''
-      pnpm run analyze-tags
-    '';
-
-    suggest-tags.exec = ''
-      pnpm run suggest-tags
     '';
 
     lint-prose.exec = ''
@@ -71,17 +49,39 @@
       pnpm run lint-prose "$1"
     '';
 
-    patch.exec = ''
-      # Get the latest tag
+    bump.exec = ''
+      LEVEL="$1"
+      case "$LEVEL" in
+        patch | minor | major) ;;
+        *)
+          echo "Usage: bump <patch|minor|major>"
+          exit 1
+          ;;
+      esac
+
       LATEST_TAG=$(git tag --sort=-v:refname | head -n 1)
       if [ -z "$LATEST_TAG" ]; then
-        echo "No existing tags found. Creating v0.0.1"
-        NEW_TAG="v0.0.1"
+        case "$LEVEL" in
+          patch) NEW_TAG="v0.0.1" ;;
+          minor) NEW_TAG="v0.1.0" ;;
+          major) NEW_TAG="v1.0.0" ;;
+        esac
+        echo "No existing tags found. Creating $NEW_TAG"
       else
-        # Parse version components
         VERSION=''${LATEST_TAG#v}
         IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-        PATCH=$((PATCH + 1))
+        case "$LEVEL" in
+          patch) PATCH=$((PATCH + 1)) ;;
+          minor)
+            MINOR=$((MINOR + 1))
+            PATCH=0
+            ;;
+          major)
+            MAJOR=$((MAJOR + 1))
+            MINOR=0
+            PATCH=0
+            ;;
+        esac
         NEW_TAG="v$MAJOR.$MINOR.$PATCH"
       fi
 
@@ -90,90 +90,10 @@
       read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
-        # Update package.json version
-        pnpm version patch --no-git-tag-version
+        pnpm version "$LEVEL" --no-git-tag-version
         git add package.json
         git commit -m "chore: bump version to ''${NEW_TAG#v}"
 
-        # Create git tag
-        git tag -a "$NEW_TAG" -m "Version ''${NEW_TAG#v}"
-        echo "Tag $NEW_TAG created"
-        read -p "Push tag to remote? (y/n) " -n 1 -r
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-          git push origin main
-          git push origin "$NEW_TAG"
-          echo "Tag $NEW_TAG pushed"
-        fi
-      else
-        echo "Aborted"
-      fi
-    '';
-
-    minor.exec = ''
-      # Get the latest tag
-      LATEST_TAG=$(git tag --sort=-v:refname | head -n 1)
-      if [ -z "$LATEST_TAG" ]; then
-        echo "No existing tags found. Creating v0.1.0"
-        NEW_TAG="v0.1.0"
-      else
-        # Parse version components
-        VERSION=''${LATEST_TAG#v}
-        IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-        MINOR=$((MINOR + 1))
-        NEW_TAG="v$MAJOR.$MINOR.0"
-      fi
-
-      echo "Current tag: $LATEST_TAG"
-      echo "New tag: $NEW_TAG"
-      read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
-      echo
-      if [[ $REPLY =~ ^[Yy]$ ]]; then
-        # Update package.json version
-        pnpm version minor --no-git-tag-version
-        git add package.json
-        git commit -m "chore: bump version to ''${NEW_TAG#v}"
-
-        # Create git tag
-        git tag -a "$NEW_TAG" -m "Version ''${NEW_TAG#v}"
-        echo "Tag $NEW_TAG created"
-        read -p "Push tag to remote? (y/n) " -n 1 -r
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-          git push origin main
-          git push origin "$NEW_TAG"
-          echo "Tag $NEW_TAG pushed"
-        fi
-      else
-        echo "Aborted"
-      fi
-    '';
-
-    major.exec = ''
-      # Get the latest tag
-      LATEST_TAG=$(git tag --sort=-v:refname | head -n 1)
-      if [ -z "$LATEST_TAG" ]; then
-        echo "No existing tags found. Creating v1.0.0"
-        NEW_TAG="v1.0.0"
-      else
-        # Parse version components
-        VERSION=''${LATEST_TAG#v}
-        IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-        MAJOR=$((MAJOR + 1))
-        NEW_TAG="v$MAJOR.0.0"
-      fi
-
-      echo "Current tag: $LATEST_TAG"
-      echo "New tag: $NEW_TAG"
-      read -p "Create and push tag $NEW_TAG? (y/n) " -n 1 -r
-      echo
-      if [[ $REPLY =~ ^[Yy]$ ]]; then
-        # Update package.json version
-        pnpm version major --no-git-tag-version
-        git add package.json
-        git commit -m "chore: bump version to ''${NEW_TAG#v}"
-
-        # Create git tag
         git tag -a "$NEW_TAG" -m "Version ''${NEW_TAG#v}"
         echo "Tag $NEW_TAG created"
         read -p "Push tag to remote? (y/n) " -n 1 -r
@@ -204,9 +124,7 @@
       echo "  analyze-tags       - Scan all posts and generate tags analysis"
       echo "  suggest-tags       - Generate AI tag suggestions for untagged posts"
       echo "  lint-prose <file>  - Check grammar and prose with Harper"
-      echo "  patch              - Increment patch version and tag (e.g., v2.0.5 -> v2.0.6)"
-      echo "  minor              - Increment minor version and tag (e.g., v2.0.5 -> v2.1.0)"
-      echo "  major              - Increment major version and tag (e.g., v2.0.5 -> v3.0.0)"
+      echo "  bump <level>       - Bump version and tag; level is patch|minor|major"
       echo ""
       echo "  syn                - Show this help"
     '';
@@ -221,16 +139,10 @@
   '';
 
   git-hooks.hooks = {
-    #----------------------------------------
-    # Formatting Hooks - Run First
-    #----------------------------------------
     beautysh.enable = true; # Format shell files
     nixfmt-rfc-style.enable = true; # Format Nix code
     prettier.enable = true; # Format code using Prettier
 
-    #----------------------------------------
-    # Linting Hooks - Run After Formatting
-    #----------------------------------------
     actionlint.enable = true; # Static checker for GitHub Actions workflow files
     shellcheck.enable = true; # Lint shell scripts
     statix.enable = true; # Lint Nix code
@@ -242,9 +154,6 @@
       entry = pkgs.lib.mkForce "pnpm exec eslint --fix";
     };
 
-    #----------------------------------------
-    # Security & Safety Hooks
-    #----------------------------------------
     detect-private-keys.enable = true; # Prevent committing private keys
     check-added-large-files.enable = true; # Prevent committing large files
     check-case-conflicts.enable = true; # Check for case-insensitive conflicts
